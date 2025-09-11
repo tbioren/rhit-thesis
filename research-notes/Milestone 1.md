@@ -1,0 +1,2 @@
+"During the first milestone, I plan to learn in depth about CGP and DSSR techniques. I plan to perform independent research on the theory behind these techniques and to familiarize myself with ongoing and past research in the field. By the end of this milestone, I will be able to understand most CGP based experiments and should be comfortable designing my own CGP experiments. At this point, I will have a rough idea of the graph representation my bitstreams will take."
+
