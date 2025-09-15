@@ -150,13 +150,23 @@
               "icon": "lucide-list",
               "title": "Outline of Work Log"
             }
+          },
+          {
+            "id": "36d7a9c01eaf0e4c",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -166,17 +176,18 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "dbcfec5169c58f7e",
+  "active": "82bd18c66e36dfb0",
   "lastOpenFiles": [
-    "research-papers/vasicek_iee.pdf",
+    "ThomasBiorenThesisProposal.pdf",
     "Work Log.md",
     "Milestone 1.md",
+    "research-papers/vasicek_iee.pdf",
     "research-papers/vasicek_iee 2.pdf",
     "Cartesian Genetic Programming.md",
-    "ThomasBiorenThesisProposal.pdf",
     "Welcome.md",
     "Untitled.canvas",
     "Untitled.base",
