@@ -1,12 +1,13 @@
 ## Fall Quarter
+
 ```chart
 type: line
 labels: [Week 1, Week 2, Week 3, Week 4, Week 5, Week 6, Week 7, Week 8, Week 9, Week 10, Finals Week]
 series:
-  - title: Work Completed
+  - title: Work Completed (hours)
     # NOTE: These values are cumulative. Add the time worked to the last value in the list.
     data: [4, 4.5]
-  - title: Ideal Burnup
+  - title: Ideal Burnup (hours)
     data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 100]
 ```
 
