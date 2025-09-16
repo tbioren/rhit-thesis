@@ -1,0 +1,2 @@
+- I want to use a [[Pico-Ice]] to evolve on. We're using them for EHW and they seem to be cheap and are quick to reconfigure.
+- I imagine they're probably very similar to iCE40s we've been using in the past. If they are, I know how the LUTs are formatted and it'll be very easy to create a CGP graph structure to mimic this.

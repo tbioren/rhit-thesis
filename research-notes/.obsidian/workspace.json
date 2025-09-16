@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "9df6bb631201567d",
+        "id": "cc6dc8170f1b962c",
         "type": "tabs",
         "children": [
           {
-            "id": "dbcfec5169c58f7e",
+            "id": "54282f98b610f7a3",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -142,13 +142,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Work Log.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Work Log"
+              "title": "Outline"
             }
           },
           {
@@ -180,12 +179,21 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "dbcfec5169c58f7e",
+  "active": "54282f98b610f7a3",
   "lastOpenFiles": [
-    "ThomasBiorenThesisProposal.pdf",
     "Work Log.md",
-    "Milestone 1.md",
+    "general-knowledge/Pico-Ice.md",
+    "research-papers/Julian Miller - Tutorial CGP/Julian Miller - Tutorial CGP.md",
+    "research-papers/Julian Miller - Tutorial CGP/CGP Slides.pdf",
+    "Experiment Plan.md",
     "research-papers/vasicek_iee.pdf",
+    "ThomasBiorenThesisProposal.pdf",
+    "general-knowledge/Cartesian Genetic Programming.md",
+    "general-knowledge/resources",
+    "general-knowledge/resources/CGP_Example.png",
+    "general-knowledge",
+    "research-papers/Julian Miller - Tutorial CGP",
+    "Milestone 1.md",
     "research-papers/vasicek_iee 2.pdf",
     "Cartesian Genetic Programming.md",
     "Welcome.md",
