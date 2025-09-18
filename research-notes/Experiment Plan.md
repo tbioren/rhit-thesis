@@ -1,2 +1,1 @@
-- I want to use a [[Pico-Ice]] to evolve on. We're using them for EHW and they seem to be cheap and are quick to reconfigure.
-- I imagine they're probably very similar to iCE40s we've been using in the past. If they are, I know how the LUTs are formatted and it'll be very easy to create a CGP graph structure to mimic this.
+The plan is to do the project in 2 stages: simulation and hardware. The simulation stage will use CGP to create a graph with mutation rules that obey what the FPGA can do. The hardware stage turns these graphs into bitstreams.
