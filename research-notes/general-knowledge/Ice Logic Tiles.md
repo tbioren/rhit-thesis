@@ -1,4 +1,3 @@
-- All routing is with tristate buffers. What is a tristate buffer? #question 
 ## Span-4 and Span-12
 
 They are arranged like a grid. Below are vertical and horizontal examples:
