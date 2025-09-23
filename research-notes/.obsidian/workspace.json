@@ -13,30 +13,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Main.md",
+                "file": "log/2025-09-23.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Main"
-            }
-          },
-          {
-            "id": "c19ed2d3105112b0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "log/2025-09-21.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2025-09-21"
+              "title": "2025-09-23"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -194,25 +179,31 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c19ed2d3105112b0",
+  "active": "54282f98b610f7a3",
   "lastOpenFiles": [
+    "log/2025-09-23.md",
+    "research-papers/S. M. Ashik Eftakhar/Evolutionary Design of Digital Circuits Using Genetic Programming.pdf",
     "Main.md",
+    "research-papers/S. M. Ashik Eftakhar",
+    "research-papers/Coevolutionary Cartesian Genetic Programming in FPGA/coevolutionary-cgp.pdf",
+    "research-papers/vasicek_iee.pdf",
+    "research-papers/Julian Miller - Tutorial CGP/CGP Slides.pdf",
+    "general-knowledge/Pico-Ice.md",
+    "general-knowledge/Project IceStorm.md",
+    "general-knowledge/Ice Logic Tiles.md",
+    "general-knowledge/Cartesian Genetic Programming.md",
+    "general-knowledge/resources/sp4v.svg",
+    "general-knowledge/resources/sp4h.svg",
+    "general-knowledge/resources/CGP_Example.png",
     "log/2025-09-21.md",
     "log/2025-09-20.md",
     "log/2025-09-04.md",
     "log/2025-09-19.md",
     "log/2025-09-18.md",
     "Experiment Plan.md",
-    "general-knowledge/Cartesian Genetic Programming.md",
-    "general-knowledge/Ice Logic Tiles.md",
-    "research-papers/Coevolutionary Cartesian Genetic Programming in FPGA/coevolutionary-cgp.pdf",
     "log/2025-09-17.md",
     "log/2025-09-12.md",
     "log/2025-09-16.md",
-    "general-knowledge/Pico-Ice.md",
-    "general-knowledge/Project IceStorm.md",
-    "general-knowledge/resources/sp4v.svg",
-    "general-knowledge/resources/sp4h.svg",
     "research-papers/Coevolutionary Cartesian Genetic Programming in FPGA",
     "ThomasBiorenThesisProposal.pdf",
     "templates/daily-log.md",
@@ -222,12 +213,7 @@
     "log",
     "Questions.md",
     "Untitled.canvas",
-    "research-papers/vasicek_iee.pdf",
-    "research-papers/Julian Miller - Tutorial CGP/CGP Slides.pdf",
     "research-papers/Julian Miller - Tutorial CGP/Julian Miller - Tutorial CGP.md",
-    "general-knowledge/resources",
-    "general-knowledge/resources/CGP_Example.png",
-    "general-knowledge",
     "Milestone 1.md",
     "Cartesian Genetic Programming.md",
     "Welcome.md"
