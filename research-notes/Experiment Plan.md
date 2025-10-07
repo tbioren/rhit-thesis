@@ -11,14 +11,31 @@ Eventually, I want to switch to nodes representing tiles and having subgraphs fo
 #### Genotype Format
 
 ```python
-[x_coordinate, y_coordinate, LUT_behavior, flip_flop_behaivor, carry_behavior, input0_x, input0_y, input1_x, input1_y, input2_x, input2_y, input3_x, input3_y, output0_x]
+[x_coordinate, y_coordinate, LUT_behavior, input0_x, input0_y, input1_x, input1_y, input2_x, input2_y, input3_x, input3_y, output0_x]
 ```
 
 - **x, y coordinates:** I have these separate because it is easier to keep connections physically close with 2 coordinates instead of an index.
 - **LUT_behavior:** This is going to encode the behavior of the LUT (which row(s) in the lookup table are active).
-- **flip_flop_behavior:** Encodes the logic of the flip-flop. I am not sure which bits control the flip-flop at this point.
-- **carry_behavior:** Encodes the behavior of the carry bit (on or off).
 - **inputs:** Specify LUT inputs.
+
+C Struct Version:
+
+```C
+typedef struct {
+    uint8_t x_coordinate;
+    uint8_t y_coordinate;
+    int16_t LUT_behavior;
+    uint8_t input0_x;
+    uint8_t input0_y;
+    uint8_t input1_x;
+    uint8_t input1_y;
+    uint8_t input2_x;
+    uint8_t input2_y;
+    uint8_t input3_x;
+    uint8_t input3_y;
+    uint8_t output0_x;
+} Node;
+```
 
 In a full graph, this will be a 2D array with dimensions $21 \times 5000$.
 
