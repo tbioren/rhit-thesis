@@ -1,3 +1,10 @@
+### Next Steps
+
+1. Prove the ASC files are the same for every Yosys -> nextpnr run.
+2. Prove the bitstream layout in the iCE40 Layout Viewer is the same as the graph representation. Document every step from graph to layout.
+3. Figure out IceStorm timing simulation tool and determine if it's usable for determining fitness.
+4. Make an evolution program.
+5. Evolve a 1-bit adder.
 ## Stages
 
 **CGP $\rightarrow$ HDL $\rightarrow$ Yosys $\rightarrow$ nextpnr $\rightarrow$ bitstream**
@@ -9,19 +16,29 @@ Every node in the graph represents a logic cell. It has up to 4 inputs and 1 out
 Eventually, I want to switch to nodes representing tiles and having subgraphs for the LUTs.
 
 #### Genotype Format
+### Genotype Representation
 
-```python
-[x_coordinate, y_coordinate, LUT_behavior, input0_x, input0_y, input1_x, input1_y, input2_x, input2_y, input3_x, input3_y, output0_x]
-```
+- The inputs should be relative coordinates.
+- There should be no x and y coordinates because we'll know them by its index in the array.
+- It should be easy to scale up/down.
 
-- **x, y coordinates:** I have these separate because it is easier to keep connections physically close with 2 coordinates instead of an index.
-- **LUT_behavior:** This is going to encode the behavior of the LUT (which row(s) in the lookup table are active).
-- **inputs:** Specify LUT inputs.
-
-C Struct Version:
+**Array Representation:**
 
 ```C
-typedef struct {
+[LUT_behavior, input0_x_offset, input0_y_offset, input1_x_offset, input1_y_offset, input2_x_offset, input2_y_offset, input3_x_offset, input3_y_offset]
+```
+
+**Scaled to 1 bit adder:**
+
+```C
+// Same as the array representation but scaled to smaller numbers for fewer LUTs.
+0000 00 00 00 00 00 00 00 00
+```
+
+**C Struct Representation:**
+
+```C
+struct node {
     uint8_t x_coordinate;
     uint8_t y_coordinate;
     int16_t LUT_behavior;
@@ -33,11 +50,8 @@ typedef struct {
     uint8_t input2_y;
     uint8_t input3_x;
     uint8_t input3_y;
-    uint8_t output0_x;
-} Node;
+};
 ```
-
-In a full graph, this will be a 2D array with dimensions $21 \times 5000$.
 
 ### HDL Stage
 

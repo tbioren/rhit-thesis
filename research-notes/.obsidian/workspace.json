@@ -181,12 +181,14 @@
   },
   "active": "54282f98b610f7a3",
   "lastOpenFiles": [
+    "log/2025-10-07.md",
+    "Experiment Plan.md",
+    "ThomasBiorenThesisProposal.pdf",
+    "Main.md",
     "templates/daily-log.md",
     "general-knowledge/Yosys.md",
     "general-knowledge/Project IceStorm.md",
     "general-knowledge/Pico-Ice.md",
-    "Experiment Plan.md",
-    "Main.md",
     "log/2025-10-05.md",
     "log/2025-10-06.md",
     "log/2025-10-02.md",
@@ -211,15 +213,12 @@
     "IceDB/tile_9_1.html",
     "IceDB/tile_9_0.html",
     "IceDB/tile_8_17.html",
-    "IceDB/tile_8_16.html",
     "general-knowledge/Ice Logic Tiles.md",
     "general-knowledge/resources/sp4v.svg",
     "general-knowledge/resources/sp4h.svg",
     "general-knowledge/resources/CGP_Example.png",
     "log/2025-09-18.md",
     "2025-09-17.md",
-    "Questions.md",
-    "Untitled.canvas",
-    "research-papers/Julian Miller - Tutorial CGP/Julian Miller - Tutorial CGP.md"
+    "Untitled.canvas"
   ]
 }
