@@ -1,3 +1,9034 @@
+```shell
+yosys -p "
+    read_verilog cgp_module.v;
+    synth_ice40 -top cgp_module -json cgp_module.json -nocarry;
+"
+
+nextpnr-ice40   --up5k --package sg48   --json cgp_module.json   --asc cgp_module.asc   --report cgp_module.rpt   --write cgp_module_placed.json   --debug
+```
+
+### Graph
+
+![[Pasted image 20251008093146.png]]
+
+### Verilog
+
+```verilog
+module cgp_module (
+    (* keep *) input in0, in1, in2, in3, in4, in5, in6, in7, in8, in9,
+    (* keep *) output out0, out1, out2, out3, out4, out5, out6, out7, out8, out9);
+
+    (* keep *) wire x0_y0, x1_y0, x0_y1, x1_y1, x0_y2, x1_y2;
+
+
+(* keep, dont_touch *)
+(* LOC = "X0/Y0" *)
+SB_LUT4 #(
+    .LUT_INIT(16'b1011101101101011)
+) lut_0_0 (
+    .O(x0_y0),
+    .I0(1'b0),
+    .I1(in1),
+    .I2(in0),
+    .I3(in2)
+);
+
+(* keep, dont_touch *)
+(* LOC = "X1/Y0" *)
+SB_LUT4 #(
+    .LUT_INIT(16'b0001010101110101)
+) lut_1_0 (
+    .O(x1_y0),
+    .I0(1'b0),
+    .I1(in0),
+    .I2(in1),
+    .I3(1'b0)
+);
+
+(* keep, dont_touch *)
+(* LOC = "X2/Y0" *)
+SB_LUT4 #(
+    .LUT_INIT(16'b1100011000011011)
+) lut_2_0 (
+    .O(x2_y0),
+    .I0(in0),
+    .I1(in2),
+    .I2(in0),
+    .I3(in2)
+);
+
+(* keep, dont_touch *)
+(* LOC = "X0/Y1" *)
+SB_LUT4 #(
+    .LUT_INIT(16'b1001000110010011)
+) lut_0_1 (
+    .O(x0_y1),
+    .I0(in0),
+    .I1(in0),
+    .I2(in0),
+    .I3(in0)
+);
+
+(* keep, dont_touch *)
+(* LOC = "X1/Y1" *)
+SB_LUT4 #(
+    .LUT_INIT(16'b0000011010111011)
+) lut_1_1 (
+    .O(x1_y1),
+    .I0(1'b0),
+    .I1(1'b0),
+    .I2(in0),
+    .I3(in0)
+);
+
+(* keep, dont_touch *)
+(* LOC = "X2/Y1" *)
+SB_LUT4 #(
+    .LUT_INIT(16'b1100100011111010)
+) lut_2_1 (
+    .O(x2_y1),
+    .I0(in2),
+    .I1(in2),
+    .I2(in0),
+    .I3(in2)
+);
+
+(* keep, dont_touch *)
+(* LOC = "X0/Y2" *)
+SB_LUT4 #(
+    .LUT_INIT(16'b1000110011000110)
+) lut_0_2 (
+    .O(x0_y2),
+    .I0(in1),
+    .I1(in2),
+    .I2(in2),
+    .I3(in0)
+);
+
+(* keep, dont_touch *)
+(* LOC = "X1/Y2" *)
+SB_LUT4 #(
+    .LUT_INIT(16'b0100001100110001)
+) lut_1_2 (
+    .O(x1_y2),
+    .I0(1'b0),
+    .I1(in2),
+    .I2(in2),
+    .I3(1'b0)
+);
+
+(* keep, dont_touch *)
+(* LOC = "X2/Y2" *)
+SB_LUT4 #(
+    .LUT_INIT(16'b0100001000010101)
+) lut_2_2 (
+    .O(x2_y2),
+    .I0(in2),
+    .I1(1'b0),
+    .I2(in0),
+    .I3(in0)
+);
+
+endmodule
+```
+
+### Yosys JSON
+
+```JSON
+{
+  "creator": "Yosys 0.33 (git sha1 2584903a060)",
+  "modules": {
+    "ICESTORM_LC": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2136.1-2420.10"
+      },
+      "parameter_default_values": {
+        "ASYNC_SR": "0",
+        "CARRY_ENABLE": "0",
+        "CIN_CONST": "0",
+        "CIN_SET": "0",
+        "DFF_ENABLE": "0",
+        "LUT_INIT": "0000000000000000",
+        "NEG_CLK": "0",
+        "SET_NORESET": "0"
+      },
+      "ports": {
+        "I0": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "I1": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "I2": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "I3": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "CIN": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "CLK": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "CEN": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "SR": {
+          "direction": "input",
+          "bits": [ 9 ]
+        },
+        "LO": {
+          "direction": "output",
+          "bits": [ 10 ]
+        },
+        "O": {
+          "direction": "output",
+          "bits": [ 11 ]
+        },
+        "COUT": {
+          "direction": "output",
+          "bits": [ 12 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "CEN": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2137.34-2137.37"
+          }
+        },
+        "CIN": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2137.24-2137.27"
+          }
+        },
+        "CLK": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2137.29-2137.32"
+          }
+        },
+        "COUT": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2140.9-2140.13"
+          }
+        },
+        "I0": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2137.8-2137.10"
+          }
+        },
+        "I1": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2137.12-2137.14"
+          }
+        },
+        "I2": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2137.16-2137.18"
+          }
+        },
+        "I3": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2137.20-2137.22"
+          }
+        },
+        "LO": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2138.9-2138.11"
+          }
+        },
+        "O": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2139.9-2139.10"
+          }
+        },
+        "SR": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2137.39-2137.41"
+          }
+        }
+      }
+    },
+    "ICESTORM_RAM": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3167.1-3502.10"
+      },
+      "parameter_default_values": {
+        "INIT_0": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_1": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_2": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_3": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_4": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_5": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_6": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_7": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_8": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_9": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_A": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_B": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_C": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_D": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_E": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_F": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "NEG_CLK_R": "0",
+        "NEG_CLK_W": "0",
+        "READ_MODE": "00000000000000000000000000000000",
+        "WRITE_MODE": "00000000000000000000000000000000"
+      },
+      "ports": {
+        "RDATA_15": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "RDATA_14": {
+          "direction": "output",
+          "bits": [ 3 ]
+        },
+        "RDATA_13": {
+          "direction": "output",
+          "bits": [ 4 ]
+        },
+        "RDATA_12": {
+          "direction": "output",
+          "bits": [ 5 ]
+        },
+        "RDATA_11": {
+          "direction": "output",
+          "bits": [ 6 ]
+        },
+        "RDATA_10": {
+          "direction": "output",
+          "bits": [ 7 ]
+        },
+        "RDATA_9": {
+          "direction": "output",
+          "bits": [ 8 ]
+        },
+        "RDATA_8": {
+          "direction": "output",
+          "bits": [ 9 ]
+        },
+        "RDATA_7": {
+          "direction": "output",
+          "bits": [ 10 ]
+        },
+        "RDATA_6": {
+          "direction": "output",
+          "bits": [ 11 ]
+        },
+        "RDATA_5": {
+          "direction": "output",
+          "bits": [ 12 ]
+        },
+        "RDATA_4": {
+          "direction": "output",
+          "bits": [ 13 ]
+        },
+        "RDATA_3": {
+          "direction": "output",
+          "bits": [ 14 ]
+        },
+        "RDATA_2": {
+          "direction": "output",
+          "bits": [ 15 ]
+        },
+        "RDATA_1": {
+          "direction": "output",
+          "bits": [ 16 ]
+        },
+        "RDATA_0": {
+          "direction": "output",
+          "bits": [ 17 ]
+        },
+        "RCLK": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "RCLKE": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "RE": {
+          "direction": "input",
+          "bits": [ 20 ]
+        },
+        "RADDR_10": {
+          "direction": "input",
+          "bits": [ 21 ]
+        },
+        "RADDR_9": {
+          "direction": "input",
+          "bits": [ 22 ]
+        },
+        "RADDR_8": {
+          "direction": "input",
+          "bits": [ 23 ]
+        },
+        "RADDR_7": {
+          "direction": "input",
+          "bits": [ 24 ]
+        },
+        "RADDR_6": {
+          "direction": "input",
+          "bits": [ 25 ]
+        },
+        "RADDR_5": {
+          "direction": "input",
+          "bits": [ 26 ]
+        },
+        "RADDR_4": {
+          "direction": "input",
+          "bits": [ 27 ]
+        },
+        "RADDR_3": {
+          "direction": "input",
+          "bits": [ 28 ]
+        },
+        "RADDR_2": {
+          "direction": "input",
+          "bits": [ 29 ]
+        },
+        "RADDR_1": {
+          "direction": "input",
+          "bits": [ 30 ]
+        },
+        "RADDR_0": {
+          "direction": "input",
+          "bits": [ 31 ]
+        },
+        "WCLK": {
+          "direction": "input",
+          "bits": [ 32 ]
+        },
+        "WCLKE": {
+          "direction": "input",
+          "bits": [ 33 ]
+        },
+        "WE": {
+          "direction": "input",
+          "bits": [ 34 ]
+        },
+        "WADDR_10": {
+          "direction": "input",
+          "bits": [ 35 ]
+        },
+        "WADDR_9": {
+          "direction": "input",
+          "bits": [ 36 ]
+        },
+        "WADDR_8": {
+          "direction": "input",
+          "bits": [ 37 ]
+        },
+        "WADDR_7": {
+          "direction": "input",
+          "bits": [ 38 ]
+        },
+        "WADDR_6": {
+          "direction": "input",
+          "bits": [ 39 ]
+        },
+        "WADDR_5": {
+          "direction": "input",
+          "bits": [ 40 ]
+        },
+        "WADDR_4": {
+          "direction": "input",
+          "bits": [ 41 ]
+        },
+        "WADDR_3": {
+          "direction": "input",
+          "bits": [ 42 ]
+        },
+        "WADDR_2": {
+          "direction": "input",
+          "bits": [ 43 ]
+        },
+        "WADDR_1": {
+          "direction": "input",
+          "bits": [ 44 ]
+        },
+        "WADDR_0": {
+          "direction": "input",
+          "bits": [ 45 ]
+        },
+        "MASK_15": {
+          "direction": "input",
+          "bits": [ 46 ]
+        },
+        "MASK_14": {
+          "direction": "input",
+          "bits": [ 47 ]
+        },
+        "MASK_13": {
+          "direction": "input",
+          "bits": [ 48 ]
+        },
+        "MASK_12": {
+          "direction": "input",
+          "bits": [ 49 ]
+        },
+        "MASK_11": {
+          "direction": "input",
+          "bits": [ 50 ]
+        },
+        "MASK_10": {
+          "direction": "input",
+          "bits": [ 51 ]
+        },
+        "MASK_9": {
+          "direction": "input",
+          "bits": [ 52 ]
+        },
+        "MASK_8": {
+          "direction": "input",
+          "bits": [ 53 ]
+        },
+        "MASK_7": {
+          "direction": "input",
+          "bits": [ 54 ]
+        },
+        "MASK_6": {
+          "direction": "input",
+          "bits": [ 55 ]
+        },
+        "MASK_5": {
+          "direction": "input",
+          "bits": [ 56 ]
+        },
+        "MASK_4": {
+          "direction": "input",
+          "bits": [ 57 ]
+        },
+        "MASK_3": {
+          "direction": "input",
+          "bits": [ 58 ]
+        },
+        "MASK_2": {
+          "direction": "input",
+          "bits": [ 59 ]
+        },
+        "MASK_1": {
+          "direction": "input",
+          "bits": [ 60 ]
+        },
+        "MASK_0": {
+          "direction": "input",
+          "bits": [ 61 ]
+        },
+        "WDATA_15": {
+          "direction": "input",
+          "bits": [ 62 ]
+        },
+        "WDATA_14": {
+          "direction": "input",
+          "bits": [ 63 ]
+        },
+        "WDATA_13": {
+          "direction": "input",
+          "bits": [ 64 ]
+        },
+        "WDATA_12": {
+          "direction": "input",
+          "bits": [ 65 ]
+        },
+        "WDATA_11": {
+          "direction": "input",
+          "bits": [ 66 ]
+        },
+        "WDATA_10": {
+          "direction": "input",
+          "bits": [ 67 ]
+        },
+        "WDATA_9": {
+          "direction": "input",
+          "bits": [ 68 ]
+        },
+        "WDATA_8": {
+          "direction": "input",
+          "bits": [ 69 ]
+        },
+        "WDATA_7": {
+          "direction": "input",
+          "bits": [ 70 ]
+        },
+        "WDATA_6": {
+          "direction": "input",
+          "bits": [ 71 ]
+        },
+        "WDATA_5": {
+          "direction": "input",
+          "bits": [ 72 ]
+        },
+        "WDATA_4": {
+          "direction": "input",
+          "bits": [ 73 ]
+        },
+        "WDATA_3": {
+          "direction": "input",
+          "bits": [ 74 ]
+        },
+        "WDATA_2": {
+          "direction": "input",
+          "bits": [ 75 ]
+        },
+        "WDATA_1": {
+          "direction": "input",
+          "bits": [ 76 ]
+        },
+        "WDATA_0": {
+          "direction": "input",
+          "bits": [ 77 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "MASK_0": {
+          "hide_name": 0,
+          "bits": [ 61 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.135-3173.141"
+          }
+        },
+        "MASK_1": {
+          "hide_name": 0,
+          "bits": [ 60 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.127-3173.133"
+          }
+        },
+        "MASK_10": {
+          "hide_name": 0,
+          "bits": [ 51 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.54-3173.61"
+          }
+        },
+        "MASK_11": {
+          "hide_name": 0,
+          "bits": [ 50 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.45-3173.52"
+          }
+        },
+        "MASK_12": {
+          "hide_name": 0,
+          "bits": [ 49 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.36-3173.43"
+          }
+        },
+        "MASK_13": {
+          "hide_name": 0,
+          "bits": [ 48 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.27-3173.34"
+          }
+        },
+        "MASK_14": {
+          "hide_name": 0,
+          "bits": [ 47 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.18-3173.25"
+          }
+        },
+        "MASK_15": {
+          "hide_name": 0,
+          "bits": [ 46 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.9-3173.16"
+          }
+        },
+        "MASK_2": {
+          "hide_name": 0,
+          "bits": [ 59 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.119-3173.125"
+          }
+        },
+        "MASK_3": {
+          "hide_name": 0,
+          "bits": [ 58 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.111-3173.117"
+          }
+        },
+        "MASK_4": {
+          "hide_name": 0,
+          "bits": [ 57 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.103-3173.109"
+          }
+        },
+        "MASK_5": {
+          "hide_name": 0,
+          "bits": [ 56 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.95-3173.101"
+          }
+        },
+        "MASK_6": {
+          "hide_name": 0,
+          "bits": [ 55 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.87-3173.93"
+          }
+        },
+        "MASK_7": {
+          "hide_name": 0,
+          "bits": [ 54 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.79-3173.85"
+          }
+        },
+        "MASK_8": {
+          "hide_name": 0,
+          "bits": [ 53 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.71-3173.77"
+          }
+        },
+        "MASK_9": {
+          "hide_name": 0,
+          "bits": [ 52 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3173.63-3173.69"
+          }
+        },
+        "RADDR_0": {
+          "hide_name": 0,
+          "bits": [ 31 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.100-3170.107"
+          }
+        },
+        "RADDR_1": {
+          "hide_name": 0,
+          "bits": [ 30 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.91-3170.98"
+          }
+        },
+        "RADDR_10": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.9-3170.17"
+          }
+        },
+        "RADDR_2": {
+          "hide_name": 0,
+          "bits": [ 29 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.82-3170.89"
+          }
+        },
+        "RADDR_3": {
+          "hide_name": 0,
+          "bits": [ 28 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.73-3170.80"
+          }
+        },
+        "RADDR_4": {
+          "hide_name": 0,
+          "bits": [ 27 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.64-3170.71"
+          }
+        },
+        "RADDR_5": {
+          "hide_name": 0,
+          "bits": [ 26 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.55-3170.62"
+          }
+        },
+        "RADDR_6": {
+          "hide_name": 0,
+          "bits": [ 25 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.46-3170.53"
+          }
+        },
+        "RADDR_7": {
+          "hide_name": 0,
+          "bits": [ 24 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.37-3170.44"
+          }
+        },
+        "RADDR_8": {
+          "hide_name": 0,
+          "bits": [ 23 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.28-3170.35"
+          }
+        },
+        "RADDR_9": {
+          "hide_name": 0,
+          "bits": [ 22 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3170.19-3170.26"
+          }
+        },
+        "RCLK": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3169.9-3169.13"
+          }
+        },
+        "RCLKE": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3169.15-3169.20"
+          }
+        },
+        "RDATA_0": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.150-3168.157"
+          }
+        },
+        "RDATA_1": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.141-3168.148"
+          }
+        },
+        "RDATA_10": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.59-3168.67"
+          }
+        },
+        "RDATA_11": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.49-3168.57"
+          }
+        },
+        "RDATA_12": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.39-3168.47"
+          }
+        },
+        "RDATA_13": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.29-3168.37"
+          }
+        },
+        "RDATA_14": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.19-3168.27"
+          }
+        },
+        "RDATA_15": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.9-3168.17"
+          }
+        },
+        "RDATA_2": {
+          "hide_name": 0,
+          "bits": [ 15 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.132-3168.139"
+          }
+        },
+        "RDATA_3": {
+          "hide_name": 0,
+          "bits": [ 14 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.123-3168.130"
+          }
+        },
+        "RDATA_4": {
+          "hide_name": 0,
+          "bits": [ 13 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.114-3168.121"
+          }
+        },
+        "RDATA_5": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.105-3168.112"
+          }
+        },
+        "RDATA_6": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.96-3168.103"
+          }
+        },
+        "RDATA_7": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.87-3168.94"
+          }
+        },
+        "RDATA_8": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.78-3168.85"
+          }
+        },
+        "RDATA_9": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3168.69-3168.76"
+          }
+        },
+        "RE": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3169.22-3169.24"
+          }
+        },
+        "WADDR_0": {
+          "hide_name": 0,
+          "bits": [ 45 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.100-3172.107"
+          }
+        },
+        "WADDR_1": {
+          "hide_name": 0,
+          "bits": [ 44 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.91-3172.98"
+          }
+        },
+        "WADDR_10": {
+          "hide_name": 0,
+          "bits": [ 35 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.9-3172.17"
+          }
+        },
+        "WADDR_2": {
+          "hide_name": 0,
+          "bits": [ 43 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.82-3172.89"
+          }
+        },
+        "WADDR_3": {
+          "hide_name": 0,
+          "bits": [ 42 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.73-3172.80"
+          }
+        },
+        "WADDR_4": {
+          "hide_name": 0,
+          "bits": [ 41 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.64-3172.71"
+          }
+        },
+        "WADDR_5": {
+          "hide_name": 0,
+          "bits": [ 40 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.55-3172.62"
+          }
+        },
+        "WADDR_6": {
+          "hide_name": 0,
+          "bits": [ 39 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.46-3172.53"
+          }
+        },
+        "WADDR_7": {
+          "hide_name": 0,
+          "bits": [ 38 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.37-3172.44"
+          }
+        },
+        "WADDR_8": {
+          "hide_name": 0,
+          "bits": [ 37 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.28-3172.35"
+          }
+        },
+        "WADDR_9": {
+          "hide_name": 0,
+          "bits": [ 36 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3172.19-3172.26"
+          }
+        },
+        "WCLK": {
+          "hide_name": 0,
+          "bits": [ 32 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3171.9-3171.13"
+          }
+        },
+        "WCLKE": {
+          "hide_name": 0,
+          "bits": [ 33 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3171.15-3171.20"
+          }
+        },
+        "WDATA_0": {
+          "hide_name": 0,
+          "bits": [ 77 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.150-3174.157"
+          }
+        },
+        "WDATA_1": {
+          "hide_name": 0,
+          "bits": [ 76 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.141-3174.148"
+          }
+        },
+        "WDATA_10": {
+          "hide_name": 0,
+          "bits": [ 67 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.59-3174.67"
+          }
+        },
+        "WDATA_11": {
+          "hide_name": 0,
+          "bits": [ 66 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.49-3174.57"
+          }
+        },
+        "WDATA_12": {
+          "hide_name": 0,
+          "bits": [ 65 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.39-3174.47"
+          }
+        },
+        "WDATA_13": {
+          "hide_name": 0,
+          "bits": [ 64 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.29-3174.37"
+          }
+        },
+        "WDATA_14": {
+          "hide_name": 0,
+          "bits": [ 63 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.19-3174.27"
+          }
+        },
+        "WDATA_15": {
+          "hide_name": 0,
+          "bits": [ 62 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.9-3174.17"
+          }
+        },
+        "WDATA_2": {
+          "hide_name": 0,
+          "bits": [ 75 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.132-3174.139"
+          }
+        },
+        "WDATA_3": {
+          "hide_name": 0,
+          "bits": [ 74 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.123-3174.130"
+          }
+        },
+        "WDATA_4": {
+          "hide_name": 0,
+          "bits": [ 73 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.114-3174.121"
+          }
+        },
+        "WDATA_5": {
+          "hide_name": 0,
+          "bits": [ 72 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.105-3174.112"
+          }
+        },
+        "WDATA_6": {
+          "hide_name": 0,
+          "bits": [ 71 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.96-3174.103"
+          }
+        },
+        "WDATA_7": {
+          "hide_name": 0,
+          "bits": [ 70 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.87-3174.94"
+          }
+        },
+        "WDATA_8": {
+          "hide_name": 0,
+          "bits": [ 69 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.78-3174.85"
+          }
+        },
+        "WDATA_9": {
+          "hide_name": 0,
+          "bits": [ 68 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3174.69-3174.76"
+          }
+        },
+        "WE": {
+          "hide_name": 0,
+          "bits": [ 34 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3171.22-3171.24"
+          }
+        }
+      }
+    },
+    "SB_CARRY": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:228.1-260.10"
+      },
+      "ports": {
+        "CO": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "I0": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "I1": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "CI": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$logic_and$/usr/bin/../share/yosys/ice40/cells_sim.v:229$5": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:229.15-229.23"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "B": [ 4 ],
+            "Y": [ 6 ]
+          }
+        },
+        "$logic_and$/usr/bin/../share/yosys/ice40/cells_sim.v:229$7": {
+          "hide_name": 1,
+          "type": "$logic_and",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:229.29-229.45"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 7 ],
+            "B": [ 5 ],
+            "Y": [ 8 ]
+          }
+        },
+        "$logic_or$/usr/bin/../share/yosys/ice40/cells_sim.v:229$6": {
+          "hide_name": 1,
+          "type": "$logic_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:229.30-229.38"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 3 ],
+            "B": [ 4 ],
+            "Y": [ 7 ]
+          }
+        },
+        "$logic_or$/usr/bin/../share/yosys/ice40/cells_sim.v:229$8": {
+          "hide_name": 1,
+          "type": "$logic_or",
+          "parameters": {
+            "A_SIGNED": "00000000000000000000000000000000",
+            "A_WIDTH": "00000000000000000000000000000001",
+            "B_SIGNED": "00000000000000000000000000000000",
+            "B_WIDTH": "00000000000000000000000000000001",
+            "Y_WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:229.14-229.46"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6 ],
+            "B": [ 8 ],
+            "Y": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "$logic_and$/usr/bin/../share/yosys/ice40/cells_sim.v:229$5_Y": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:229.15-229.23"
+          }
+        },
+        "$logic_and$/usr/bin/../share/yosys/ice40/cells_sim.v:229$7_Y": {
+          "hide_name": 1,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:229.29-229.45"
+          }
+        },
+        "$logic_or$/usr/bin/../share/yosys/ice40/cells_sim.v:229$6_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:229.30-229.38"
+          }
+        },
+        "$logic_or$/usr/bin/../share/yosys/ice40/cells_sim.v:229$8_Y": {
+          "hide_name": 1,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:229.14-229.46"
+          }
+        },
+        "CI": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:228.43-228.45"
+          }
+        },
+        "CO": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:228.25-228.27"
+          }
+        },
+        "I0": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:228.35-228.37"
+          }
+        },
+        "I1": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:228.39-228.41"
+          }
+        }
+      }
+    },
+    "SB_DFF": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:265.1-300.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 4 ]
+        }
+      },
+      "cells": {
+        "$procdff$232": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:271.2-272.10"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 4 ],
+            "Q": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:271.2-272.10"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:267.8-267.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:267.11-267.12"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:266.13-266.14"
+          }
+        }
+      }
+    },
+    "SB_DFFE": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:303.1-347.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "E": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$procdff$231": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:311.2-313.11"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 6 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$211": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:312.7-312.8|/usr/bin/../share/yosys/ice40/cells_sim.v:312.3-313.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 5 ],
+            "S": [ 4 ],
+            "Y": [ 6 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:311.2-313.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$211_Y": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+          }
+        },
+        "$procmux$212_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:305.8-305.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:307.8-307.9"
+          }
+        },
+        "E": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:306.8-306.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:304.13-304.14"
+          }
+        }
+      }
+    },
+    "SB_DFFER": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_box": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:653.1-730.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "E": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "R": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$procdff$225": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:662.2-666.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 5 ],
+            "CLK": [ 3 ],
+            "D": [ 7 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$198": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:665.12-665.13|/usr/bin/../share/yosys/ice40/cells_sim.v:665.8-666.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 6 ],
+            "S": [ 4 ],
+            "Y": [ 7 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:662.2-666.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$198_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+          }
+        },
+        "$procmux$199_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:655.8-655.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:658.8-658.9"
+          }
+        },
+        "E": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:656.8-656.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:654.13-654.14"
+          }
+        },
+        "R": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:657.8-657.9"
+          }
+        }
+      }
+    },
+    "SB_DFFES": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_box": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:794.1-871.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "E": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "S": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$procdff$223": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "1",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:803.2-807.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 5 ],
+            "CLK": [ 3 ],
+            "D": [ 7 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$191": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:806.12-806.13|/usr/bin/../share/yosys/ice40/cells_sim.v:806.8-807.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 6 ],
+            "S": [ 4 ],
+            "Y": [ 7 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:803.2-807.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$191_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+          }
+        },
+        "$procmux$192_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:796.8-796.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:799.8-799.9"
+          }
+        },
+        "E": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:797.8-797.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:795.13-795.14"
+          }
+        },
+        "S": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:798.8-798.9"
+          }
+        }
+      }
+    },
+    "SB_DFFESR": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:592.1-650.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "E": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "R": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$procdff$226": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:601.2-607.6"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 7 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$201": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:603.8-603.9|/usr/bin/../share/yosys/ice40/cells_sim.v:603.4-606.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6 ],
+            "B": [ "0" ],
+            "S": [ 5 ],
+            "Y": [ 8 ]
+          }
+        },
+        "$procmux$203": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:602.7-602.8|/usr/bin/../share/yosys/ice40/cells_sim.v:602.3-607.6"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 8 ],
+            "S": [ 4 ],
+            "Y": [ 7 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:601.2-607.6"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$201_Y": {
+          "hide_name": 1,
+          "bits": [ 8 ],
+          "attributes": {
+          }
+        },
+        "$procmux$202_CMP": {
+          "hide_name": 1,
+          "bits": [ 5 ],
+          "attributes": {
+          }
+        },
+        "$procmux$203_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+          }
+        },
+        "$procmux$204_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:594.8-594.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:597.8-597.9"
+          }
+        },
+        "E": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:595.8-595.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:593.13-593.14"
+          }
+        },
+        "R": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:596.8-596.9"
+          }
+        }
+      }
+    },
+    "SB_DFFESS": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:733.1-791.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "E": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "S": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$procdff$224": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:742.2-748.6"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 7 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$194": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:744.8-744.9|/usr/bin/../share/yosys/ice40/cells_sim.v:744.4-747.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6 ],
+            "B": [ "1" ],
+            "S": [ 5 ],
+            "Y": [ 8 ]
+          }
+        },
+        "$procmux$196": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:743.7-743.8|/usr/bin/../share/yosys/ice40/cells_sim.v:743.3-748.6"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 8 ],
+            "S": [ 4 ],
+            "Y": [ 7 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:742.2-748.6"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$194_Y": {
+          "hide_name": 1,
+          "bits": [ 8 ],
+          "attributes": {
+          }
+        },
+        "$procmux$195_CMP": {
+          "hide_name": 1,
+          "bits": [ 5 ],
+          "attributes": {
+          }
+        },
+        "$procmux$196_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+          }
+        },
+        "$procmux$197_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:735.8-735.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:738.8-738.9"
+          }
+        },
+        "E": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:736.8-736.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:734.13-734.14"
+          }
+        },
+        "S": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:737.8-737.9"
+          }
+        }
+      }
+    },
+    "SB_DFFN": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:876.1-911.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 4 ]
+        }
+      },
+      "cells": {
+        "$procdff$222": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:882.2-883.10"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 4 ],
+            "Q": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:882.2-883.10"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:878.8-878.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:878.11-878.12"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:877.13-877.14"
+          }
+        }
+      }
+    },
+    "SB_DFFNE": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:914.1-958.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "E": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$procdff$221": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:922.2-924.11"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 6 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$189": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:923.7-923.8|/usr/bin/../share/yosys/ice40/cells_sim.v:923.3-924.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 5 ],
+            "S": [ 4 ],
+            "Y": [ 6 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:922.2-924.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$189_Y": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+          }
+        },
+        "$procmux$190_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:916.8-916.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:918.8-918.9"
+          }
+        },
+        "E": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:917.8-917.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:915.13-915.14"
+          }
+        }
+      }
+    },
+    "SB_DFFNER": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_box": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1264.1-1341.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "E": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "R": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$procdff$215": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1273.2-1277.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 5 ],
+            "CLK": [ 3 ],
+            "D": [ 7 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$176": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1276.12-1276.13|/usr/bin/../share/yosys/ice40/cells_sim.v:1276.8-1277.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 6 ],
+            "S": [ 4 ],
+            "Y": [ 7 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1273.2-1277.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$176_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+          }
+        },
+        "$procmux$177_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1266.8-1266.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1269.8-1269.9"
+          }
+        },
+        "E": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1267.8-1267.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1265.13-1265.14"
+          }
+        },
+        "R": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1268.8-1268.9"
+          }
+        }
+      }
+    },
+    "SB_DFFNES": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_box": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1405.1-1483.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "E": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "S": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$procdff$213": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "1",
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1414.2-1418.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 5 ],
+            "CLK": [ 3 ],
+            "D": [ 7 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$169": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1417.12-1417.13|/usr/bin/../share/yosys/ice40/cells_sim.v:1417.8-1418.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 6 ],
+            "S": [ 4 ],
+            "Y": [ 7 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1414.2-1418.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$169_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+          }
+        },
+        "$procmux$170_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1407.8-1407.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1410.8-1410.9"
+          }
+        },
+        "E": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1408.8-1408.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1406.13-1406.14"
+          }
+        },
+        "S": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1409.8-1409.9"
+          }
+        }
+      }
+    },
+    "SB_DFFNESR": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1203.1-1261.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "E": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "R": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$procdff$216": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1212.2-1218.6"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 7 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$179": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1214.8-1214.9|/usr/bin/../share/yosys/ice40/cells_sim.v:1214.4-1217.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6 ],
+            "B": [ "0" ],
+            "S": [ 5 ],
+            "Y": [ 8 ]
+          }
+        },
+        "$procmux$181": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1213.7-1213.8|/usr/bin/../share/yosys/ice40/cells_sim.v:1213.3-1218.6"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 8 ],
+            "S": [ 4 ],
+            "Y": [ 7 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1212.2-1218.6"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$179_Y": {
+          "hide_name": 1,
+          "bits": [ 8 ],
+          "attributes": {
+          }
+        },
+        "$procmux$180_CMP": {
+          "hide_name": 1,
+          "bits": [ 5 ],
+          "attributes": {
+          }
+        },
+        "$procmux$181_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+          }
+        },
+        "$procmux$182_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1205.8-1205.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1208.8-1208.9"
+          }
+        },
+        "E": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1206.8-1206.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1204.13-1204.14"
+          }
+        },
+        "R": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1207.8-1207.9"
+          }
+        }
+      }
+    },
+    "SB_DFFNESS": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1344.1-1402.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "E": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "S": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$procdff$214": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1353.2-1359.6"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 7 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$172": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1355.8-1355.9|/usr/bin/../share/yosys/ice40/cells_sim.v:1355.4-1358.12"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6 ],
+            "B": [ "1" ],
+            "S": [ 5 ],
+            "Y": [ 8 ]
+          }
+        },
+        "$procmux$174": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1354.7-1354.8|/usr/bin/../share/yosys/ice40/cells_sim.v:1354.3-1359.6"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 2 ],
+            "B": [ 8 ],
+            "S": [ 4 ],
+            "Y": [ 7 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1353.2-1359.6"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$172_Y": {
+          "hide_name": 1,
+          "bits": [ 8 ],
+          "attributes": {
+          }
+        },
+        "$procmux$173_CMP": {
+          "hide_name": 1,
+          "bits": [ 5 ],
+          "attributes": {
+          }
+        },
+        "$procmux$174_Y": {
+          "hide_name": 1,
+          "bits": [ 7 ],
+          "attributes": {
+          }
+        },
+        "$procmux$175_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1346.8-1346.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1349.8-1349.9"
+          }
+        },
+        "E": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1347.8-1347.9"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1345.13-1345.14"
+          }
+        },
+        "S": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1348.8-1348.9"
+          }
+        }
+      }
+    },
+    "SB_DFFNR": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1011.1-1079.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "R": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$procdff$219": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1017.2-1021.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 4 ],
+            "CLK": [ 3 ],
+            "D": [ 5 ],
+            "Q": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1017.2-1021.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1013.8-1013.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1013.14-1013.15"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1012.13-1012.14"
+          }
+        },
+        "R": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1013.11-1013.12"
+          }
+        }
+      }
+    },
+    "SB_DFFNS": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_box": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1132.1-1200.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "S": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$procdff$217": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "1",
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1138.2-1142.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 4 ],
+            "CLK": [ 3 ],
+            "D": [ 5 ],
+            "Q": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1138.2-1142.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1134.8-1134.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1134.14-1134.15"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1133.13-1133.14"
+          }
+        },
+        "S": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1134.11-1134.12"
+          }
+        }
+      }
+    },
+    "SB_DFFNSR": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:961.1-1008.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "R": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$procdff$220": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:967.2-971.11"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 6 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$187": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:968.7-968.8|/usr/bin/../share/yosys/ice40/cells_sim.v:968.3-971.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5 ],
+            "B": [ "0" ],
+            "S": [ 4 ],
+            "Y": [ 6 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:967.2-971.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$187_Y": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+          }
+        },
+        "$procmux$188_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:963.8-963.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:963.14-963.15"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:962.13-962.14"
+          }
+        },
+        "R": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:963.11-963.12"
+          }
+        }
+      }
+    },
+    "SB_DFFNSS": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1082.1-1129.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "S": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$procdff$218": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "0",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1088.2-1092.11"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 6 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$184": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1089.7-1089.8|/usr/bin/../share/yosys/ice40/cells_sim.v:1089.3-1092.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5 ],
+            "B": [ "1" ],
+            "S": [ 4 ],
+            "Y": [ 6 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1088.2-1092.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$184_Y": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+          }
+        },
+        "$procmux$185_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1084.8-1084.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1084.14-1084.15"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1083.13-1083.14"
+          }
+        },
+        "S": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1084.11-1084.12"
+          }
+        }
+      }
+    },
+    "SB_DFFR": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_box": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:400.1-468.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "R": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$procdff$229": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "0",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:406.2-410.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 4 ],
+            "CLK": [ 3 ],
+            "D": [ 5 ],
+            "Q": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:406.2-410.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:402.8-402.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:402.14-402.15"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:401.13-401.14"
+          }
+        },
+        "R": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:402.11-402.12"
+          }
+        }
+      }
+    },
+    "SB_DFFS": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_box": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:521.1-589.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "S": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$procdff$227": {
+          "hide_name": 1,
+          "type": "$adff",
+          "parameters": {
+            "ARST_POLARITY": "1",
+            "ARST_VALUE": "1",
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:527.2-531.11"
+          },
+          "port_directions": {
+            "ARST": "input",
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "ARST": [ 4 ],
+            "CLK": [ 3 ],
+            "D": [ 5 ],
+            "Q": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:527.2-531.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:523.8-523.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:523.14-523.15"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:522.13-522.14"
+          }
+        },
+        "S": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:523.11-523.12"
+          }
+        }
+      }
+    },
+    "SB_DFFSR": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:350.1-397.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "R": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$procdff$230": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:356.2-360.11"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 6 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$209": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:357.7-357.8|/usr/bin/../share/yosys/ice40/cells_sim.v:357.3-360.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5 ],
+            "B": [ "0" ],
+            "S": [ 4 ],
+            "Y": [ 6 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:356.2-360.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$209_Y": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+          }
+        },
+        "$procmux$210_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:352.8-352.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:352.14-352.15"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:351.13-351.14"
+          }
+        },
+        "R": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:352.11-352.12"
+          }
+        }
+      }
+    },
+    "SB_DFFSS": {
+      "attributes": {
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:471.1-518.10"
+      },
+      "ports": {
+        "Q": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "S": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 5 ]
+        }
+      },
+      "cells": {
+        "$procdff$228": {
+          "hide_name": 1,
+          "type": "$dff",
+          "parameters": {
+            "CLK_POLARITY": "1",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:477.2-481.11"
+          },
+          "port_directions": {
+            "CLK": "input",
+            "D": "input",
+            "Q": "output"
+          },
+          "connections": {
+            "CLK": [ 3 ],
+            "D": [ 6 ],
+            "Q": [ 2 ]
+          }
+        },
+        "$procmux$206": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "full_case": "00000000000000000000000000000001",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:478.7-478.8|/usr/bin/../share/yosys/ice40/cells_sim.v:478.3-481.11"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5 ],
+            "B": [ "1" ],
+            "S": [ 4 ],
+            "Y": [ 6 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:477.2-481.11"
+          }
+        },
+        "$1\\Q[0:0]": {
+          "hide_name": 1,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:0.0-0.0"
+          }
+        },
+        "$procmux$206_Y": {
+          "hide_name": 1,
+          "bits": [ 6 ],
+          "attributes": {
+          }
+        },
+        "$procmux$207_CMP": {
+          "hide_name": 1,
+          "bits": [ 4 ],
+          "attributes": {
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:473.8-473.9"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:473.14-473.15"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "init": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:472.13-472.14"
+          }
+        },
+        "S": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:473.11-473.12"
+          }
+        }
+      }
+    },
+    "SB_FILTER_50NS": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2856.1-2860.10"
+      },
+      "ports": {
+        "FILTERIN": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "FILTEROUT": {
+          "direction": "output",
+          "bits": [ 3 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "FILTERIN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2857.8-2857.16"
+          }
+        },
+        "FILTEROUT": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2858.9-2858.18"
+          }
+        }
+      }
+    },
+    "SB_GB": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:162.1-172.10"
+      },
+      "ports": {
+        "USER_SIGNAL_TO_GLOBAL_BUFFER": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "GLOBAL_BUFFER_OUTPUT": {
+          "direction": "output",
+          "bits": [ 3 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "GLOBAL_BUFFER_OUTPUT": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:164.9-164.29"
+          }
+        },
+        "USER_SIGNAL_TO_GLOBAL_BUFFER": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:163.9-163.37"
+          }
+        }
+      }
+    },
+    "SB_GB_IO": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:123.1-160.10"
+      },
+      "parameter_default_values": {
+        "IO_STANDARD": "SB_LVCMOS",
+        "NEG_TRIGGER": "0",
+        "PIN_TYPE": "000000",
+        "PULLUP": "0"
+      },
+      "ports": {
+        "PACKAGE_PIN": {
+          "direction": "inout",
+          "bits": [ 2 ]
+        },
+        "GLOBAL_BUFFER_OUTPUT": {
+          "direction": "output",
+          "bits": [ 3 ]
+        },
+        "LATCH_INPUT_VALUE": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "CLOCK_ENABLE": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "INPUT_CLK": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "OUTPUT_CLK": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "OUTPUT_ENABLE": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "D_OUT_0": {
+          "direction": "input",
+          "bits": [ 9 ]
+        },
+        "D_OUT_1": {
+          "direction": "input",
+          "bits": [ 10 ]
+        },
+        "D_IN_0": {
+          "direction": "output",
+          "bits": [ 11 ]
+        },
+        "D_IN_1": {
+          "direction": "output",
+          "bits": [ 12 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "CLOCK_ENABLE": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:127.9-127.21"
+          }
+        },
+        "D_IN_0": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:133.9-133.15"
+          }
+        },
+        "D_IN_1": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:134.9-134.15"
+          }
+        },
+        "D_OUT_0": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:131.9-131.16"
+          }
+        },
+        "D_OUT_1": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:132.9-132.16"
+          }
+        },
+        "GLOBAL_BUFFER_OUTPUT": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:125.9-125.29"
+          }
+        },
+        "INPUT_CLK": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:128.9-128.18"
+          }
+        },
+        "LATCH_INPUT_VALUE": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:126.9-126.26"
+          }
+        },
+        "OUTPUT_CLK": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:129.9-129.19"
+          }
+        },
+        "OUTPUT_ENABLE": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:130.9-130.22"
+          }
+        },
+        "PACKAGE_PIN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:124.9-124.20"
+          }
+        }
+      }
+    },
+    "SB_HFOSC": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2664.1-2681.10"
+      },
+      "parameter_default_values": {
+        "CLKHF_DIV": "0b00",
+        "TRIM_EN": "0b0"
+      },
+      "ports": {
+        "TRIM0": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "TRIM1": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "TRIM2": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "TRIM3": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "TRIM4": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "TRIM5": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "TRIM6": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "TRIM7": {
+          "direction": "input",
+          "bits": [ 9 ]
+        },
+        "TRIM8": {
+          "direction": "input",
+          "bits": [ 10 ]
+        },
+        "TRIM9": {
+          "direction": "input",
+          "bits": [ 11 ]
+        },
+        "CLKHFPU": {
+          "direction": "input",
+          "bits": [ 12 ]
+        },
+        "CLKHFEN": {
+          "direction": "input",
+          "bits": [ 13 ]
+        },
+        "CLKHF": {
+          "direction": "output",
+          "bits": [ 14 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "CLKHF": {
+          "hide_name": 0,
+          "bits": [ 14 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2677.9-2677.14"
+          }
+        },
+        "CLKHFEN": {
+          "hide_name": 0,
+          "bits": [ 13 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2676.8-2676.15"
+          }
+        },
+        "CLKHFPU": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2675.8-2675.15"
+          }
+        },
+        "TRIM0": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2665.8-2665.13"
+          }
+        },
+        "TRIM1": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2666.8-2666.13"
+          }
+        },
+        "TRIM2": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2667.8-2667.13"
+          }
+        },
+        "TRIM3": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2668.8-2668.13"
+          }
+        },
+        "TRIM4": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2669.8-2669.13"
+          }
+        },
+        "TRIM5": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2670.8-2670.13"
+          }
+        },
+        "TRIM6": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2671.8-2671.13"
+          }
+        },
+        "TRIM7": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2672.8-2672.13"
+          }
+        },
+        "TRIM8": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2673.8-2673.13"
+          }
+        },
+        "TRIM9": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2674.8-2674.13"
+          }
+        }
+      }
+    },
+    "SB_I2C": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2733.1-2773.10"
+      },
+      "parameter_default_values": {
+        "BUS_ADDR74": "0b0001",
+        "I2C_SLAVE_INIT_ADDR": "0b1111100001"
+      },
+      "ports": {
+        "SBCLKI": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "SBRWI": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "SBSTBI": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "SBADRI7": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "SBADRI6": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "SBADRI5": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "SBADRI4": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "SBADRI3": {
+          "direction": "input",
+          "bits": [ 9 ]
+        },
+        "SBADRI2": {
+          "direction": "input",
+          "bits": [ 10 ]
+        },
+        "SBADRI1": {
+          "direction": "input",
+          "bits": [ 11 ]
+        },
+        "SBADRI0": {
+          "direction": "input",
+          "bits": [ 12 ]
+        },
+        "SBDATI7": {
+          "direction": "input",
+          "bits": [ 13 ]
+        },
+        "SBDATI6": {
+          "direction": "input",
+          "bits": [ 14 ]
+        },
+        "SBDATI5": {
+          "direction": "input",
+          "bits": [ 15 ]
+        },
+        "SBDATI4": {
+          "direction": "input",
+          "bits": [ 16 ]
+        },
+        "SBDATI3": {
+          "direction": "input",
+          "bits": [ 17 ]
+        },
+        "SBDATI2": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "SBDATI1": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "SBDATI0": {
+          "direction": "input",
+          "bits": [ 20 ]
+        },
+        "SCLI": {
+          "direction": "input",
+          "bits": [ 21 ]
+        },
+        "SDAI": {
+          "direction": "input",
+          "bits": [ 22 ]
+        },
+        "SBDATO7": {
+          "direction": "output",
+          "bits": [ 23 ]
+        },
+        "SBDATO6": {
+          "direction": "output",
+          "bits": [ 24 ]
+        },
+        "SBDATO5": {
+          "direction": "output",
+          "bits": [ 25 ]
+        },
+        "SBDATO4": {
+          "direction": "output",
+          "bits": [ 26 ]
+        },
+        "SBDATO3": {
+          "direction": "output",
+          "bits": [ 27 ]
+        },
+        "SBDATO2": {
+          "direction": "output",
+          "bits": [ 28 ]
+        },
+        "SBDATO1": {
+          "direction": "output",
+          "bits": [ 29 ]
+        },
+        "SBDATO0": {
+          "direction": "output",
+          "bits": [ 30 ]
+        },
+        "SBACKO": {
+          "direction": "output",
+          "bits": [ 31 ]
+        },
+        "I2CIRQ": {
+          "direction": "output",
+          "bits": [ 32 ]
+        },
+        "I2CWKUP": {
+          "direction": "output",
+          "bits": [ 33 ]
+        },
+        "SCLO": {
+          "direction": "output",
+          "bits": [ 34 ]
+        },
+        "SCLOE": {
+          "direction": "output",
+          "bits": [ 35 ]
+        },
+        "SDAO": {
+          "direction": "output",
+          "bits": [ 36 ]
+        },
+        "SDAOE": {
+          "direction": "output",
+          "bits": [ 37 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "I2CIRQ": {
+          "hide_name": 0,
+          "bits": [ 32 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2764.9-2764.15"
+          }
+        },
+        "I2CWKUP": {
+          "hide_name": 0,
+          "bits": [ 33 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2765.9-2765.16"
+          }
+        },
+        "SBACKO": {
+          "hide_name": 0,
+          "bits": [ 31 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2763.9-2763.15"
+          }
+        },
+        "SBADRI0": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2744.9-2744.16"
+          }
+        },
+        "SBADRI1": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2743.9-2743.16"
+          }
+        },
+        "SBADRI2": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2742.9-2742.16"
+          }
+        },
+        "SBADRI3": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2741.9-2741.16"
+          }
+        },
+        "SBADRI4": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2740.9-2740.16"
+          }
+        },
+        "SBADRI5": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2739.9-2739.16"
+          }
+        },
+        "SBADRI6": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2738.9-2738.16"
+          }
+        },
+        "SBADRI7": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2737.9-2737.16"
+          }
+        },
+        "SBCLKI": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2734.9-2734.15"
+          }
+        },
+        "SBDATI0": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2752.9-2752.16"
+          }
+        },
+        "SBDATI1": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2751.9-2751.16"
+          }
+        },
+        "SBDATI2": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2750.9-2750.16"
+          }
+        },
+        "SBDATI3": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2749.9-2749.16"
+          }
+        },
+        "SBDATI4": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2748.9-2748.16"
+          }
+        },
+        "SBDATI5": {
+          "hide_name": 0,
+          "bits": [ 15 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2747.9-2747.16"
+          }
+        },
+        "SBDATI6": {
+          "hide_name": 0,
+          "bits": [ 14 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2746.9-2746.16"
+          }
+        },
+        "SBDATI7": {
+          "hide_name": 0,
+          "bits": [ 13 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2745.9-2745.16"
+          }
+        },
+        "SBDATO0": {
+          "hide_name": 0,
+          "bits": [ 30 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2762.9-2762.16"
+          }
+        },
+        "SBDATO1": {
+          "hide_name": 0,
+          "bits": [ 29 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2761.9-2761.16"
+          }
+        },
+        "SBDATO2": {
+          "hide_name": 0,
+          "bits": [ 28 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2760.9-2760.16"
+          }
+        },
+        "SBDATO3": {
+          "hide_name": 0,
+          "bits": [ 27 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2759.9-2759.16"
+          }
+        },
+        "SBDATO4": {
+          "hide_name": 0,
+          "bits": [ 26 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2758.9-2758.16"
+          }
+        },
+        "SBDATO5": {
+          "hide_name": 0,
+          "bits": [ 25 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2757.9-2757.16"
+          }
+        },
+        "SBDATO6": {
+          "hide_name": 0,
+          "bits": [ 24 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2756.9-2756.16"
+          }
+        },
+        "SBDATO7": {
+          "hide_name": 0,
+          "bits": [ 23 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2755.9-2755.16"
+          }
+        },
+        "SBRWI": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2735.9-2735.14"
+          }
+        },
+        "SBSTBI": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2736.9-2736.15"
+          }
+        },
+        "SCLI": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2753.9-2753.13"
+          }
+        },
+        "SCLO": {
+          "hide_name": 0,
+          "bits": [ 34 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2766.9-2766.13"
+          }
+        },
+        "SCLOE": {
+          "hide_name": 0,
+          "bits": [ 35 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2767.9-2767.14"
+          }
+        },
+        "SDAI": {
+          "hide_name": 0,
+          "bits": [ 22 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2754.9-2754.13"
+          }
+        },
+        "SDAO": {
+          "hide_name": 0,
+          "bits": [ 36 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2768.9-2768.13"
+          }
+        },
+        "SDAOE": {
+          "hide_name": 0,
+          "bits": [ 37 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2769.9-2769.14"
+          }
+        }
+      }
+    },
+    "SB_IO": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:17.1-121.10"
+      },
+      "parameter_default_values": {
+        "IO_STANDARD": "SB_LVCMOS",
+        "NEG_TRIGGER": "0",
+        "PIN_TYPE": "000000",
+        "PULLUP": "0"
+      },
+      "ports": {
+        "PACKAGE_PIN": {
+          "direction": "inout",
+          "bits": [ 2 ]
+        },
+        "LATCH_INPUT_VALUE": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "CLOCK_ENABLE": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "INPUT_CLK": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "OUTPUT_CLK": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "OUTPUT_ENABLE": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "D_OUT_0": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "D_OUT_1": {
+          "direction": "input",
+          "bits": [ 9 ]
+        },
+        "D_IN_0": {
+          "direction": "output",
+          "bits": [ 10 ]
+        },
+        "D_IN_1": {
+          "direction": "output",
+          "bits": [ 11 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "CLOCK_ENABLE": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:20.9-20.21"
+          }
+        },
+        "D_IN_0": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:26.9-26.15"
+          }
+        },
+        "D_IN_1": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:27.9-27.15"
+          }
+        },
+        "D_OUT_0": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:24.9-24.16"
+          }
+        },
+        "D_OUT_1": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:25.9-25.16"
+          }
+        },
+        "INPUT_CLK": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:21.9-21.18"
+          }
+        },
+        "LATCH_INPUT_VALUE": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:19.9-19.26"
+          }
+        },
+        "OUTPUT_CLK": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:22.9-22.19"
+          }
+        },
+        "OUTPUT_ENABLE": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:23.9-23.22"
+          }
+        },
+        "PACKAGE_PIN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:18.9-18.20"
+          }
+        }
+      }
+    },
+    "SB_IO_I3C": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2862.1-2929.10"
+      },
+      "parameter_default_values": {
+        "IO_STANDARD": "SB_LVCMOS",
+        "NEG_TRIGGER": "0",
+        "PIN_TYPE": "000000",
+        "PULLUP": "0",
+        "WEAK_PULLUP": "0"
+      },
+      "ports": {
+        "PACKAGE_PIN": {
+          "direction": "inout",
+          "bits": [ 2 ]
+        },
+        "LATCH_INPUT_VALUE": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "CLOCK_ENABLE": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "INPUT_CLK": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "OUTPUT_CLK": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "OUTPUT_ENABLE": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "D_OUT_0": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "D_OUT_1": {
+          "direction": "input",
+          "bits": [ 9 ]
+        },
+        "D_IN_0": {
+          "direction": "output",
+          "bits": [ 10 ]
+        },
+        "D_IN_1": {
+          "direction": "output",
+          "bits": [ 11 ]
+        },
+        "PU_ENB": {
+          "direction": "input",
+          "bits": [ 12 ]
+        },
+        "WEAK_PU_ENB": {
+          "direction": "input",
+          "bits": [ 13 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "CLOCK_ENABLE": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2865.9-2865.21"
+          }
+        },
+        "D_IN_0": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2871.9-2871.15"
+          }
+        },
+        "D_IN_1": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2872.9-2872.15"
+          }
+        },
+        "D_OUT_0": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2869.9-2869.16"
+          }
+        },
+        "D_OUT_1": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2870.9-2870.16"
+          }
+        },
+        "INPUT_CLK": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2866.9-2866.18"
+          }
+        },
+        "LATCH_INPUT_VALUE": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2864.9-2864.26"
+          }
+        },
+        "OUTPUT_CLK": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2867.9-2867.19"
+          }
+        },
+        "OUTPUT_ENABLE": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2868.9-2868.22"
+          }
+        },
+        "PACKAGE_PIN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2863.9-2863.20"
+          }
+        },
+        "PU_ENB": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2873.9-2873.15"
+          }
+        },
+        "WEAK_PU_ENB": {
+          "hide_name": 0,
+          "bits": [ 13 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2874.9-2874.20"
+          }
+        }
+      }
+    },
+    "SB_IO_OD": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2931.1-2993.10"
+      },
+      "parameter_default_values": {
+        "NEG_TRIGGER": "0",
+        "PIN_TYPE": "000000"
+      },
+      "ports": {
+        "PACKAGEPIN": {
+          "direction": "inout",
+          "bits": [ 2 ]
+        },
+        "LATCHINPUTVALUE": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "CLOCKENABLE": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "INPUTCLK": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "OUTPUTCLK": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "OUTPUTENABLE": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "DOUT1": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "DOUT0": {
+          "direction": "input",
+          "bits": [ 9 ]
+        },
+        "DIN1": {
+          "direction": "output",
+          "bits": [ 10 ]
+        },
+        "DIN0": {
+          "direction": "output",
+          "bits": [ 11 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "CLOCKENABLE": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2934.9-2934.20"
+          }
+        },
+        "DIN0": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2941.9-2941.13"
+          }
+        },
+        "DIN1": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2940.9-2940.13"
+          }
+        },
+        "DOUT0": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2939.9-2939.14"
+          }
+        },
+        "DOUT1": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2938.9-2938.14"
+          }
+        },
+        "INPUTCLK": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2935.9-2935.17"
+          }
+        },
+        "LATCHINPUTVALUE": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2933.9-2933.24"
+          }
+        },
+        "OUTPUTCLK": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2936.9-2936.18"
+          }
+        },
+        "OUTPUTENABLE": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2937.9-2937.21"
+          }
+        },
+        "PACKAGEPIN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2932.9-2932.19"
+          }
+        }
+      }
+    },
+    "SB_LEDDA_IP": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2830.1-2853.10"
+      },
+      "ports": {
+        "LEDDCS": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "LEDDCLK": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "LEDDDAT7": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "LEDDDAT6": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "LEDDDAT5": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "LEDDDAT4": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "LEDDDAT3": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "LEDDDAT2": {
+          "direction": "input",
+          "bits": [ 9 ]
+        },
+        "LEDDDAT1": {
+          "direction": "input",
+          "bits": [ 10 ]
+        },
+        "LEDDDAT0": {
+          "direction": "input",
+          "bits": [ 11 ]
+        },
+        "LEDDADDR3": {
+          "direction": "input",
+          "bits": [ 12 ]
+        },
+        "LEDDADDR2": {
+          "direction": "input",
+          "bits": [ 13 ]
+        },
+        "LEDDADDR1": {
+          "direction": "input",
+          "bits": [ 14 ]
+        },
+        "LEDDADDR0": {
+          "direction": "input",
+          "bits": [ 15 ]
+        },
+        "LEDDDEN": {
+          "direction": "input",
+          "bits": [ 16 ]
+        },
+        "LEDDEXE": {
+          "direction": "input",
+          "bits": [ 17 ]
+        },
+        "LEDDRST": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "PWMOUT0": {
+          "direction": "output",
+          "bits": [ 19 ]
+        },
+        "PWMOUT1": {
+          "direction": "output",
+          "bits": [ 20 ]
+        },
+        "PWMOUT2": {
+          "direction": "output",
+          "bits": [ 21 ]
+        },
+        "LEDDON": {
+          "direction": "output",
+          "bits": [ 22 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "LEDDADDR0": {
+          "hide_name": 0,
+          "bits": [ 15 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2844.8-2844.17"
+          }
+        },
+        "LEDDADDR1": {
+          "hide_name": 0,
+          "bits": [ 14 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2843.8-2843.17"
+          }
+        },
+        "LEDDADDR2": {
+          "hide_name": 0,
+          "bits": [ 13 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2842.8-2842.17"
+          }
+        },
+        "LEDDADDR3": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2841.8-2841.17"
+          }
+        },
+        "LEDDCLK": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2832.8-2832.15"
+          }
+        },
+        "LEDDCS": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2831.8-2831.14"
+          }
+        },
+        "LEDDDAT0": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2840.8-2840.16"
+          }
+        },
+        "LEDDDAT1": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2839.8-2839.16"
+          }
+        },
+        "LEDDDAT2": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2838.8-2838.16"
+          }
+        },
+        "LEDDDAT3": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2837.8-2837.16"
+          }
+        },
+        "LEDDDAT4": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2836.8-2836.16"
+          }
+        },
+        "LEDDDAT5": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2835.8-2835.16"
+          }
+        },
+        "LEDDDAT6": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2834.8-2834.16"
+          }
+        },
+        "LEDDDAT7": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2833.8-2833.16"
+          }
+        },
+        "LEDDDEN": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2845.8-2845.15"
+          }
+        },
+        "LEDDEXE": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2846.8-2846.15"
+          }
+        },
+        "LEDDON": {
+          "hide_name": 0,
+          "bits": [ 22 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2851.9-2851.15"
+          }
+        },
+        "LEDDRST": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2847.8-2847.15"
+          }
+        },
+        "PWMOUT0": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2848.9-2848.16"
+          }
+        },
+        "PWMOUT1": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2849.9-2849.16"
+          }
+        },
+        "PWMOUT2": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2850.9-2850.16"
+          }
+        }
+      }
+    },
+    "SB_LED_DRV_CUR": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2709.1-2713.10"
+      },
+      "ports": {
+        "EN": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "LEDPU": {
+          "direction": "output",
+          "bits": [ 3 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "EN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2710.8-2710.10"
+          }
+        },
+        "LEDPU": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2711.9-2711.14"
+          }
+        }
+      }
+    },
+    "SB_LFOSC": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2684.1-2689.10"
+      },
+      "ports": {
+        "CLKLFPU": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "CLKLFEN": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "CLKLF": {
+          "direction": "output",
+          "bits": [ 4 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "CLKLF": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2687.9-2687.14"
+          }
+        },
+        "CLKLFEN": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2686.8-2686.15"
+          }
+        },
+        "CLKLFPU": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2685.8-2685.15"
+          }
+        }
+      }
+    },
+    "SB_LUT4": {
+      "attributes": {
+        "abc9_lut": "00000000000000000000000000000001",
+        "whitebox": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:177.1-225.10"
+      },
+      "parameter_default_values": {
+        "LUT_INIT": "0000000000000000"
+      },
+      "ports": {
+        "O": {
+          "direction": "output",
+          "bits": [ 2 ]
+        },
+        "I0": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "I1": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "I2": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "I3": {
+          "direction": "input",
+          "bits": [ 6 ]
+        }
+      },
+      "cells": {
+        "$ternary$/usr/bin/../share/yosys/ice40/cells_sim.v:185$1": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000001000"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:185.18-185.53"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "B": [ "0", "0", "0", "0", "0", "0", "0", "0" ],
+            "S": [ 6 ],
+            "Y": [ 7, 8, 9, 10, 11, 12, 13, 14 ]
+          }
+        },
+        "$ternary$/usr/bin/../share/yosys/ice40/cells_sim.v:186$2": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:186.18-186.53"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 7, 8, 9, 10 ],
+            "B": [ 11, 12, 13, 14 ],
+            "S": [ 5 ],
+            "Y": [ 15, 16, 17, 18 ]
+          }
+        },
+        "$ternary$/usr/bin/../share/yosys/ice40/cells_sim.v:187$3": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000010"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:187.18-187.53"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 15, 16 ],
+            "B": [ 17, 18 ],
+            "S": [ 4 ],
+            "Y": [ 19, 20 ]
+          }
+        },
+        "$ternary$/usr/bin/../share/yosys/ice40/cells_sim.v:188$4": {
+          "hide_name": 1,
+          "type": "$mux",
+          "parameters": {
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:188.13-188.31"
+          },
+          "port_directions": {
+            "A": "input",
+            "B": "input",
+            "S": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 19 ],
+            "B": [ 20 ],
+            "S": [ 3 ],
+            "Y": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "$ternary$/usr/bin/../share/yosys/ice40/cells_sim.v:185$1_Y": {
+          "hide_name": 1,
+          "bits": [ 7, 8, 9, 10, 11, 12, 13, 14 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:185.18-185.53"
+          }
+        },
+        "$ternary$/usr/bin/../share/yosys/ice40/cells_sim.v:186$2_Y": {
+          "hide_name": 1,
+          "bits": [ 15, 16, 17, 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:186.18-186.53"
+          }
+        },
+        "$ternary$/usr/bin/../share/yosys/ice40/cells_sim.v:187$3_Y": {
+          "hide_name": 1,
+          "bits": [ 19, 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:187.18-187.53"
+          }
+        },
+        "$ternary$/usr/bin/../share/yosys/ice40/cells_sim.v:188$4_Y": {
+          "hide_name": 1,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:188.13-188.31"
+          }
+        },
+        "I0": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:179.8-179.10"
+          }
+        },
+        "I1": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:180.8-180.10"
+          }
+        },
+        "I2": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:181.8-181.10"
+          }
+        },
+        "I3": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:182.8-182.10"
+          }
+        },
+        "O": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:178.9-178.10"
+          }
+        },
+        "s1": {
+          "hide_name": 0,
+          "bits": [ 19, 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:187.13-187.15"
+          }
+        },
+        "s2": {
+          "hide_name": 0,
+          "bits": [ 15, 16, 17, 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:186.13-186.15"
+          }
+        },
+        "s3": {
+          "hide_name": 0,
+          "bits": [ 7, 8, 9, 10, 11, 12, 13, 14 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:185.13-185.15"
+          }
+        }
+      }
+    },
+    "SB_MAC16": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2996.1-3164.10"
+      },
+      "parameter_default_values": {
+        "A_REG": "0",
+        "A_SIGNED": "0",
+        "BOTADDSUB_CARRYSELECT": "00",
+        "BOTADDSUB_LOWERINPUT": "00",
+        "BOTADDSUB_UPPERINPUT": "0",
+        "BOTOUTPUT_SELECT": "00",
+        "BOT_8x8_MULT_REG": "0",
+        "B_REG": "0",
+        "B_SIGNED": "0",
+        "C_REG": "0",
+        "D_REG": "0",
+        "MODE_8x8": "0",
+        "NEG_TRIGGER": "0",
+        "PIPELINE_16x16_MULT_REG1": "0",
+        "PIPELINE_16x16_MULT_REG2": "0",
+        "TOPADDSUB_CARRYSELECT": "00",
+        "TOPADDSUB_LOWERINPUT": "00",
+        "TOPADDSUB_UPPERINPUT": "0",
+        "TOPOUTPUT_SELECT": "00",
+        "TOP_8x8_MULT_REG": "0"
+      },
+      "ports": {
+        "CLK": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "CE": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "C": {
+          "direction": "input",
+          "bits": [ 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+        },
+        "A": {
+          "direction": "input",
+          "bits": [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 ]
+        },
+        "B": {
+          "direction": "input",
+          "bits": [ 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67 ]
+        },
+        "AHOLD": {
+          "direction": "input",
+          "bits": [ 68 ]
+        },
+        "BHOLD": {
+          "direction": "input",
+          "bits": [ 69 ]
+        },
+        "CHOLD": {
+          "direction": "input",
+          "bits": [ 70 ]
+        },
+        "DHOLD": {
+          "direction": "input",
+          "bits": [ 71 ]
+        },
+        "IRSTTOP": {
+          "direction": "input",
+          "bits": [ 72 ]
+        },
+        "IRSTBOT": {
+          "direction": "input",
+          "bits": [ 73 ]
+        },
+        "ORSTTOP": {
+          "direction": "input",
+          "bits": [ 74 ]
+        },
+        "ORSTBOT": {
+          "direction": "input",
+          "bits": [ 75 ]
+        },
+        "OLOADTOP": {
+          "direction": "input",
+          "bits": [ 76 ]
+        },
+        "OLOADBOT": {
+          "direction": "input",
+          "bits": [ 77 ]
+        },
+        "ADDSUBTOP": {
+          "direction": "input",
+          "bits": [ 78 ]
+        },
+        "ADDSUBBOT": {
+          "direction": "input",
+          "bits": [ 79 ]
+        },
+        "OHOLDTOP": {
+          "direction": "input",
+          "bits": [ 80 ]
+        },
+        "OHOLDBOT": {
+          "direction": "input",
+          "bits": [ 81 ]
+        },
+        "CI": {
+          "direction": "input",
+          "bits": [ 82 ]
+        },
+        "ACCUMCI": {
+          "direction": "input",
+          "bits": [ 83 ]
+        },
+        "SIGNEXTIN": {
+          "direction": "input",
+          "bits": [ 84 ]
+        },
+        "O": {
+          "direction": "output",
+          "bits": [ 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116 ]
+        },
+        "CO": {
+          "direction": "output",
+          "bits": [ 117 ]
+        },
+        "ACCUMCO": {
+          "direction": "output",
+          "bits": [ 118 ]
+        },
+        "SIGNEXTOUT": {
+          "direction": "output",
+          "bits": [ 119 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "A": {
+          "hide_name": 0,
+          "bits": [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2998.18-2998.19"
+          }
+        },
+        "ACCUMCI": {
+          "hide_name": 0,
+          "bits": [ 83 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3005.12-3005.19"
+          }
+        },
+        "ACCUMCO": {
+          "hide_name": 0,
+          "bits": [ 118 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3007.13-3007.20"
+          }
+        },
+        "ADDSUBBOT": {
+          "hide_name": 0,
+          "bits": [ 79 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3003.19-3003.28"
+          }
+        },
+        "ADDSUBTOP": {
+          "hide_name": 0,
+          "bits": [ 78 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3003.8-3003.17"
+          }
+        },
+        "AHOLD": {
+          "hide_name": 0,
+          "bits": [ 68 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2999.8-2999.13"
+          }
+        },
+        "B": {
+          "hide_name": 0,
+          "bits": [ 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2998.21-2998.22"
+          }
+        },
+        "BHOLD": {
+          "hide_name": 0,
+          "bits": [ 69 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2999.15-2999.20"
+          }
+        },
+        "C": {
+          "hide_name": 0,
+          "bits": [ 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2998.15-2998.16"
+          }
+        },
+        "CE": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2997.13-2997.15"
+          }
+        },
+        "CHOLD": {
+          "hide_name": 0,
+          "bits": [ 70 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2999.22-2999.27"
+          }
+        },
+        "CI": {
+          "hide_name": 0,
+          "bits": [ 82 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3005.8-3005.10"
+          }
+        },
+        "CLK": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2997.8-2997.11"
+          }
+        },
+        "CO": {
+          "hide_name": 0,
+          "bits": [ 117 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3007.9-3007.11"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2998.24-2998.25"
+          }
+        },
+        "DHOLD": {
+          "hide_name": 0,
+          "bits": [ 71 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2999.29-2999.34"
+          }
+        },
+        "IRSTBOT": {
+          "hide_name": 0,
+          "bits": [ 73 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3000.17-3000.24"
+          }
+        },
+        "IRSTTOP": {
+          "hide_name": 0,
+          "bits": [ 72 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3000.8-3000.15"
+          }
+        },
+        "O": {
+          "hide_name": 0,
+          "bits": [ 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3006.16-3006.17"
+          }
+        },
+        "OHOLDBOT": {
+          "hide_name": 0,
+          "bits": [ 81 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3004.18-3004.26"
+          }
+        },
+        "OHOLDTOP": {
+          "hide_name": 0,
+          "bits": [ 80 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3004.8-3004.16"
+          }
+        },
+        "OLOADBOT": {
+          "hide_name": 0,
+          "bits": [ 77 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3002.18-3002.26"
+          }
+        },
+        "OLOADTOP": {
+          "hide_name": 0,
+          "bits": [ 76 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3002.8-3002.16"
+          }
+        },
+        "ORSTBOT": {
+          "hide_name": 0,
+          "bits": [ 75 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3001.17-3001.24"
+          }
+        },
+        "ORSTTOP": {
+          "hide_name": 0,
+          "bits": [ 74 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3001.8-3001.15"
+          }
+        },
+        "SIGNEXTIN": {
+          "hide_name": 0,
+          "bits": [ 84 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3005.21-3005.30"
+          }
+        },
+        "SIGNEXTOUT": {
+          "hide_name": 0,
+          "bits": [ 119 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:3007.22-3007.32"
+          }
+        }
+      }
+    },
+    "SB_PLL40_2F_CORE": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2521.1-2553.10"
+      },
+      "parameter_default_values": {
+        "DELAY_ADJUSTMENT_MODE_FEEDBACK": "FIXED",
+        "DELAY_ADJUSTMENT_MODE_RELATIVE": "FIXED",
+        "DIVF": "0000000",
+        "DIVQ": "000",
+        "DIVR": "0000",
+        "ENABLE_ICEGATE_PORTA": "0",
+        "ENABLE_ICEGATE_PORTB": "0",
+        "EXTERNAL_DIVIDE_FACTOR": "00000000000000000000000000000001",
+        "FDA_FEEDBACK": "0000",
+        "FDA_RELATIVE": "0000",
+        "FEEDBACK_PATH": "SIMPLE",
+        "FILTER_RANGE": "000",
+        "PLLOUT_SELECT_PORTA": "GENCLK",
+        "PLLOUT_SELECT_PORTB": "GENCLK",
+        "SHIFTREG_DIV_MODE": "0",
+        "TEST_MODE": "0"
+      },
+      "ports": {
+        "REFERENCECLK": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "PLLOUTCOREA": {
+          "direction": "output",
+          "bits": [ 3 ]
+        },
+        "PLLOUTGLOBALA": {
+          "direction": "output",
+          "bits": [ 4 ]
+        },
+        "PLLOUTCOREB": {
+          "direction": "output",
+          "bits": [ 5 ]
+        },
+        "PLLOUTGLOBALB": {
+          "direction": "output",
+          "bits": [ 6 ]
+        },
+        "EXTFEEDBACK": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "DYNAMICDELAY": {
+          "direction": "input",
+          "bits": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
+        },
+        "LOCK": {
+          "direction": "output",
+          "bits": [ 16 ]
+        },
+        "BYPASS": {
+          "direction": "input",
+          "bits": [ 17 ]
+        },
+        "RESETB": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "LATCHINPUTVALUE": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "SDO": {
+          "direction": "output",
+          "bits": [ 20 ]
+        },
+        "SDI": {
+          "direction": "input",
+          "bits": [ 21 ]
+        },
+        "SCLK": {
+          "direction": "input",
+          "bits": [ 22 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "BYPASS": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2530.10-2530.16"
+          }
+        },
+        "DYNAMICDELAY": {
+          "hide_name": 0,
+          "bits": [ 8, 9, 10, 11, 12, 13, 14, 15 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2528.16-2528.28"
+          }
+        },
+        "EXTFEEDBACK": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2527.10-2527.21"
+          }
+        },
+        "LATCHINPUTVALUE": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2532.10-2532.25"
+          }
+        },
+        "LOCK": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2529.10-2529.14"
+          }
+        },
+        "PLLOUTCOREA": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2523.10-2523.21"
+          }
+        },
+        "PLLOUTCOREB": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2525.10-2525.21"
+          }
+        },
+        "PLLOUTGLOBALA": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2524.10-2524.23"
+          }
+        },
+        "PLLOUTGLOBALB": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2526.10-2526.23"
+          }
+        },
+        "REFERENCECLK": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2522.10-2522.22"
+          }
+        },
+        "RESETB": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2531.10-2531.16"
+          }
+        },
+        "SCLK": {
+          "hide_name": 0,
+          "bits": [ 22 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2535.10-2535.14"
+          }
+        },
+        "SDI": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2534.10-2534.13"
+          }
+        },
+        "SDO": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2533.10-2533.13"
+          }
+        }
+      }
+    },
+    "SB_PLL40_2F_PAD": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2556.1-2588.10"
+      },
+      "parameter_default_values": {
+        "DELAY_ADJUSTMENT_MODE_FEEDBACK": "FIXED",
+        "DELAY_ADJUSTMENT_MODE_RELATIVE": "FIXED",
+        "DIVF": "0000000",
+        "DIVQ": "000",
+        "DIVR": "0000",
+        "ENABLE_ICEGATE_PORTA": "0",
+        "ENABLE_ICEGATE_PORTB": "0",
+        "EXTERNAL_DIVIDE_FACTOR": "00000000000000000000000000000001",
+        "FDA_FEEDBACK": "0000",
+        "FDA_RELATIVE": "0000",
+        "FEEDBACK_PATH": "SIMPLE",
+        "FILTER_RANGE": "000",
+        "PLLOUT_SELECT_PORTA": "GENCLK",
+        "PLLOUT_SELECT_PORTB": "GENCLK",
+        "SHIFTREG_DIV_MODE": "00",
+        "TEST_MODE": "0"
+      },
+      "ports": {
+        "PACKAGEPIN": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "PLLOUTCOREA": {
+          "direction": "output",
+          "bits": [ 3 ]
+        },
+        "PLLOUTGLOBALA": {
+          "direction": "output",
+          "bits": [ 4 ]
+        },
+        "PLLOUTCOREB": {
+          "direction": "output",
+          "bits": [ 5 ]
+        },
+        "PLLOUTGLOBALB": {
+          "direction": "output",
+          "bits": [ 6 ]
+        },
+        "EXTFEEDBACK": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "DYNAMICDELAY": {
+          "direction": "input",
+          "bits": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
+        },
+        "LOCK": {
+          "direction": "output",
+          "bits": [ 16 ]
+        },
+        "BYPASS": {
+          "direction": "input",
+          "bits": [ 17 ]
+        },
+        "RESETB": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "LATCHINPUTVALUE": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "SDO": {
+          "direction": "output",
+          "bits": [ 20 ]
+        },
+        "SDI": {
+          "direction": "input",
+          "bits": [ 21 ]
+        },
+        "SCLK": {
+          "direction": "input",
+          "bits": [ 22 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "BYPASS": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2565.10-2565.16"
+          }
+        },
+        "DYNAMICDELAY": {
+          "hide_name": 0,
+          "bits": [ 8, 9, 10, 11, 12, 13, 14, 15 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2563.16-2563.28"
+          }
+        },
+        "EXTFEEDBACK": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2562.10-2562.21"
+          }
+        },
+        "LATCHINPUTVALUE": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2567.10-2567.25"
+          }
+        },
+        "LOCK": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2564.10-2564.14"
+          }
+        },
+        "PACKAGEPIN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2557.10-2557.20"
+          }
+        },
+        "PLLOUTCOREA": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2558.10-2558.21"
+          }
+        },
+        "PLLOUTCOREB": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2560.10-2560.21"
+          }
+        },
+        "PLLOUTGLOBALA": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2559.10-2559.23"
+          }
+        },
+        "PLLOUTGLOBALB": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2561.10-2561.23"
+          }
+        },
+        "RESETB": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2566.10-2566.16"
+          }
+        },
+        "SCLK": {
+          "hide_name": 0,
+          "bits": [ 22 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2570.10-2570.14"
+          }
+        },
+        "SDI": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2569.10-2569.13"
+          }
+        },
+        "SDO": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2568.10-2568.13"
+          }
+        }
+      }
+    },
+    "SB_PLL40_2_PAD": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2487.1-2518.10"
+      },
+      "parameter_default_values": {
+        "DELAY_ADJUSTMENT_MODE_FEEDBACK": "FIXED",
+        "DELAY_ADJUSTMENT_MODE_RELATIVE": "FIXED",
+        "DIVF": "0000000",
+        "DIVQ": "000",
+        "DIVR": "0000",
+        "ENABLE_ICEGATE_PORTA": "0",
+        "ENABLE_ICEGATE_PORTB": "0",
+        "EXTERNAL_DIVIDE_FACTOR": "00000000000000000000000000000001",
+        "FDA_FEEDBACK": "0000",
+        "FDA_RELATIVE": "0000",
+        "FEEDBACK_PATH": "SIMPLE",
+        "FILTER_RANGE": "000",
+        "PLLOUT_SELECT_PORTB": "GENCLK",
+        "SHIFTREG_DIV_MODE": "0",
+        "TEST_MODE": "0"
+      },
+      "ports": {
+        "PACKAGEPIN": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "PLLOUTCOREA": {
+          "direction": "output",
+          "bits": [ 3 ]
+        },
+        "PLLOUTGLOBALA": {
+          "direction": "output",
+          "bits": [ 4 ]
+        },
+        "PLLOUTCOREB": {
+          "direction": "output",
+          "bits": [ 5 ]
+        },
+        "PLLOUTGLOBALB": {
+          "direction": "output",
+          "bits": [ 6 ]
+        },
+        "EXTFEEDBACK": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "DYNAMICDELAY": {
+          "direction": "input",
+          "bits": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
+        },
+        "LOCK": {
+          "direction": "output",
+          "bits": [ 16 ]
+        },
+        "BYPASS": {
+          "direction": "input",
+          "bits": [ 17 ]
+        },
+        "RESETB": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "LATCHINPUTVALUE": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "SDO": {
+          "direction": "output",
+          "bits": [ 20 ]
+        },
+        "SDI": {
+          "direction": "input",
+          "bits": [ 21 ]
+        },
+        "SCLK": {
+          "direction": "input",
+          "bits": [ 22 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "BYPASS": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2496.10-2496.16"
+          }
+        },
+        "DYNAMICDELAY": {
+          "hide_name": 0,
+          "bits": [ 8, 9, 10, 11, 12, 13, 14, 15 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2494.16-2494.28"
+          }
+        },
+        "EXTFEEDBACK": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2493.10-2493.21"
+          }
+        },
+        "LATCHINPUTVALUE": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2498.10-2498.25"
+          }
+        },
+        "LOCK": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2495.10-2495.14"
+          }
+        },
+        "PACKAGEPIN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2488.10-2488.20"
+          }
+        },
+        "PLLOUTCOREA": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2489.10-2489.21"
+          }
+        },
+        "PLLOUTCOREB": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2491.10-2491.21"
+          }
+        },
+        "PLLOUTGLOBALA": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2490.10-2490.23"
+          }
+        },
+        "PLLOUTGLOBALB": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2492.10-2492.23"
+          }
+        },
+        "RESETB": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2497.10-2497.16"
+          }
+        },
+        "SCLK": {
+          "hide_name": 0,
+          "bits": [ 22 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2501.10-2501.14"
+          }
+        },
+        "SDI": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2500.10-2500.13"
+          }
+        },
+        "SDO": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2499.10-2499.13"
+          }
+        }
+      }
+    },
+    "SB_PLL40_CORE": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2425.1-2453.10"
+      },
+      "parameter_default_values": {
+        "DELAY_ADJUSTMENT_MODE_FEEDBACK": "FIXED",
+        "DELAY_ADJUSTMENT_MODE_RELATIVE": "FIXED",
+        "DIVF": "0000000",
+        "DIVQ": "000",
+        "DIVR": "0000",
+        "ENABLE_ICEGATE": "0",
+        "EXTERNAL_DIVIDE_FACTOR": "00000000000000000000000000000001",
+        "FDA_FEEDBACK": "0000",
+        "FDA_RELATIVE": "0000",
+        "FEEDBACK_PATH": "SIMPLE",
+        "FILTER_RANGE": "000",
+        "PLLOUT_SELECT": "GENCLK",
+        "SHIFTREG_DIV_MODE": "0",
+        "TEST_MODE": "0"
+      },
+      "ports": {
+        "REFERENCECLK": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "PLLOUTCORE": {
+          "direction": "output",
+          "bits": [ 3 ]
+        },
+        "PLLOUTGLOBAL": {
+          "direction": "output",
+          "bits": [ 4 ]
+        },
+        "EXTFEEDBACK": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "DYNAMICDELAY": {
+          "direction": "input",
+          "bits": [ 6, 7, 8, 9, 10, 11, 12, 13 ]
+        },
+        "LOCK": {
+          "direction": "output",
+          "bits": [ 14 ]
+        },
+        "BYPASS": {
+          "direction": "input",
+          "bits": [ 15 ]
+        },
+        "RESETB": {
+          "direction": "input",
+          "bits": [ 16 ]
+        },
+        "LATCHINPUTVALUE": {
+          "direction": "input",
+          "bits": [ 17 ]
+        },
+        "SDO": {
+          "direction": "output",
+          "bits": [ 18 ]
+        },
+        "SDI": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "SCLK": {
+          "direction": "input",
+          "bits": [ 20 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "BYPASS": {
+          "hide_name": 0,
+          "bits": [ 15 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2432.10-2432.16"
+          }
+        },
+        "DYNAMICDELAY": {
+          "hide_name": 0,
+          "bits": [ 6, 7, 8, 9, 10, 11, 12, 13 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2430.16-2430.28"
+          }
+        },
+        "EXTFEEDBACK": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2429.10-2429.21"
+          }
+        },
+        "LATCHINPUTVALUE": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2434.10-2434.25"
+          }
+        },
+        "LOCK": {
+          "hide_name": 0,
+          "bits": [ 14 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2431.10-2431.14"
+          }
+        },
+        "PLLOUTCORE": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2427.10-2427.20"
+          }
+        },
+        "PLLOUTGLOBAL": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2428.10-2428.22"
+          }
+        },
+        "REFERENCECLK": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2426.10-2426.22"
+          }
+        },
+        "RESETB": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2433.10-2433.16"
+          }
+        },
+        "SCLK": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2437.10-2437.14"
+          }
+        },
+        "SDI": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2436.10-2436.13"
+          }
+        },
+        "SDO": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2435.10-2435.13"
+          }
+        }
+      }
+    },
+    "SB_PLL40_PAD": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2456.1-2484.10"
+      },
+      "parameter_default_values": {
+        "DELAY_ADJUSTMENT_MODE_FEEDBACK": "FIXED",
+        "DELAY_ADJUSTMENT_MODE_RELATIVE": "FIXED",
+        "DIVF": "0000000",
+        "DIVQ": "000",
+        "DIVR": "0000",
+        "ENABLE_ICEGATE": "0",
+        "EXTERNAL_DIVIDE_FACTOR": "00000000000000000000000000000001",
+        "FDA_FEEDBACK": "0000",
+        "FDA_RELATIVE": "0000",
+        "FEEDBACK_PATH": "SIMPLE",
+        "FILTER_RANGE": "000",
+        "PLLOUT_SELECT": "GENCLK",
+        "SHIFTREG_DIV_MODE": "0",
+        "TEST_MODE": "0"
+      },
+      "ports": {
+        "PACKAGEPIN": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "PLLOUTCORE": {
+          "direction": "output",
+          "bits": [ 3 ]
+        },
+        "PLLOUTGLOBAL": {
+          "direction": "output",
+          "bits": [ 4 ]
+        },
+        "EXTFEEDBACK": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "DYNAMICDELAY": {
+          "direction": "input",
+          "bits": [ 6, 7, 8, 9, 10, 11, 12, 13 ]
+        },
+        "LOCK": {
+          "direction": "output",
+          "bits": [ 14 ]
+        },
+        "BYPASS": {
+          "direction": "input",
+          "bits": [ 15 ]
+        },
+        "RESETB": {
+          "direction": "input",
+          "bits": [ 16 ]
+        },
+        "LATCHINPUTVALUE": {
+          "direction": "input",
+          "bits": [ 17 ]
+        },
+        "SDO": {
+          "direction": "output",
+          "bits": [ 18 ]
+        },
+        "SDI": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "SCLK": {
+          "direction": "input",
+          "bits": [ 20 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "BYPASS": {
+          "hide_name": 0,
+          "bits": [ 15 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2463.10-2463.16"
+          }
+        },
+        "DYNAMICDELAY": {
+          "hide_name": 0,
+          "bits": [ 6, 7, 8, 9, 10, 11, 12, 13 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2461.16-2461.28"
+          }
+        },
+        "EXTFEEDBACK": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2460.10-2460.21"
+          }
+        },
+        "LATCHINPUTVALUE": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2465.10-2465.25"
+          }
+        },
+        "LOCK": {
+          "hide_name": 0,
+          "bits": [ 14 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2462.10-2462.14"
+          }
+        },
+        "PACKAGEPIN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2457.10-2457.20"
+          }
+        },
+        "PLLOUTCORE": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2458.10-2458.20"
+          }
+        },
+        "PLLOUTGLOBAL": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2459.10-2459.22"
+          }
+        },
+        "RESETB": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2464.10-2464.16"
+          }
+        },
+        "SCLK": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2468.10-2468.14"
+          }
+        },
+        "SDI": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2467.10-2467.13"
+          }
+        },
+        "SDO": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2466.10-2466.13"
+          }
+        }
+      }
+    },
+    "SB_RAM40_4K": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1487.1-1724.10"
+      },
+      "parameter_default_values": {
+        "INIT_0": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_1": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_2": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_3": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_4": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_5": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_6": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_7": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_8": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_9": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_A": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_B": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_C": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_D": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_E": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_F": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_FILE": " ",
+        "READ_MODE": "00000000000000000000000000000000",
+        "WRITE_MODE": "00000000000000000000000000000000"
+      },
+      "ports": {
+        "RDATA": {
+          "direction": "output",
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+        },
+        "RCLK": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "RCLKE": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "RE": {
+          "direction": "input",
+          "bits": [ 20 ]
+        },
+        "RADDR": {
+          "direction": "input",
+          "bits": [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ]
+        },
+        "WCLK": {
+          "direction": "input",
+          "bits": [ 32 ]
+        },
+        "WCLKE": {
+          "direction": "input",
+          "bits": [ 33 ]
+        },
+        "WE": {
+          "direction": "input",
+          "bits": [ 34 ]
+        },
+        "WADDR": {
+          "direction": "input",
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45 ]
+        },
+        "MASK": {
+          "direction": "input",
+          "bits": [ 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61 ]
+        },
+        "WDATA": {
+          "direction": "input",
+          "bits": [ 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "MASK": {
+          "hide_name": 0,
+          "bits": [ 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61 ],
+          "attributes": {
+            "defaultvalue": "0000000000000000",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1497.16-1497.20"
+          }
+        },
+        "RADDR": {
+          "hide_name": 0,
+          "bits": [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1492.16-1492.21"
+          }
+        },
+        "RCLK": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1489.16-1489.20"
+          }
+        },
+        "RCLKE": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1490.16-1490.21"
+          }
+        },
+        "RDATA": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1488.16-1488.21"
+          }
+        },
+        "RE": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1491.16-1491.18"
+          }
+        },
+        "WADDR": {
+          "hide_name": 0,
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1496.16-1496.21"
+          }
+        },
+        "WCLK": {
+          "hide_name": 0,
+          "bits": [ 32 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1493.16-1493.20"
+          }
+        },
+        "WCLKE": {
+          "hide_name": 0,
+          "bits": [ 33 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1494.16-1494.21"
+          }
+        },
+        "WDATA": {
+          "hide_name": 0,
+          "bits": [ 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1498.16-1498.21"
+          }
+        },
+        "WE": {
+          "hide_name": 0,
+          "bits": [ 34 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1495.16-1495.18"
+          }
+        }
+      }
+    },
+    "SB_RAM40_4KNR": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1726.1-1860.10"
+      },
+      "parameter_default_values": {
+        "INIT_0": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_1": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_2": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_3": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_4": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_5": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_6": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_7": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_8": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_9": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_A": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_B": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_C": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_D": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_E": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_F": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_FILE": " ",
+        "READ_MODE": "00000000000000000000000000000000",
+        "WRITE_MODE": "00000000000000000000000000000000"
+      },
+      "ports": {
+        "RDATA": {
+          "direction": "output",
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+        },
+        "RCLKN": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "RCLKE": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "RE": {
+          "direction": "input",
+          "bits": [ 20 ]
+        },
+        "RADDR": {
+          "direction": "input",
+          "bits": [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ]
+        },
+        "WCLK": {
+          "direction": "input",
+          "bits": [ 32 ]
+        },
+        "WCLKE": {
+          "direction": "input",
+          "bits": [ 33 ]
+        },
+        "WE": {
+          "direction": "input",
+          "bits": [ 34 ]
+        },
+        "WADDR": {
+          "direction": "input",
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45 ]
+        },
+        "MASK": {
+          "direction": "input",
+          "bits": [ 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61 ]
+        },
+        "WDATA": {
+          "direction": "input",
+          "bits": [ 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "MASK": {
+          "hide_name": 0,
+          "bits": [ 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61 ],
+          "attributes": {
+            "defaultvalue": "0000000000000000",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1736.16-1736.20"
+          }
+        },
+        "RADDR": {
+          "hide_name": 0,
+          "bits": [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1731.16-1731.21"
+          }
+        },
+        "RCLKE": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1729.16-1729.21"
+          }
+        },
+        "RCLKN": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1728.16-1728.21"
+          }
+        },
+        "RDATA": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1727.16-1727.21"
+          }
+        },
+        "RE": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1730.16-1730.18"
+          }
+        },
+        "WADDR": {
+          "hide_name": 0,
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1735.16-1735.21"
+          }
+        },
+        "WCLK": {
+          "hide_name": 0,
+          "bits": [ 32 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1732.16-1732.20"
+          }
+        },
+        "WCLKE": {
+          "hide_name": 0,
+          "bits": [ 33 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1733.16-1733.21"
+          }
+        },
+        "WDATA": {
+          "hide_name": 0,
+          "bits": [ 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1737.16-1737.21"
+          }
+        },
+        "WE": {
+          "hide_name": 0,
+          "bits": [ 34 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1734.16-1734.18"
+          }
+        }
+      }
+    },
+    "SB_RAM40_4KNRNW": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1998.1-2132.10"
+      },
+      "parameter_default_values": {
+        "INIT_0": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_1": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_2": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_3": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_4": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_5": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_6": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_7": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_8": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_9": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_A": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_B": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_C": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_D": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_E": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_F": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_FILE": " ",
+        "READ_MODE": "00000000000000000000000000000000",
+        "WRITE_MODE": "00000000000000000000000000000000"
+      },
+      "ports": {
+        "RDATA": {
+          "direction": "output",
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+        },
+        "RCLKN": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "RCLKE": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "RE": {
+          "direction": "input",
+          "bits": [ 20 ]
+        },
+        "RADDR": {
+          "direction": "input",
+          "bits": [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ]
+        },
+        "WCLKN": {
+          "direction": "input",
+          "bits": [ 32 ]
+        },
+        "WCLKE": {
+          "direction": "input",
+          "bits": [ 33 ]
+        },
+        "WE": {
+          "direction": "input",
+          "bits": [ 34 ]
+        },
+        "WADDR": {
+          "direction": "input",
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45 ]
+        },
+        "MASK": {
+          "direction": "input",
+          "bits": [ 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61 ]
+        },
+        "WDATA": {
+          "direction": "input",
+          "bits": [ 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "MASK": {
+          "hide_name": 0,
+          "bits": [ 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61 ],
+          "attributes": {
+            "defaultvalue": "0000000000000000",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2008.16-2008.20"
+          }
+        },
+        "RADDR": {
+          "hide_name": 0,
+          "bits": [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2003.16-2003.21"
+          }
+        },
+        "RCLKE": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2001.16-2001.21"
+          }
+        },
+        "RCLKN": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2000.16-2000.21"
+          }
+        },
+        "RDATA": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1999.16-1999.21"
+          }
+        },
+        "RE": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2002.16-2002.18"
+          }
+        },
+        "WADDR": {
+          "hide_name": 0,
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2007.16-2007.21"
+          }
+        },
+        "WCLKE": {
+          "hide_name": 0,
+          "bits": [ 33 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2005.16-2005.21"
+          }
+        },
+        "WCLKN": {
+          "hide_name": 0,
+          "bits": [ 32 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2004.16-2004.21"
+          }
+        },
+        "WDATA": {
+          "hide_name": 0,
+          "bits": [ 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2009.16-2009.21"
+          }
+        },
+        "WE": {
+          "hide_name": 0,
+          "bits": [ 34 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2006.16-2006.18"
+          }
+        }
+      }
+    },
+    "SB_RAM40_4KNW": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1862.1-1996.10"
+      },
+      "parameter_default_values": {
+        "INIT_0": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_1": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_2": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_3": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_4": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_5": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_6": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_7": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_8": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_9": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_A": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_B": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_C": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_D": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_E": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_F": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "INIT_FILE": " ",
+        "READ_MODE": "00000000000000000000000000000000",
+        "WRITE_MODE": "00000000000000000000000000000000"
+      },
+      "ports": {
+        "RDATA": {
+          "direction": "output",
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+        },
+        "RCLK": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "RCLKE": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "RE": {
+          "direction": "input",
+          "bits": [ 20 ]
+        },
+        "RADDR": {
+          "direction": "input",
+          "bits": [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ]
+        },
+        "WCLKN": {
+          "direction": "input",
+          "bits": [ 32 ]
+        },
+        "WCLKE": {
+          "direction": "input",
+          "bits": [ 33 ]
+        },
+        "WE": {
+          "direction": "input",
+          "bits": [ 34 ]
+        },
+        "WADDR": {
+          "direction": "input",
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45 ]
+        },
+        "MASK": {
+          "direction": "input",
+          "bits": [ 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61 ]
+        },
+        "WDATA": {
+          "direction": "input",
+          "bits": [ 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "MASK": {
+          "hide_name": 0,
+          "bits": [ 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61 ],
+          "attributes": {
+            "defaultvalue": "0000000000000000",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1872.16-1872.20"
+          }
+        },
+        "RADDR": {
+          "hide_name": 0,
+          "bits": [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1867.16-1867.21"
+          }
+        },
+        "RCLK": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1864.16-1864.20"
+          }
+        },
+        "RCLKE": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1865.16-1865.21"
+          }
+        },
+        "RDATA": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1863.16-1863.21"
+          }
+        },
+        "RE": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1866.16-1866.18"
+          }
+        },
+        "WADDR": {
+          "hide_name": 0,
+          "bits": [ 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1871.16-1871.21"
+          }
+        },
+        "WCLKE": {
+          "hide_name": 0,
+          "bits": [ 33 ],
+          "attributes": {
+            "defaultvalue": "1",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1869.16-1869.21"
+          }
+        },
+        "WCLKN": {
+          "hide_name": 0,
+          "bits": [ 32 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1868.16-1868.21"
+          }
+        },
+        "WDATA": {
+          "hide_name": 0,
+          "bits": [ 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1873.16-1873.21"
+          }
+        },
+        "WE": {
+          "hide_name": 0,
+          "bits": [ 34 ],
+          "attributes": {
+            "defaultvalue": "0",
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:1870.16-1870.18"
+          }
+        }
+      }
+    },
+    "SB_RGBA_DRV": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2692.1-2706.10"
+      },
+      "parameter_default_values": {
+        "CURRENT_MODE": "0b0",
+        "RGB0_CURRENT": "0b000000",
+        "RGB1_CURRENT": "0b000000",
+        "RGB2_CURRENT": "0b000000"
+      },
+      "ports": {
+        "CURREN": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "RGBLEDEN": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "RGB0PWM": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "RGB1PWM": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "RGB2PWM": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "RGB0": {
+          "direction": "output",
+          "bits": [ 7 ]
+        },
+        "RGB1": {
+          "direction": "output",
+          "bits": [ 8 ]
+        },
+        "RGB2": {
+          "direction": "output",
+          "bits": [ 9 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "CURREN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2693.8-2693.14"
+          }
+        },
+        "RGB0": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2698.9-2698.13"
+          }
+        },
+        "RGB0PWM": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2695.8-2695.15"
+          }
+        },
+        "RGB1": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2699.9-2699.13"
+          }
+        },
+        "RGB1PWM": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2696.8-2696.15"
+          }
+        },
+        "RGB2": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2700.9-2700.13"
+          }
+        },
+        "RGB2PWM": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2697.8-2697.15"
+          }
+        },
+        "RGBLEDEN": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2694.8-2694.16"
+          }
+        }
+      }
+    },
+    "SB_RGB_DRV": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2716.1-2730.10"
+      },
+      "parameter_default_values": {
+        "CURRENT_MODE": "0b0",
+        "RGB0_CURRENT": "0b000000",
+        "RGB1_CURRENT": "0b000000",
+        "RGB2_CURRENT": "0b000000"
+      },
+      "ports": {
+        "RGBLEDEN": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "RGB0PWM": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "RGB1PWM": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "RGB2PWM": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "RGBPU": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "RGB0": {
+          "direction": "output",
+          "bits": [ 7 ]
+        },
+        "RGB1": {
+          "direction": "output",
+          "bits": [ 8 ]
+        },
+        "RGB2": {
+          "direction": "output",
+          "bits": [ 9 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "RGB0": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2722.9-2722.13"
+          }
+        },
+        "RGB0PWM": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2718.8-2718.15"
+          }
+        },
+        "RGB1": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2723.9-2723.13"
+          }
+        },
+        "RGB1PWM": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2719.8-2719.15"
+          }
+        },
+        "RGB2": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2724.9-2724.13"
+          }
+        },
+        "RGB2PWM": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2720.8-2720.15"
+          }
+        },
+        "RGBLEDEN": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2717.8-2717.16"
+          }
+        },
+        "RGBPU": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2721.8-2721.13"
+          }
+        }
+      }
+    },
+    "SB_SPI": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2776.1-2827.10"
+      },
+      "parameter_default_values": {
+        "BUS_ADDR74": "0b0000"
+      },
+      "ports": {
+        "SBCLKI": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "SBRWI": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "SBSTBI": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "SBADRI7": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "SBADRI6": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "SBADRI5": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "SBADRI4": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "SBADRI3": {
+          "direction": "input",
+          "bits": [ 9 ]
+        },
+        "SBADRI2": {
+          "direction": "input",
+          "bits": [ 10 ]
+        },
+        "SBADRI1": {
+          "direction": "input",
+          "bits": [ 11 ]
+        },
+        "SBADRI0": {
+          "direction": "input",
+          "bits": [ 12 ]
+        },
+        "SBDATI7": {
+          "direction": "input",
+          "bits": [ 13 ]
+        },
+        "SBDATI6": {
+          "direction": "input",
+          "bits": [ 14 ]
+        },
+        "SBDATI5": {
+          "direction": "input",
+          "bits": [ 15 ]
+        },
+        "SBDATI4": {
+          "direction": "input",
+          "bits": [ 16 ]
+        },
+        "SBDATI3": {
+          "direction": "input",
+          "bits": [ 17 ]
+        },
+        "SBDATI2": {
+          "direction": "input",
+          "bits": [ 18 ]
+        },
+        "SBDATI1": {
+          "direction": "input",
+          "bits": [ 19 ]
+        },
+        "SBDATI0": {
+          "direction": "input",
+          "bits": [ 20 ]
+        },
+        "MI": {
+          "direction": "input",
+          "bits": [ 21 ]
+        },
+        "SI": {
+          "direction": "input",
+          "bits": [ 22 ]
+        },
+        "SCKI": {
+          "direction": "input",
+          "bits": [ 23 ]
+        },
+        "SCSNI": {
+          "direction": "input",
+          "bits": [ 24 ]
+        },
+        "SBDATO7": {
+          "direction": "output",
+          "bits": [ 25 ]
+        },
+        "SBDATO6": {
+          "direction": "output",
+          "bits": [ 26 ]
+        },
+        "SBDATO5": {
+          "direction": "output",
+          "bits": [ 27 ]
+        },
+        "SBDATO4": {
+          "direction": "output",
+          "bits": [ 28 ]
+        },
+        "SBDATO3": {
+          "direction": "output",
+          "bits": [ 29 ]
+        },
+        "SBDATO2": {
+          "direction": "output",
+          "bits": [ 30 ]
+        },
+        "SBDATO1": {
+          "direction": "output",
+          "bits": [ 31 ]
+        },
+        "SBDATO0": {
+          "direction": "output",
+          "bits": [ 32 ]
+        },
+        "SBACKO": {
+          "direction": "output",
+          "bits": [ 33 ]
+        },
+        "SPIIRQ": {
+          "direction": "output",
+          "bits": [ 34 ]
+        },
+        "SPIWKUP": {
+          "direction": "output",
+          "bits": [ 35 ]
+        },
+        "SO": {
+          "direction": "output",
+          "bits": [ 36 ]
+        },
+        "SOE": {
+          "direction": "output",
+          "bits": [ 37 ]
+        },
+        "MO": {
+          "direction": "output",
+          "bits": [ 38 ]
+        },
+        "MOE": {
+          "direction": "output",
+          "bits": [ 39 ]
+        },
+        "SCKO": {
+          "direction": "output",
+          "bits": [ 40 ]
+        },
+        "SCKOE": {
+          "direction": "output",
+          "bits": [ 41 ]
+        },
+        "MCSNO3": {
+          "direction": "output",
+          "bits": [ 42 ]
+        },
+        "MCSNO2": {
+          "direction": "output",
+          "bits": [ 43 ]
+        },
+        "MCSNO1": {
+          "direction": "output",
+          "bits": [ 44 ]
+        },
+        "MCSNO0": {
+          "direction": "output",
+          "bits": [ 45 ]
+        },
+        "MCSNOE3": {
+          "direction": "output",
+          "bits": [ 46 ]
+        },
+        "MCSNOE2": {
+          "direction": "output",
+          "bits": [ 47 ]
+        },
+        "MCSNOE1": {
+          "direction": "output",
+          "bits": [ 48 ]
+        },
+        "MCSNOE0": {
+          "direction": "output",
+          "bits": [ 49 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "MCSNO0": {
+          "hide_name": 0,
+          "bits": [ 45 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2820.9-2820.15"
+          }
+        },
+        "MCSNO1": {
+          "hide_name": 0,
+          "bits": [ 44 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2819.9-2819.15"
+          }
+        },
+        "MCSNO2": {
+          "hide_name": 0,
+          "bits": [ 43 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2818.9-2818.15"
+          }
+        },
+        "MCSNO3": {
+          "hide_name": 0,
+          "bits": [ 42 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2817.9-2817.15"
+          }
+        },
+        "MCSNOE0": {
+          "hide_name": 0,
+          "bits": [ 49 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2824.9-2824.16"
+          }
+        },
+        "MCSNOE1": {
+          "hide_name": 0,
+          "bits": [ 48 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2823.9-2823.16"
+          }
+        },
+        "MCSNOE2": {
+          "hide_name": 0,
+          "bits": [ 47 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2822.9-2822.16"
+          }
+        },
+        "MCSNOE3": {
+          "hide_name": 0,
+          "bits": [ 46 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2821.9-2821.16"
+          }
+        },
+        "MI": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2796.9-2796.11"
+          }
+        },
+        "MO": {
+          "hide_name": 0,
+          "bits": [ 38 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2813.9-2813.11"
+          }
+        },
+        "MOE": {
+          "hide_name": 0,
+          "bits": [ 39 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2814.9-2814.12"
+          }
+        },
+        "SBACKO": {
+          "hide_name": 0,
+          "bits": [ 33 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2808.9-2808.15"
+          }
+        },
+        "SBADRI0": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2787.9-2787.16"
+          }
+        },
+        "SBADRI1": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2786.9-2786.16"
+          }
+        },
+        "SBADRI2": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2785.9-2785.16"
+          }
+        },
+        "SBADRI3": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2784.9-2784.16"
+          }
+        },
+        "SBADRI4": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2783.9-2783.16"
+          }
+        },
+        "SBADRI5": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2782.9-2782.16"
+          }
+        },
+        "SBADRI6": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2781.9-2781.16"
+          }
+        },
+        "SBADRI7": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2780.9-2780.16"
+          }
+        },
+        "SBCLKI": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2777.9-2777.15"
+          }
+        },
+        "SBDATI0": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2795.9-2795.16"
+          }
+        },
+        "SBDATI1": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2794.9-2794.16"
+          }
+        },
+        "SBDATI2": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2793.9-2793.16"
+          }
+        },
+        "SBDATI3": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2792.9-2792.16"
+          }
+        },
+        "SBDATI4": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2791.9-2791.16"
+          }
+        },
+        "SBDATI5": {
+          "hide_name": 0,
+          "bits": [ 15 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2790.9-2790.16"
+          }
+        },
+        "SBDATI6": {
+          "hide_name": 0,
+          "bits": [ 14 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2789.9-2789.16"
+          }
+        },
+        "SBDATI7": {
+          "hide_name": 0,
+          "bits": [ 13 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2788.9-2788.16"
+          }
+        },
+        "SBDATO0": {
+          "hide_name": 0,
+          "bits": [ 32 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2807.9-2807.16"
+          }
+        },
+        "SBDATO1": {
+          "hide_name": 0,
+          "bits": [ 31 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2806.9-2806.16"
+          }
+        },
+        "SBDATO2": {
+          "hide_name": 0,
+          "bits": [ 30 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2805.9-2805.16"
+          }
+        },
+        "SBDATO3": {
+          "hide_name": 0,
+          "bits": [ 29 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2804.9-2804.16"
+          }
+        },
+        "SBDATO4": {
+          "hide_name": 0,
+          "bits": [ 28 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2803.9-2803.16"
+          }
+        },
+        "SBDATO5": {
+          "hide_name": 0,
+          "bits": [ 27 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2802.9-2802.16"
+          }
+        },
+        "SBDATO6": {
+          "hide_name": 0,
+          "bits": [ 26 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2801.9-2801.16"
+          }
+        },
+        "SBDATO7": {
+          "hide_name": 0,
+          "bits": [ 25 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2800.9-2800.16"
+          }
+        },
+        "SBRWI": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2778.9-2778.14"
+          }
+        },
+        "SBSTBI": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2779.9-2779.15"
+          }
+        },
+        "SCKI": {
+          "hide_name": 0,
+          "bits": [ 23 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2798.9-2798.13"
+          }
+        },
+        "SCKO": {
+          "hide_name": 0,
+          "bits": [ 40 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2815.9-2815.13"
+          }
+        },
+        "SCKOE": {
+          "hide_name": 0,
+          "bits": [ 41 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2816.9-2816.14"
+          }
+        },
+        "SCSNI": {
+          "hide_name": 0,
+          "bits": [ 24 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2799.9-2799.14"
+          }
+        },
+        "SI": {
+          "hide_name": 0,
+          "bits": [ 22 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2797.9-2797.11"
+          }
+        },
+        "SO": {
+          "hide_name": 0,
+          "bits": [ 36 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2811.9-2811.11"
+          }
+        },
+        "SOE": {
+          "hide_name": 0,
+          "bits": [ 37 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2812.9-2812.12"
+          }
+        },
+        "SPIIRQ": {
+          "hide_name": 0,
+          "bits": [ 34 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2809.9-2809.15"
+          }
+        },
+        "SPIWKUP": {
+          "hide_name": 0,
+          "bits": [ 35 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2810.9-2810.16"
+          }
+        }
+      }
+    },
+    "SB_SPRAM256KA": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2600.1-2661.10"
+      },
+      "ports": {
+        "ADDRESS": {
+          "direction": "input",
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+        },
+        "DATAIN": {
+          "direction": "input",
+          "bits": [ 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ]
+        },
+        "MASKWREN": {
+          "direction": "input",
+          "bits": [ 32, 33, 34, 35 ]
+        },
+        "WREN": {
+          "direction": "input",
+          "bits": [ 36 ]
+        },
+        "CHIPSELECT": {
+          "direction": "input",
+          "bits": [ 37 ]
+        },
+        "CLOCK": {
+          "direction": "input",
+          "bits": [ 38 ]
+        },
+        "STANDBY": {
+          "direction": "input",
+          "bits": [ 39 ]
+        },
+        "SLEEP": {
+          "direction": "input",
+          "bits": [ 40 ]
+        },
+        "POWEROFF": {
+          "direction": "input",
+          "bits": [ 41 ]
+        },
+        "DATAOUT": {
+          "direction": "output",
+          "bits": [ 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "ADDRESS": {
+          "hide_name": 0,
+          "bits": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2601.15-2601.22"
+          }
+        },
+        "CHIPSELECT": {
+          "hide_name": 0,
+          "bits": [ 37 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2604.14-2604.24"
+          }
+        },
+        "CLOCK": {
+          "hide_name": 0,
+          "bits": [ 38 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2604.26-2604.31"
+          }
+        },
+        "DATAIN": {
+          "hide_name": 0,
+          "bits": [ 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2602.15-2602.21"
+          }
+        },
+        "DATAOUT": {
+          "hide_name": 0,
+          "bits": [ 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2605.20-2605.27"
+          }
+        },
+        "MASKWREN": {
+          "hide_name": 0,
+          "bits": [ 32, 33, 34, 35 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2603.14-2603.22"
+          }
+        },
+        "POWEROFF": {
+          "hide_name": 0,
+          "bits": [ 41 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2604.49-2604.57"
+          }
+        },
+        "SLEEP": {
+          "hide_name": 0,
+          "bits": [ 40 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2604.42-2604.47"
+          }
+        },
+        "STANDBY": {
+          "hide_name": 0,
+          "bits": [ 39 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2604.33-2604.40"
+          }
+        },
+        "WREN": {
+          "hide_name": 0,
+          "bits": [ 36 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2604.8-2604.12"
+          }
+        }
+      }
+    },
+    "SB_WARMBOOT": {
+      "attributes": {
+        "keep": "00000000000000000000000000000001",
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2593.1-2598.10"
+      },
+      "ports": {
+        "BOOT": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "S1": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "S0": {
+          "direction": "input",
+          "bits": [ 4 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "BOOT": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2594.8-2594.12"
+          }
+        },
+        "S0": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2596.8-2596.10"
+          }
+        },
+        "S1": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/usr/bin/../share/yosys/ice40/cells_sim.v:2595.8-2595.10"
+          }
+        }
+      }
+    },
+    "cgp_module": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "cgp_module.v:1.1-116.10"
+      },
+      "ports": {
+        "in0": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "in1": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "in2": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "in3": {
+          "direction": "input",
+          "bits": [ 5 ]
+        },
+        "in4": {
+          "direction": "input",
+          "bits": [ 6 ]
+        },
+        "in5": {
+          "direction": "input",
+          "bits": [ 7 ]
+        },
+        "in6": {
+          "direction": "input",
+          "bits": [ 8 ]
+        },
+        "in7": {
+          "direction": "input",
+          "bits": [ 9 ]
+        },
+        "in8": {
+          "direction": "input",
+          "bits": [ 10 ]
+        },
+        "in9": {
+          "direction": "input",
+          "bits": [ 11 ]
+        },
+        "out0": {
+          "direction": "output",
+          "bits": [ 12 ]
+        },
+        "out1": {
+          "direction": "output",
+          "bits": [ 13 ]
+        },
+        "out2": {
+          "direction": "output",
+          "bits": [ 14 ]
+        },
+        "out3": {
+          "direction": "output",
+          "bits": [ 15 ]
+        },
+        "out4": {
+          "direction": "output",
+          "bits": [ 16 ]
+        },
+        "out5": {
+          "direction": "output",
+          "bits": [ 17 ]
+        },
+        "out6": {
+          "direction": "output",
+          "bits": [ 18 ]
+        },
+        "out7": {
+          "direction": "output",
+          "bits": [ 19 ]
+        },
+        "out8": {
+          "direction": "output",
+          "bits": [ 20 ]
+        },
+        "out9": {
+          "direction": "output",
+          "bits": [ 21 ]
+        }
+      },
+      "cells": {
+        "lut_0_0": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1011101101101011"
+          },
+          "attributes": {
+            "LOC": "X0/Y0",
+            "dont_touch": "00000000000000000000000000000001",
+            "keep": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "cgp_module.v:12.3-18.2"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ 3 ],
+            "I2": [ 2 ],
+            "I3": [ 4 ],
+            "O": [ 22 ]
+          }
+        },
+        "lut_0_1": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1001000110010011"
+          },
+          "attributes": {
+            "LOC": "X0/Y1",
+            "dont_touch": "00000000000000000000000000000001",
+            "keep": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "cgp_module.v:48.3-54.2"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 2 ],
+            "I1": [ 2 ],
+            "I2": [ 2 ],
+            "I3": [ 2 ],
+            "O": [ 23 ]
+          }
+        },
+        "lut_0_2": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1000110011000110"
+          },
+          "attributes": {
+            "LOC": "X0/Y2",
+            "dont_touch": "00000000000000000000000000000001",
+            "keep": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "cgp_module.v:84.3-90.2"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 3 ],
+            "I1": [ 4 ],
+            "I2": [ 4 ],
+            "I3": [ 2 ],
+            "O": [ 24 ]
+          }
+        },
+        "lut_1_0": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0001010101110101"
+          },
+          "attributes": {
+            "LOC": "X1/Y0",
+            "dont_touch": "00000000000000000000000000000001",
+            "keep": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "cgp_module.v:24.3-30.2"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ 2 ],
+            "I2": [ 3 ],
+            "I3": [ "0" ],
+            "O": [ 25 ]
+          }
+        },
+        "lut_1_1": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0000011010111011"
+          },
+          "attributes": {
+            "LOC": "X1/Y1",
+            "dont_touch": "00000000000000000000000000000001",
+            "keep": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "cgp_module.v:60.3-66.2"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 2 ],
+            "I3": [ 2 ],
+            "O": [ 26 ]
+          }
+        },
+        "lut_1_2": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0100001100110001"
+          },
+          "attributes": {
+            "LOC": "X1/Y2",
+            "dont_touch": "00000000000000000000000000000001",
+            "keep": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "cgp_module.v:96.3-102.2"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ 4 ],
+            "I2": [ 4 ],
+            "I3": [ "0" ],
+            "O": [ 27 ]
+          }
+        },
+        "lut_2_0": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1100011000011011"
+          },
+          "attributes": {
+            "LOC": "X2/Y0",
+            "dont_touch": "00000000000000000000000000000001",
+            "keep": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "cgp_module.v:36.3-42.2"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 2 ],
+            "I1": [ 4 ],
+            "I2": [ 2 ],
+            "I3": [ 4 ],
+            "O": [ 28 ]
+          }
+        },
+        "lut_2_1": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1100100011111010"
+          },
+          "attributes": {
+            "LOC": "X2/Y1",
+            "dont_touch": "00000000000000000000000000000001",
+            "keep": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "cgp_module.v:72.3-78.2"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 4 ],
+            "I1": [ 4 ],
+            "I2": [ 2 ],
+            "I3": [ 4 ],
+            "O": [ 29 ]
+          }
+        },
+        "lut_2_2": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0100001000010101"
+          },
+          "attributes": {
+            "LOC": "X2/Y2",
+            "dont_touch": "00000000000000000000000000000001",
+            "keep": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "cgp_module.v:108.3-114.2"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 4 ],
+            "I1": [ "0" ],
+            "I2": [ 2 ],
+            "I3": [ 2 ],
+            "O": [ 30 ]
+          }
+        }
+      },
+      "netnames": {
+        "in0": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:2.22-2.25"
+          }
+        },
+        "in1": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:2.27-2.30"
+          }
+        },
+        "in2": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:2.32-2.35"
+          }
+        },
+        "in3": {
+          "hide_name": 0,
+          "bits": [ 5 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:2.37-2.40"
+          }
+        },
+        "in4": {
+          "hide_name": 0,
+          "bits": [ 6 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:2.42-2.45"
+          }
+        },
+        "in5": {
+          "hide_name": 0,
+          "bits": [ 7 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:2.47-2.50"
+          }
+        },
+        "in6": {
+          "hide_name": 0,
+          "bits": [ 8 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:2.52-2.55"
+          }
+        },
+        "in7": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:2.57-2.60"
+          }
+        },
+        "in8": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:2.62-2.65"
+          }
+        },
+        "in9": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:2.67-2.70"
+          }
+        },
+        "out0": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:3.23-3.27"
+          }
+        },
+        "out1": {
+          "hide_name": 0,
+          "bits": [ 13 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:3.29-3.33"
+          }
+        },
+        "out2": {
+          "hide_name": 0,
+          "bits": [ 14 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:3.35-3.39"
+          }
+        },
+        "out3": {
+          "hide_name": 0,
+          "bits": [ 15 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:3.41-3.45"
+          }
+        },
+        "out4": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:3.47-3.51"
+          }
+        },
+        "out5": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:3.53-3.57"
+          }
+        },
+        "out6": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:3.59-3.63"
+          }
+        },
+        "out7": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:3.65-3.69"
+          }
+        },
+        "out8": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:3.71-3.75"
+          }
+        },
+        "out9": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:3.77-3.81"
+          }
+        },
+        "x0_y0": {
+          "hide_name": 0,
+          "bits": [ 22 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:5.21-5.26"
+          }
+        },
+        "x0_y1": {
+          "hide_name": 0,
+          "bits": [ 23 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:5.35-5.40"
+          }
+        },
+        "x0_y2": {
+          "hide_name": 0,
+          "bits": [ 24 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:5.49-5.54"
+          }
+        },
+        "x1_y0": {
+          "hide_name": 0,
+          "bits": [ 25 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:5.28-5.33"
+          }
+        },
+        "x1_y1": {
+          "hide_name": 0,
+          "bits": [ 26 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:5.42-5.47"
+          }
+        },
+        "x1_y2": {
+          "hide_name": 0,
+          "bits": [ 27 ],
+          "attributes": {
+            "keep": "00000000000000000000000000000001",
+            "src": "cgp_module.v:5.56-5.61"
+          }
+        },
+        "x2_y0": {
+          "hide_name": 0,
+          "bits": [ 28 ],
+          "attributes": {
+            "src": "cgp_module.v:37.8-37.13"
+          }
+        },
+        "x2_y1": {
+          "hide_name": 0,
+          "bits": [ 29 ],
+          "attributes": {
+            "src": "cgp_module.v:73.8-73.13"
+          }
+        },
+        "x2_y2": {
+          "hide_name": 0,
+          "bits": [ 30 ],
+          "attributes": {
+            "src": "cgp_module.v:109.8-109.13"
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+### nextpnr ASC
+
+```
 .comment from next-pnr
 .device 5k
 .io_tile 1 0
@@ -20,7 +9051,7 @@
 
 .io_tile 2 0
 000000000000000000
-000000000000100000
+000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
@@ -43,7 +9074,7 @@
 000000000000000000
 000000000000000000
 000000000000000000
-000000000000011000
+000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
@@ -55,7 +9086,7 @@
 000000000000000000
 
 .io_tile 4 0
-000000000000011000
+000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
@@ -73,13 +9104,13 @@
 000000000000000000
 
 .io_tile 5 0
-100000000000000000
-100100000000000000
-000000000000000000
-000000000000000001
 000000000000000000
 000000000000000000
-000100000000011100
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
@@ -91,49 +9122,49 @@
 000000000000000000
 
 .io_tile 6 0
-100000000001000000
-100100000000000000
-010000000000000000
-000000000000000001
 000000000000000000
 000000000000000000
-001100000000000100
 000000000000000000
 000000000000000000
-110100000000000000
-100000000000000000
+000000000000000000
+000000000000000000
 001000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
 000000000000000100
 000000000000000001
 000000000000000000
 000000000000000000
 
 .io_tile 7 0
-100000000000000000
-010100000000000000
-000000000000000000
-000000000000000001
-000000000000000000
-000000000000000000
-001100000000000100
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
-000000000000000100
-000000000000000001
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
 000000000000000000
 000000000000000000
 
 .io_tile 8 0
-110000000000000000
-010100000000000000
-010000000000000000
-000000000000000001
 000000000000000000
 000000000000000000
-000100000000000100
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
@@ -146,19 +9177,19 @@
 
 .io_tile 9 0
 000000000000000000
+000100000000000000
 000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-001000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000000000000000001
 000000000000000000
 000000000000000000
 000000000000000100
-000000000000000001
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
 000000000000000000
 000000000000000000
 
@@ -193,7 +9224,7 @@
 000000000000000000
 000000000000000000
 000000000000000000
-000000000000010000
+000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
@@ -220,7 +9251,7 @@
 000000000000000000
 000000000000000000
 000000000000000000
-000000000001100000
+000000000000000000
 000000000000000000
 000000000000000000
 001000000000000000
@@ -254,12 +9285,12 @@
 
 .io_tile 15 0
 000000000000000000
+000100000000000000
+000000000000000000
+000000000000000001
 000000000000000000
 000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000000000000000100
 000000000000000000
 000000000000000000
 000000000000000000
@@ -290,12 +9321,12 @@
 
 .io_tile 17 0
 000000000000000000
+000100000000000000
+000000000000000000
+000000000000000001
 000000000000000000
 000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000000000000000100
 000000000000000000
 000000000000000000
 000000000000000000
@@ -313,14 +9344,14 @@
 000000000000000000
 000000000000000000
 000000000000000000
+001000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000000000000000100
+000000000000000001
 000000000000000000
 000000000000000000
 
@@ -385,14 +9416,14 @@
 000000000000000000
 000000000000000000
 000000000000000000
+001000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000000000000000100
+000000000000000001
 000000000000000000
 000000000000000000
 
@@ -403,25 +9434,25 @@
 000000000000000001
 000000000000000000
 000000000000000000
+001000000000000100
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
 000000000000000100
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000000000000000001
 000000000000000000
 000000000000000000
 
 .io_tile 24 0
 000000000000000000
+000100000000000000
+000000000000000000
+000000000000000001
 000000000000000000
 000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000000000000000100
 000000000000000000
 000000000000000000
 000000000000000000
@@ -451,94 +9482,94 @@
 000000000000000000000000000000000000110000110000000000
 
 .logic_tile 1 1
-000000000000000000000000010001111010111111000000000000
-000000000000000000000011101111001010100101100000000000
-000000000000001111000000011001100000100101110000000000
-000000000000000111100011100001101010101010100000000000
-000000000000001111100111111001111110011101000000000000
-000000000000001111100111100001001111001001110000000000
-000000000000001000000000000111001000101110010000000000
-000000000000001111000000001101111010101011000000000000
-000000000000000000000000000101000000000001110000000000
-000000000000000000000000000101101111100011110000000000
-000000000000000000000000001011100001000001010000000000
-000000000000000001000000000001001000010100000000000000
-000000000000000000000111100001100000000011010000000000
-000000000000000000000000001001000000010010100000000000
-000000000000001000000000000101000000011111110000000000
-000000000000000111000000000000101011101110110000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 2 1
-000000100000001000000000000000001111110001000000000000
-000001000000000011000000000000001110001110110010000000
-000000001010000000000111101111100001000101000000000000
-000000000000001111000100000011001110100010000010000000
-000000000000001000000000001111111011100101110010000000
-000000000100001111000000000001001100110111110000000000
-000000000000001000000011101001000000111110000000000000
-000000000000000011000100001001001110100100110010000000
-000000000000000000000000001000000000110100000010000000
-000000000000000000000000000111000000011010110010000000
-000000000000000001000000000111100001100110000010000000
-000000000000001111000000000000101110110101100010000000
-000000000000000000000000000111111100111011000000000000
-000000000000000001000000000000000000110111000010000000
-000000000000000111000010001000011010110011010000000000
-000000000000001111100011111111011010100011100010000010
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 3 1
-000000000000001000000000010101111010111010100000000000
-000000000000000111000011110001000000010000110010000000
-000000000000000000000000000101101000011110110000000000
-000000000000000000000000000111110000110000000010000000
-000000000000000001000000000101100000011010100010000000
-000000000000010000100000001001001001101111100000000000
-000000000000000011100010000001001001011001110000000000
-000000000000000001100000000000111010110000010010000000
-000000000000000001000000001111001101100101000011000000
-000000000000000000000000000101101011110100010000000000
-000000000000000000000000000001011010010011110010000000
-000000000000000000000000000111001111111110100010000000
-000000000000000000000111110111000000000100000000000000
-000000000000000001000111100000001010011110010010000010
-000000000000100000000000000111001010001011100000000000
-000000000000010000000000000011101111110010100010000010
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 4 1
-000000000000000111100011100011011011001011100000000000
-000000000000000000000000000000001100001011000010000000
-000000001000000000000000000011001100101001010000000000
-000000000000000000000000000000001000111011010010000000
-000000000000001011100000001001000000110010100000000000
-000000000100001111000000001111001010001110010010000000
-000001001101001000000000001011001101010010110000000000
-000010100001000011000000001111101100010011100010000000
-000000000000000011100000000111100001100001010000000000
-000000001010001111000010001011101100111010000010000000
-000001000000001001000000000011100000110111000000000000
-000000100010001111000011110000101110100110110010000000
-000011000000001000000000000111101010011100110000000000
-000000000000000111000000000000001010000010010010100000
-000001000000001000000011110011011110001101000000000000
-000000100000001111000111100000111001011100110001000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 5 1
-000000001000000111100000000000011100110111010000000000
-000000000000000000000000000000010000000001100010000000
-000000000000000000000000001011101100100010110000000000
-000001000000100000000000000011001110000101110010000000
-000000000000000111000011100011101111110101100000000000
-000000100000000000100100001101001101101100010010000000
-000000000000000000000111000111100000110100100000000000
-000000000000010000000100000111100000001000100010000000
-000000000000000000000111100011011100101100100000000000
-000000000000001111000100000000100000110000100010000000
-000000100000001111100111111111100000110010110000000000
-000000000000000111000011100111001000101110000010000000
-000000000000000000000010000001000000001100100010000000
-000000100101001111000000000101001111010001110000000010
-000000001100001111100111101000011010101101000000000000
-000000000000001111100110001111011000101100010000000010
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .ramb_tile 6 1
 000000000000000000000000000000000000000000
@@ -546,12 +9577,12 @@
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
-000000100000000000000000000000000000000000
-000000000100000000000000000000000000000000
-000000000000010000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
-000000001110000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
@@ -559,202 +9590,202 @@
 000000000000000000000000000000000000000000
 
 .logic_tile 7 1
-000000001000000111000011100001011101111101010010000000
-000000000000000011100100000000111110100100010010000000
-000000000000000111000111000111100000100101110010000000
-000000000000000000100100001001101001100010010000000000
-000001000000100111100011110001011000000111100000000000
-000010000000010011000011011111100000111011000010000000
-000000100000001011100000010001000000001011010000000000
-000000000000001011100011100001001010000111100010000000
-000000000110000000000000000001101011010011010000000000
-000000000000000000000000000000101110001101110010000000
-000000000000100000000111101101001011111000010000000000
-000000000000000000000000001001001011100001110010000000
-000001000000000000000111101101101010110010100001000000
-000010001100000000000000000101011011100111100010000000
-000000000000000111100111100000000000110011110000000000
-000000000000000000000100000000000000100011010001000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 8 1
-000000000001010111100000011101111010011110110000000000
-000000000000100000000011010111011001001011010010000000
-000000000010000111000000000111111110000100010000000000
-000000000010001111000000000000000000011001110010000000
-000001001010000000000011111111101011100011010000000000
-000010001110000000000111000111111110001010010000000000
-000000000000101011100000011101011110101110100000000000
-000000000001010011100011001101101000110110000010000000
-000010100000000000000000001001100001101111010000000000
-000001000000000000000000001111001111000011000010000000
-000000000000000111100000000000011000111000100010000000
-000000000000000000100000000000000000011011000010000000
-000001000000000111100000000001011100001011010010000000
-000010001111000000100000000000001110010100000000000000
-000000000000000111100111110111011011111011010010000000
-000000000000000000000011110000001100110100010000000010
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 9 1
-000000000000000000000111110000000000100000010010000000
-000000000000000000000011010011001001001110110000000000
-000000000000000011100000000011001010100001110010000000
-000000000000000000100000000111000000110001010000000000
-000000000000100111100111110111001100011010100000000000
-000000000000010000000011010011111100111010110010000000
-000000000000000111000000000101101100000001000000000000
-000000000000000000100000001101000000110101000010000010
-000000000000000000000010010001101111111111010000000000
-000000000000001111000011101101001111100011110010000000
-000000000000000000000011101011111110111100000010000000
-000000000000001111000100001011010000110100000010000000
-000001000000101000000000010000011111010100000000000000
-000010001100010111000011110000001010011110110001000010
-000000000000001000000011101000001100101000010000000000
-000000001000000111000100000001011001011010000001000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 10 1
-000000000000000011100000000111001110110010000000000000
-000000001100000111000011100011010000010011100010000000
-000000000000000000000000001000011110011001000010000000
-000000000000000000000011101011001111000110110000000000
-000000000000000111100000000000001100011001110000000000
-000000000001010000000011100000010000101001010010000000
-000000000000000000000000000000001110111111010000000000
-000000001000000111000000001111010000001111110010000000
-000000001100001000000111101000000000100110010000000000
-000000000000000111000100001011001010110010100010000000
-000000100000000000000111100000000000111101000000000000
-000000000010000000000111111111001011011110000010000001
-000001000001010000000111110000011111100001110000000000
-000010000001101111000011100001011001100011100010000000
-000000000000000111100000001000001000001101110000000000
-000000000000000000000010000101011000101001100010100000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 11 1
-000000000000000000000000011011111101010000100000000000
-000000000000000000000011110111001110000000010010000000
-000000000000000000000000001001000001001000110000000000
-000000000000100011000000001011101101110111010010000000
-000000000000000000000000000000000001011010110000000000
-000000000000000000000000000011001100101111000010000000
-000000100000001011100000000111100001110111000000000000
-000000000000001111100000000000101101011101100000000000
-000000000000001000000111100101111100101001000010000000
-000000000000001111000100000000010000100101010010000000
-000000000000000111100111100000000000010000110010000000
-000000000000001111000100000000001110110011110010000000
-000000000000001000000010001000001100110110110000000000
-000000000000000111000000000101011111011101010010000010
-000000000000000111100111101001100001101001100000000000
-000000000000000000100000001011001101110000110010100000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 12 1
-000000000000000000000000000001101110110011110010000000
-000000001110000000000000000011001101000011010010000000
-000000000000001111000011101011001111000000100010000000
-000000000000001011100100000001001000101111100000000000
-000001000000000011100000000011101100100110000000000000
-000000000001000000000000000011101100100101010010000000
-000000000000000111000000001011000001101001110000000000
-000000000000000000100000000001001110111011010010000000
-000000001000000111100111111111011000001000000000000000
-000000000000001111100111100101111010111100010010000000
-000000000000000111000111100001101111110000100010000000
-000000000000000001100100001111011110010010000010000000
-000000000000001111100111110011011110101010010000000000
-000010000000000111100011110000110000100000010010000010
-000000000000001000000000000111011101110011000000000000
-000000001000000111000010000000101100110011010010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 13 1
-000000000000000000000111110111000000011100010000000000
-000000000000000000000011100011001110101110010010000000
-000000000000000000000000000000001111111100000000000000
-000000000000100000000000000111011110110110000000000000
-000000000000000111100111110111011110111010100000000000
-000000000000010111000011100000001111000000100010000000
-000000000001000000000000000101001011111110010000000001
-000000000000000000000000000111101100100100100000000000
-000000000000001000000000010111011100001111100000000000
-000000001110000111000011100000100000001110010010000000
-000000000000001111100111100111001100000000100000000000
-000001000000000111000100000000110000100111110000000100
-000000000110000111100111100101001011110100010000000000
-000010100001011111100110001001101100010000010010000010
-000000000000000001000000001101011110110100010000000000
-000000000000001111000000001011001001101011000000000010
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 14 1
-000000000000000111100111101011011110000010110000000000
-000000000000000000000000001111011100111001010010000000
-000000000000000000000000001111111111110111110000000000
-000000000000100000000000001011001110000000010010000000
-000000000000001000000000000001001001001010110000000000
-000000000000011111000011101011011110110000010010000000
-000000000000000000000000000000000000010101000000000000
-000000000000000000000000000111000000001111000010000000
-000000000000000111100011111000001000001110010000000000
-000000000000001111100111100011011101011010000010000000
-000000000000001000000111100011100000001000110010000000
-000001000000000111000000000000001010100010110010000000
-000000000000000111100000001101001011000001000000000000
-000010100001011111000000000011111111110101010010000010
-000000000000001111100111100111000000101001000000000000
-000000000000000111000111110000001101000110110010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 15 1
-000000001010000111000011100001000000011001110000000000
-000000000000000000100100000011101100111010000010000000
-000000000000000000000000001000001111101110010000000000
-000000000000001111000000000011001101100010000010000000
-000000000110001000000000001001001001100100000000000000
-000010100000001111000000000011011110111111100000000000
-000000000000000000000000000001101100011110000000000000
-000000000000000000000000000000001101111110100010000000
-000000000000000000000111100111100000110010010000000000
-000000000000001111000100000000000000101010000010000000
-000000000001001111100111100011001100110010000010000000
-000000000000000111100100000101001010101101010000000000
-000000000000000111100010000111100000100101100000000000
-000000000000000000100010000000000000011001110010000010
-000000000000000111100000001111011100111001000000000000
-000000000000001111000000000011101111001111000010000010
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 16 1
-000000000000000000000000000000011100001011110000000000
-000000000000000111000011100000000000110111100000000000
-000000000000000000000000000111100000001010110000000000
-000000000000000111000000000000000000000000110000000000
-000000000000000000000000000000000001111101110000000000
-000000000000010111000000000011001110101011110000000000
-000000000000000000000000000011100000100000000000000000
-000000000000000000000000000000100000100001010000000000
-000000000010000000000000000111100000001011000000000000
-000000000000001111000011111011001101110010010000000000
-000000100000000111100000000000001001001101100000000000
-000000000010001111100011111111011111110110000000000000
-000000000000000000000000011111001110110000100000000000
-000000000000000001000011100001010000010011000000000000
-000000000000001111100000010001011100111010110000000000
-000000000000000111000011100101001111100110000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 17 1
-000000000000000000000000000011111100111001100000000000
-000000000000000000000000000011000000101001010000000000
-000000000000000000000111000000001101010001000000000000
-000000000000000000000100000000001110011101100000000000
-000000000000001000000000010011001110011100000000000000
-000000000000001111000011110000101101000011010000000000
-000000000000000000000000000011011111001010010000000000
-000000000000000000000000000111011100000010000000000000
-000000000000000000000111100011100000110100010000000000
-000000000000001111000111110011101100010110110000000000
-000000000000000111100111111000011100110111010000000000
-000000000010100000000111101111011111111010010000000000
-000000000000001001000010000011111000001111110000000000
-000000000000000111000010000000111111100111100000000000
-000000000000001000000111100111000000011111000000000000
-000000000000000111000011111101001010001010000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 18 1
 000000000000000000000000000000000000000000000000000000
@@ -768,7 +9799,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000100000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -919,310 +9950,310 @@
 000000000000000000000000000000000000110000110000000000
 
 .logic_tile 1 2
-000000000000000000000000000011111000111010000000000000
-000000000000000000000000000111101110010011000000000000
-000000000000000111100000011000000000011000110000000000
-000000000000000000100011101011000000101010010000000000
-000000000000000000000000001000011011101011110000000000
-000000000000000000000000001011011100001100100000000000
-000000000000000000000000011111011001100011100000000000
-000000000000000000000011010111011111100001100000000000
-000000000000000000000000000001111011000110000000000000
-000000000000000000000000000000011101101101110000000000
-000000000000001000000111100000001110000000100000000000
-000000000000001111000111110000000000000110000000000000
-000000000000000001000000000111100000000111010000000000
-000000000000000000100000000111100000001010010000000000
-000000000000000000000000011111001110001111100000000000
-000000000000001001000011010111000000110101110000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 2 2
-000000000000001000000000010001111110001110010000000000
-000000001000001111000011100101101001100101000010000000
-000000000000001000000111100001101001000100000000000000
-000000000000001011000000000000011111001011010010000000
-000000000000000111000000001011101100000001010000000000
-000000000000000001100000000001100000101101010010000001
-000000000000000000000111101001111000010101010000000000
-000000000000000000000000001011001010110010000010000000
-000000000000000111000011101000001100001001010010000000
-000000000000000000000110001101001000000100000000000000
-000000000000000000000010000001111010001010000000000000
-000000000000000111000100000011011101100101100000000010
-000000000000000000000000000011001100010110010000000000
-000000000000000000000000000001011000110010100010000000
-000000001000000000000000000011011100110110010000000000
-000010100000000111000010000000100000100010110010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 3 2
-000000000000000000000000010001111100001110000000000000
-000000000000000000000011100000000000000111010011000000
-000000000000001111100111100001001100111011110000000000
-000000000000001111100100000000110000000011010010000000
-000000000000000000000000001000011000101011000000000000
-000000000000100000000000000011000000111111000010000000
-000000000000001001000000001011111001000011000010000000
-000000000000001111000000001001001001111011000010000000
-000000000000100000000000000001101111011000100000000000
-000000000001010000000011111111001010101100010000000000
-000000000000000111000000001111001111101011110001000000
-000010100000000001100000000001111100010101100000000010
-000000000000100001000010000000011000110011010000000000
-000000001001000001100100001111000000100000110000000000
-000000000000000000000000001111011010001110100010000000
-000000000000000000000000000101000000010011000010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 4 2
-000000000000000000000000001111011001000100010000000000
-000000000000000000000000000101001100001100110010000000
-000000000000000111000111111000001100100000010010000000
-000000000000000000100111111111011101111011100010000000
-000000000000000000000000000101011110000101100000000000
-000000000000100001000000000111000000001011100010000000
-000001000000000001000000011111011101111110100000000000
-000000100000000000000011001001011011100011010000000000
-000011101110100111000011000101101100010010100000000000
-000011100001011111000011101111111100011001010000000000
-000000000000100000000000010001111010010001100000000000
-000000000000010111000011100000101100100100110011000000
-000000000000100111100011000011011010010000100000000000
-000000000001000111000000000000111110000001010010000000
-000000000000000000000000000000000000100010010000000000
-000000000000001111000011110000000000000110110010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 5 2
-000000001001010111000111101011001101001100110000000000
-000000000000100000100000001001011101010001000010000000
-000000000000100111100000011111111111001101100000000000
-000000000001010000100011111011011000011100100000000000
-000000000000000000000111100011101100011001100010000000
-000010100000000000000000001111101100001001000010000000
-000000000000100000000000000111111110010100110000000000
-000000000000000000000000000001111101110100010010000010
-000000000000001111100111101011011110010011010000000000
-000000000000000111100100000011011110000011010000000000
-000000000000000000000111001001101010000101000000000000
-000000000000001111000111110111111001001000000010000000
-000001000000000111100011100001001100110111010000000000
-000010000001010000100000000000111011010010010010000000
-000000000000000011100111111101011000011111010000000000
-000000000000001111100011101111111101110110100010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .ramt_tile 6 2
-000000001110100000000000000000000000000000
-000000000001000000000000000000000000000000
-000000000100000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
-000011000000000000000000000000000000000000
-000011100000000000000000000000000000000000
-000000000000100000000000000000000000000000
-000000000001000000000000000000000000000000
-000000000000010000000000000000000000000000
-000000000000100000000000000000000000000000
-000001000010000000000000000000000000000000
-000010100000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
 
 .logic_tile 7 2
-000010000000010000000111110011000000110011010010000000
-000001001110100000000011101001101111000111000010000000
-000000000000000000000000001011111100000011010010000000
-000000000000000000000000000101011101001000100000000000
-000000001000000000000000001011101011011010010010000000
-000000000000000000000011001011011111110101010000000000
-000000000000100000000000000000001110110000100010000000
-000000000000001111000000001111001001110011110010000000
-000010000000000000000011100101111100010001110000000000
-000001000000000000000100000000000000001000110010000000
-000000000000000111100111111111011110000010000000000000
-000000000000001001000011011011001001000101100000000000
-000000001010000111100111110101101010101010110000000000
-000010100001010000000111110000010000110000000000000000
-000000000010000111100111100000000000101011000001000000
-000000000000000000000000001001001001010000110010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 8 2
-000010000000000011100111111000000000101100100010000000
-000001001110000000000011011111001001101000010010000000
-000000000000001000000000001011111000101000100000000000
-000000000000000011000000000101101111111000110000000000
-000000000000000011100111100111001100001101100000000000
-000000001101010000000000000000111110000011110010000000
-000000000000101000000000010101000001000110010000000000
-000000000000001111000011110001001011011110100010000000
-000000000001010000000111100000011100000101010000000000
-000000000000100000000100000111011110101000000010000000
-000000000000000000000111101000001011011100100000000000
-000000000000000000000111111011011010000000110010000000
-000000000000000111100000000101100000001000010000000000
-000010101101010000100011110111101110110100010000000000
-000000000000000000000010000101001010110100000000000000
-000000000000000000000100001001110000001011000010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 9 2
-000010000000101000000000001011101101110110100000000000
-000001000001001111000000000011111100010010110010000000
-000000000000001000000000010001001100111111000010000000
-000000000000001111000011111101000000111000000000000000
-000000000000000000000000010101011100010011000000000000
-000000000000000000000011010011111000010110010000000000
-000000000000001000000000010001100000001010100000000000
-000000000000001111000011000000000000011000000010000000
-000010000000000000000111100000001110011111110000000000
-000001000000001111000100000000001100011101000010000000
-000000000000001000000011110011111000110001010000000000
-000000000000000111000011100111110000101010110010000000
-000000000000001000000000001101111010111100110000000000
-000000001100000111000000001001011000011110000010000000
-000000000000000000000000011001111001110100000000000000
-000000000000000000000011101111111111011111000010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 10 2
-000001000000000000000000000000001100111001100010000000
-000000100000000000000000000011011100011100010000000000
-000000000000000111000111100111111100010010000010000000
-000000000000000000100011111111011110000011110010000000
-000000000000010000000000000001101110001100110000000000
-000000000001110000000000000000111101000101110010000000
-000000000000000000000000000000011000010110110010000000
-000000000000000000000000000011010000110110000000000000
-000001000000000111000011110111111110010101010000000000
-000010001100001111000011100011011100111001110010000000
-000000000000000000000000001111100001010011010000000000
-000000000000000000000010011111001111101011110010000000
-000011000000011000000000001001111111010011110000000000
-000011100000100111000011101001011001010000010010000000
-000000000000000111100000011111100001000101110000000000
-000000000000001111100011101111001111001010110010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 11 2
-000010100000001000000111100011111101111011110000000000
-000001000000001111000000000000111110000000100010000000
-000000000000000000000000001111100001111000000010000000
-000000000000000000000000000011101100000010110010000000
-000000000000000011100000001011101110100111010000000000
-000000000000000000100000001111110000000100110010000000
-000000000000000111100000000111011011011111110010000000
-000000000000000000000011000000101011111000110000000000
-000001000000001111100000001111011111000010100000000000
-000000100000000111100000000111011110010010000010000001
-000000000000000111100111011000011100001101100000000000
-000000000000000000100111100111011001011101100010000000
-000011100001110000000111100011000000010010100000000000
-000011100000111111000111110001001010100100110010000000
-000000000000001111100010000011001010010101000000000000
-000000000000000111000111110000000000101101110010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 12 2
-000001000000000011100000001001100000111101110010000000
-000000101110000000100000001111101111101000100000000000
-000000000000000000000111000111001010001011000000000000
-000000000000000000000000000000010000111011100010000000
-000000000000000011100111101000001110110010110000000000
-000000000000000000100100000111011101111011010010000001
-000000000000000000000000000000011100100001000000000000
-000000000000000000000000000011011100000110110010000100
-000010100000000111100111100001001100111000110000000000
-000001001100000000000111111011010000001101010010000000
-000000000000000111100000011101011111101101000000000000
-000000000000001111000011100011011110101110100010000000
-000010100000001111100010011111101111100100110000000000
-000001000000000111000111100111001101001011010000000000
-000000000000001111100111110011111101100100010000000000
-000000000000000111100111100000001111100011110010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 13 2
-000001000000000000000000000000001110010110010010000000
-000000101110000000000000001111011101000000010000000000
-000000000000000000000000000000011010110010000010000000
-000000000000001111000000000111001011101100000010000000
-000000000111010000000000001101011100010110010010000000
-000000000000100000000011100001110000010100000000000001
-000000000000000111100000000111011101110100110010000000
-000000000000000000000011110000011100110100110000000000
-000001000000001000000000010000011111110111000001000000
-000010000000000111000011100011001101111110010000000000
-000000000000001111100111010011111111001100100000000000
-000000000000000111100111100000111011011110010010000000
-000000000001010111100010001000011110111100010000000000
-000000000000100111000111110111010000010110100000000000
-000000000000000111100111110011111101101111010000000000
-000000000000001111100111110000011011111111000010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 14 2
-000000000000000011100111001000001110100011010010000000
-000000001100000000000000000011011110000001000010000000
-000000000000000000000000000111100001010010000000000000
-000000000000000000000000000000101101110001110010000000
-000010000000000011100111101111001101001001100000000000
-000001000000000000100000000101001010000110010010000000
-000000000000000111100000001111100000111111110010000000
-000000000000000000000000000111001000100010000000000000
-000001000000110111100000011011101000100010110001000000
-000010101101110000100011101111011010001010010000000000
-000000000000001111100111010101001010001110110000000000
-000000000000001111000111100000010000110000110000000010
-000010101100001111100000000000000000111011100000000000
-000001000001000111100011111011001011000001010010000000
-000000000000000111100111101011100000001101000000000000
-000000000000001111100111111111100000101011110010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 15 2
-000001001010000111000000000000011001111101000010000000
-000000100000000000100000001101011110011100010001000000
-000000000000001000000111100011001101101000010010000000
-000000000000001101000111111111111100110101110000000000
-000000000000000111000111101101100000111100010000000000
-000000000000000000100100001011101010110110010010000001
-000000000000000111100000000111011011110101010000000000
-000000000000000000100011111111001101001100110000000001
-000001000000000000000000000011111101100001100000000000
-000010000000000000000011110000001001100101000010000000
-000000000000000111000111111111101100110010000000000000
-000000000000000000000011111101111000011111110000000000
-000000000000100111100000011111111111110101000000000000
-000000000001000000100011100001111111011110000010000000
-000000000000000111100111111001111001101100100000000000
-000000000000000000100111101111111111011100000010000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 16 2
-000000000000000000000111100000001100110001100000000000
-000000000000000000000000001011011111000000100000000000
-000000000000000000000000011101111110011010010000000000
-000000000000000000000011111011001110010011100000000000
-000000000000010000000000000000011111000101010000000000
-000000000000100000000000001111001101100000100000000000
-000000000000000111100011101111011110100010100000000000
-000000000000000000000100000111111101100010000000000000
-000011001010100000000011101001000000001111100000000000
-000011101101011111000011101001101100000000010000000000
-000000000000001000000010010011100000001101000000000000
-000000000000000111000011111001000000001010010000000000
-000010000000001000000011100111111110011001000000000000
-000001000001010111000000000000110000100001110000000000
-000000000000000001000111111101111011000111110000000000
-000000000000001111100011101111111111001110110000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 17 2
-000000000001010000000111101011101000001001100000000000
-000000000000100000000100000101111100011000010000000000
-000000000000000000000110100111101100100100000000000000
-000000000000000000000111111111000000101110100000000000
-000000000000010000000111100000001110010100100000000000
-000000000000100000000000001101000000001111000000000000
-000000000000000111100000000011100001000110010000000000
-000000000000000000100000000000001100101000010000000000
-000001000000001000000000001011100001000011000000000000
-000010000000000111000000001011001001001000010000000000
-000000000000000111100111111001111000101100110000000000
-000000000000001111000011101001110000100001100000000000
-000000000000001000000000000000011110001101110000000000
-000000000001001111000011101101010000000000110000000000
-000000000000001001000000011011111101110100110000000000
-000000000000000111100011100111111111101100000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 
 .logic_tile 18 2
 000000000000000000000000000000000000000000000000000000
@@ -1230,11 +10261,11 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000001100000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000010100000000000000000000000000000000000000000000000
-000001001100000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -1391,7 +10422,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000010100000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -1435,17 +10466,17 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000010000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 
 .logic_tile 4 3
 000000000000000000000000000000000000000000000000000000
-000000001000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000001000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -1515,7 +10546,7 @@
 .logic_tile 8 3
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000001001100000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -1611,8 +10642,8 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000100000000000000000000000000000000000000000
-000000000001010000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -1675,8 +10706,8 @@
 000000000000000000000000000000000000000000000000000000
 
 .logic_tile 17 3
-000000000001010000000000000000000000000000000000000000
-000000000000100000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -2327,7 +11358,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000010100000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -2346,20 +11377,20 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000001000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
-000000110000000000000000000000000000000000000000000000
+000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 
 .logic_tile 3 5
-000000000000010000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -2382,14 +11413,14 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000001000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000010110000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
-000000110000000000000000000000000000000000000000000000
+000000010000000000000000000000000000000000000000000000
+000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
@@ -2408,18 +11439,18 @@
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
-000000010100000000000000000000000000000000000000000000
+000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 
 .ramb_tile 6 5
 000000000000000000000000000000000000000000
-000000001010000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
-000000001110000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000
 000000010000000000000000000000000000000000
@@ -2455,14 +11486,14 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000001110000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
-000000010001000000000000000000000000000000000000000000
-000000010000100000000000000000000000000000000000000000
+000000010000000000000000000000000000000000000000000000
+000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 
@@ -2849,7 +11880,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000010100000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -2871,7 +11902,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000010000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -2885,11 +11916,11 @@
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
-000000100000000000000000000000000000000000
-000001000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
-000000000001010000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
@@ -3241,7 +12272,7 @@
 000000000000000000000000000000000000110000110000000000
 
 .dsp2_tile 0 7
-001000000000000000000000000000000000110000110000001000
+000000000000000000000000000000000000110000110000001000
 000000000000000000000000000000000000110000110000000000
 000000000000000000000000000000000000110000110000001000
 000000000000000000000000000000000000110000110000000000
@@ -3268,7 +12299,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000001000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -3281,7 +12312,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-001000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -3307,13 +12338,13 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000001010000000000000000000000000000000000000000
-000000000000100000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 
 .logic_tile 4 7
-000100000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -3386,8 +12417,8 @@
 
 .logic_tile 8 7
 000000000000000000000000000000000000000000000000000000
-000000001010000000000000000000000000000000000000000000
-000100000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -3791,7 +12822,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000000000010000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -3809,7 +12840,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000000000010000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -3827,7 +12858,7 @@
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
-000000000000000000010000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
@@ -3863,7 +12894,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000000000010000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -4204,7 +13235,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000001000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -4217,7 +13248,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-001000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -4231,7 +13262,7 @@
 000000000000000000000000000000000000000000000000000000
 
 .logic_tile 3 9
-000000000001000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -4257,7 +13288,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-001000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -4323,13 +13354,13 @@
 .logic_tile 8 9
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000100000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000010000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -4365,7 +13396,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000010000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -4726,7 +13757,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000110000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -4743,7 +13774,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000001010000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -4753,7 +13784,7 @@
 000000000000000000000000000000000000000000000000000000
 
 .ramt_tile 6 10
-000010100000000000000000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
@@ -4799,7 +13830,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000000000010000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -5733,7 +14764,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000000000010000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -6601,14 +15632,14 @@
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
-000000010000010000000000000000000000000000000000000000
+000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 
 .logic_tile 5 14
-000000100000000000000000000000000000000000000000000000
-000001000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -6630,7 +15661,7 @@
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
-000000001010000000000000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000
@@ -6819,7 +15850,7 @@
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
-000000010000000000000000000000000000000010000000000000
+000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 
 .logic_tile 17 14
@@ -8473,7 +17504,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000010000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -8491,14 +17522,14 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000010000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 
 .ramt_tile 6 18
 000000000000000000000000000000000000000000
-000000000100000000000000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
@@ -8929,7 +17960,7 @@
 000000000000000000000000000000000000000000000000000000
 
 .logic_tile 4 19
-000100000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -8947,7 +17978,7 @@
 000000000000000000000000000000000000000000000000000000
 
 .logic_tile 5 19
-000100000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -8965,7 +17996,7 @@
 000000000000000000000000000000000000000000000000000000
 
 .ramb_tile 6 19
-000100000000000000000000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
@@ -9001,7 +18032,7 @@
 000000000000000000000000000000000000000000000000000000
 
 .logic_tile 8 19
-000100000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -9937,7 +18968,7 @@
 000000000000000000000000000000000000000000000000000000
 
 .logic_tile 8 21
-000100000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -10345,8 +19376,8 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000001000000000000000000000000000000000000000000
-000000000000100000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 
@@ -10363,14 +19394,14 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000010000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 
 .ramt_tile 6 22
 000000000000000000000000000000000000000000
-000000000110000000000000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
@@ -12213,8 +21244,8 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000010001000000000000000000000000000000000000000000
-000000010000100000000000000000000000000000000000000000
+000000010000000000000000000000000000000000000000000000
+000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
@@ -12235,7 +21266,7 @@
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
-000010110000000000000000000000000000000000000000000000
+000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
 000000010000000000000000000000000000000000000000000000
@@ -12245,7 +21276,7 @@
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
-000000000000010000000000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
@@ -14081,7 +23112,7 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000010000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -14096,7 +23127,7 @@
 
 .logic_tile 5 30
 000000000000000000000000000000000000000000000000000000
-000000000110000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
@@ -14117,7 +23148,7 @@
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
-000000000000010000000000000000000000000000
+000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000
@@ -14239,40 +23270,40 @@
 000000000000000000000000000000000000000000000000000000
 
 .logic_tile 13 30
+000000000000000000000000000101100001111110000000000000
+000000000000000000000010111001101000101101110000000000
+000000000000000000000000010001111000111110100000000000
+000000000000001101000011110101001010000010000000000000
+000000000000000000000000000101000000000111000000000000
+000000000000001101000000001001000000001111100000000000
+000000000000000000000000010000000000000000000000000000
+000000000000000000000011110000000000000000000000000000
+000000000000000000000000000101011011111100000000000000
+000000000000000000000000001001011001011010000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
+000000000000000000000000001001111000111010100000000000
+000000000000000000000000001101011010000101100000000000
 
 .logic_tile 14 30
+000000000000000000000000000111111010101001110000000000
+000000000000000000000000001111001111010001110000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
+000000000000001000000000001000000001000011100000000000
+000000000000001011000000000111001110101101010000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
+000000000000000000000000001000001111010010010000000000
+000000000000000000000000000111011110000011000000000000
+000000000000000000000111100000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
+000000000000001101000000000000000000000000000000000000
 
 .logic_tile 15 30
 000000000000000000000000000000000000000000000000000000
@@ -14299,16 +23330,16 @@
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
+000000000000000000000000001000000001000111000000000000
+000000000000001101000000000101001010011010000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000
+000000000000100000000000000000000000000000000000000000
+000000000001010000000000000000000000000000000000000000
 
 .logic_tile 17 30
 000000000000000000000000000000000000000000000000000000
@@ -14528,12 +23559,12 @@
 
 .io_tile 4 31
 000000000000000000
-000100000000000001
+000100000000000000
 000000000000000000
-100000000000000001
+000000000000000001
 000000000000000000
 000000000000000000
-000100000000000100
+000000000000000100
 000000000000000000
 000000000000000000
 000000000000000000
@@ -14546,12 +23577,12 @@
 
 .io_tile 5 31
 000000000000000000
-000100000000000001
-000000000000000000
-100000000000000001
 000000000000000000
 000000000000000000
-000100000000000100
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
@@ -14564,12 +23595,12 @@
 
 .io_tile 6 31
 000000000000000000
-000100000000000001
-000000000000000000
-100000000000000001
 000000000000000000
 000000000000000000
-000100000000000100
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
@@ -14600,15 +23631,15 @@
 
 .io_tile 8 31
 000000000000000000
-000100000000000001
-000000000000000000
-000000000000000001
 000000000000000000
 000000000000000000
-001100000000000100
 000000000000000000
 000000000000000000
-000100000000000010
+000000000000000000
+001000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
 000000000000000000
 000000000000000000
 000000000000000100
@@ -14623,14 +23654,14 @@
 000000000000000000
 000000000000000000
 000000000000000000
+001000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000000000000000100
+000000000000000001
 000000000000000000
 000000000000000000
 
@@ -14695,19 +23726,19 @@
 000000000000000001
 000000000000000000
 000000000000000000
+001100000000000100
+000000000000000000
+000000000000000000
+000100000000000000
+000000000000000000
+000000000000000000
 000000000000000100
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000000000000000001
 000000000000000000
 000000000000000000
 
 .io_tile 14 31
-000000000000000000
+000000000000011000
 000000000000000000
 000000000000000000
 000000000000000000
@@ -14744,12 +23775,12 @@
 
 .io_tile 16 31
 000000000000000000
+000100000000000000
+010000000000000000
+100000000000000001
 000000000000000000
 000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000100000000000100
 000000000000000000
 000000000000000000
 000000000000000000
@@ -14780,19 +23811,19 @@
 
 .io_tile 18 31
 000000000000000000
-000100000000000000
-000000000000000000
-000000000000000001
-000000000000000000
-000000000000000000
-001000000000000100
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
-000000000000000100
-000000000000000001
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
+000000000000000000
 000000000000000000
 000000000000000000
 
@@ -14803,14 +23834,14 @@
 000000000000000000
 000000000000000000
 000000000000000000
+001000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
 000000000000000000
-000000000000000000
-000000000000000000
-000000000000000000
+000000000000000100
+000000000000000001
 000000000000000000
 000000000000000000
 
@@ -14904,2754 +23935,79 @@
 000000000000000000
 000000000000000000
 
-.sym 203 x1_y4
-.sym 204 in3$SB_IO_IN
-.sym 215 x1_y5
-.sym 218 in4$SB_IO_IN
-.sym 221 in7$SB_IO_IN
-.sym 226 in0$SB_IO_IN
-.sym 237 in0$SB_IO_IN
-.sym 246 in2$SB_IO_IN
-.sym 247 in9$SB_IO_IN
-.sym 250 in0$SB_IO_IN
-.sym 271 in0$SB_IO_IN
-.sym 514 x1_y12
-.sym 525 in4$SB_IO_IN
-.sym 537 in9$SB_IO_IN
-.sym 541 in6$SB_IO_IN
-.sym 542 in7$SB_IO_IN
-.sym 560 in3$SB_IO_IN
-.sym 564 in2$SB_IO_IN
-.sym 1022 in0$SB_IO_IN
-.sym 1438 in2$SB_IO_IN
-.sym 1576 in0$SB_IO_IN
-.sym 1600 in0$SB_IO_IN
-.sym 2012 in2$SB_IO_IN
-.sym 6673 x1_y0
-.sym 6674 x1_y1
-.sym 6675 x1_y2
-.sym 6676 x1_y3
-.sym 6677 x1_y4
-.sym 6678 x1_y5
-.sym 6679 x1_y6
-.sym 6680 x1_y7
-.sym 6717 in8$SB_IO_IN
-.sym 6719 in3$SB_IO_IN
-.sym 6720 in1$SB_IO_IN
-.sym 6721 in0$SB_IO_IN
-.sym 6723 in2$SB_IO_IN
-.sym 6724 in0$SB_IO_IN
-.sym 6725 in8$SB_IO_IN
-.sym 6726 in9$SB_IO_IN
-.sym 6727 in0$SB_IO_IN
-.sym 6735 in6$SB_IO_IN
-.sym 6742 in4$SB_IO_IN
-.sym 6743 in7$SB_IO_IN
-.sym 6748 in4$SB_IO_IN
-.sym 6749 in1$SB_IO_IN
-.sym 6750 in0$SB_IO_IN
-.sym 6751 in0$SB_IO_IN
-.sym 6754 in1$SB_IO_IN
-.sym 6755 in0$SB_IO_IN
-.sym 6756 in2$SB_IO_IN
-.sym 6760 in3$SB_IO_IN
-.sym 6761 in1$SB_IO_IN
-.sym 6762 in4$SB_IO_IN
-.sym 6763 in7$SB_IO_IN
-.sym 6766 in8$SB_IO_IN
-.sym 6767 in4$SB_IO_IN
-.sym 6768 in2$SB_IO_IN
-.sym 6769 in8$SB_IO_IN
-.sym 6772 in0$SB_IO_IN
-.sym 6773 in8$SB_IO_IN
-.sym 6774 in4$SB_IO_IN
-.sym 6778 in1$SB_IO_IN
-.sym 6779 in6$SB_IO_IN
-.sym 6780 in1$SB_IO_IN
-.sym 6784 in8$SB_IO_IN
-.sym 6785 in1$SB_IO_IN
-.sym 6791 in9$SB_IO_IN
-.sym 6792 in8$SB_IO_IN
-.sym 6825 x1_y8
-.sym 6826 x1_y9
-.sym 6827 x1_y10
-.sym 6828 x1_y11
-.sym 6829 x1_y12
-.sym 6830 x1_y13
-.sym 6831 x1_y14
-.sym 6832 x1_y15
-.sym 6837 x2_y4
-.sym 6838 x1_y6
-.sym 6839 in8$SB_IO_IN
-.sym 6840 x3_y7
-.sym 6841 x2_y5
-.sym 6842 x1_y7
-.sym 6844 in1$SB_IO_IN
-.sym 6848 x1_y2
-.sym 6849 in5$SB_IO_IN
-.sym 6853 in6$SB_IO_IN
-.sym 6867 in3$SB_IO_IN
-.sym 6883 in5$SB_IO_IN
-.sym 6907 in3$SB_IO_IN
-.sym 6908 in9$SB_IO_IN
-.sym 6916 in0$SB_IO_IN
-.sym 6922 in6$SB_IO_IN
-.sym 6924 in4$SB_IO_IN
-.sym 6925 in7$SB_IO_IN
-.sym 6927 in5$SB_IO_IN
-.sym 6930 in5$SB_IO_IN
-.sym 6932 in2$SB_IO_IN
-.sym 6935 in5$SB_IO_IN
-.sym 6936 in7$SB_IO_IN
-.sym 6937 in5$SB_IO_IN
-.sym 6938 in3$SB_IO_IN
-.sym 6941 in7$SB_IO_IN
-.sym 6947 in4$SB_IO_IN
-.sym 6949 in6$SB_IO_IN
-.sym 6950 in0$SB_IO_IN
-.sym 6953 in5$SB_IO_IN
-.sym 6954 in5$SB_IO_IN
-.sym 6955 in2$SB_IO_IN
-.sym 6956 in9$SB_IO_IN
-.sym 6960 in3$SB_IO_IN
-.sym 6961 in4$SB_IO_IN
-.sym 6962 in0$SB_IO_IN
-.sym 6968 in5$SB_IO_IN
-.sym 6971 in5$SB_IO_IN
-.sym 6972 in2$SB_IO_IN
-.sym 6977 in5$SB_IO_IN
-.sym 6978 in5$SB_IO_IN
-.sym 6980 in5$SB_IO_IN
-.sym 7021 x1_y14
-.sym 7024 in8$SB_IO_IN
-.sym 7025 x1_y15
-.sym 7027 in1$SB_IO_IN
-.sym 7028 x2_y15
-.sym 7029 x3_y13
-.sym 7030 x2_y8
-.sym 7037 in5$SB_IO_IN
-.sym 7040 in5$SB_IO_IN
-.sym 7764 in0$SB_IO_IN
-.sym 8058 in2$SB_IO_IN
-.sym 11229 x2_y0
-.sym 11230 x2_y1
-.sym 11231 x2_y2
-.sym 11232 x2_y3
-.sym 11233 x2_y4
-.sym 11234 x2_y5
-.sym 11235 x2_y6
-.sym 11236 x2_y7
-.sym 11261 in3$SB_IO_IN
-.sym 11271 in5$SB_IO_IN
-.sym 11275 in6$SB_IO_IN
-.sym 11278 in8$SB_IO_IN
-.sym 11279 in1$SB_IO_IN
-.sym 11283 in5$SB_IO_IN
-.sym 11286 in5$SB_IO_IN
-.sym 11291 in0$SB_IO_IN
-.sym 11292 in6$SB_IO_IN
-.sym 11295 in4$SB_IO_IN
-.sym 11299 in0$SB_IO_IN
-.sym 11300 in2$SB_IO_IN
-.sym 11301 in9$SB_IO_IN
-.sym 11302 in4$SB_IO_IN
-.sym 11306 in2$SB_IO_IN
-.sym 11307 in4$SB_IO_IN
-.sym 11310 in6$SB_IO_IN
-.sym 11311 in2$SB_IO_IN
-.sym 11312 in0$SB_IO_IN
-.sym 11316 in6$SB_IO_IN
-.sym 11317 in0$SB_IO_IN
-.sym 11318 in0$SB_IO_IN
-.sym 11319 in5$SB_IO_IN
-.sym 11322 in8$SB_IO_IN
-.sym 11323 in5$SB_IO_IN
-.sym 11324 in4$SB_IO_IN
-.sym 11328 in2$SB_IO_IN
-.sym 11335 in4$SB_IO_IN
-.sym 11336 in0$SB_IO_IN
-.sym 11341 in0$SB_IO_IN
-.sym 11343 in6$SB_IO_IN
-.sym 11346 in9$SB_IO_IN
-.sym 11348 in1$SB_IO_IN
-.sym 11349 in5$SB_IO_IN
-.sym 11357 x2_y8
-.sym 11358 x2_y9
-.sym 11359 x2_y10
-.sym 11360 x2_y11
-.sym 11362 x2_y13
-.sym 11364 x2_y15
-.sym 11369 x1_y0
-.sym 11370 x2_y6
-.sym 11371 x1_y5
-.sym 11373 x1_y1
-.sym 11374 x2_y7
-.sym 11375 in6$SB_IO_IN
-.sym 11376 in7$SB_IO_IN
-.sym 11377 x1_y3
-.sym 11378 in5$SB_IO_IN
-.sym 11379 x1_y4
-.sym 11380 x2_y2
-.sym 11386 in6$SB_IO_IN
-.sym 11388 x1_y7
-.sym 11389 in4$SB_IO_IN
-.sym 11396 x1_y13
-.sym 11397 in4$SB_IO_IN
-.sym 11410 in0$SB_IO_IN
-.sym 11434 in1$SB_IO_IN
-.sym 11436 in7$SB_IO_IN
-.sym 11438 in3$SB_IO_IN
-.sym 11441 in8$SB_IO_IN
-.sym 11442 in6$SB_IO_IN
-.sym 11443 in6$SB_IO_IN
-.sym 11449 in8$SB_IO_IN
-.sym 11451 in5$SB_IO_IN
-.sym 11452 in4$SB_IO_IN
-.sym 11453 in9$SB_IO_IN
-.sym 11454 in5$SB_IO_IN
-.sym 11457 in2$SB_IO_IN
-.sym 11462 in5$SB_IO_IN
-.sym 11464 in0$SB_IO_IN
-.sym 11467 in6$SB_IO_IN
-.sym 11468 in8$SB_IO_IN
-.sym 11469 in7$SB_IO_IN
-.sym 11470 in5$SB_IO_IN
-.sym 11474 in3$SB_IO_IN
-.sym 11475 in0$SB_IO_IN
-.sym 11476 in7$SB_IO_IN
-.sym 11479 in3$SB_IO_IN
-.sym 11480 in2$SB_IO_IN
-.sym 11482 in5$SB_IO_IN
-.sym 11485 in2$SB_IO_IN
-.sym 11486 in3$SB_IO_IN
-.sym 11487 in6$SB_IO_IN
-.sym 11488 in3$SB_IO_IN
-.sym 11491 in8$SB_IO_IN
-.sym 11493 in1$SB_IO_IN
-.sym 11494 in5$SB_IO_IN
-.sym 11497 in5$SB_IO_IN
-.sym 11498 in3$SB_IO_IN
-.sym 11499 in9$SB_IO_IN
-.sym 11500 in8$SB_IO_IN
-.sym 11503 in1$SB_IO_IN
-.sym 11504 in5$SB_IO_IN
-.sym 11505 in1$SB_IO_IN
-.sym 11506 in9$SB_IO_IN
-.sym 11510 in4$SB_IO_IN
-.sym 11512 in5$SB_IO_IN
-.sym 11525 x2_y13
-.sym 11528 x1_y8
-.sym 11529 in6$SB_IO_IN
-.sym 11530 in7$SB_IO_IN
-.sym 11531 x2_y11
-.sym 11532 x1_y9
-.sym 11533 x2_y15
-.sym 11534 x1_y10
-.sym 11536 x1_y11
-.sym 11538 in5$SB_IO_IN
-.sym 11539 in5$SB_IO_IN
-.sym 11541 x1_y10
-.sym 11543 in2$SB_IO_IN
-.sym 11796 in0$SB_IO_IN
-.sym 11903 in5$SB_IO_IN
-.sym 12035 in2$SB_IO_IN
-.sym 15060 x3_y0
-.sym 15061 x3_y1
-.sym 15062 x3_y2
-.sym 15063 x3_y3
-.sym 15064 x3_y4
-.sym 15065 x3_y5
-.sym 15066 x3_y6
-.sym 15067 x3_y7
-.sym 15094 in6$SB_IO_IN
-.sym 15102 in4$SB_IO_IN
-.sym 15104 in5$SB_IO_IN
-.sym 15111 in2$SB_IO_IN
-.sym 15114 in0$SB_IO_IN
-.sym 15115 in6$SB_IO_IN
-.sym 15117 in0$SB_IO_IN
-.sym 15119 in0$SB_IO_IN
-.sym 15126 in3$SB_IO_IN
-.sym 15128 in8$SB_IO_IN
-.sym 15129 in9$SB_IO_IN
-.sym 15135 in4$SB_IO_IN
-.sym 15136 in0$SB_IO_IN
-.sym 15138 in0$SB_IO_IN
-.sym 15141 in3$SB_IO_IN
-.sym 15142 in0$SB_IO_IN
-.sym 15144 in5$SB_IO_IN
-.sym 15147 in5$SB_IO_IN
-.sym 15148 in0$SB_IO_IN
-.sym 15149 in5$SB_IO_IN
-.sym 15154 in5$SB_IO_IN
-.sym 15155 in0$SB_IO_IN
-.sym 15156 in5$SB_IO_IN
-.sym 15159 in6$SB_IO_IN
-.sym 15160 in8$SB_IO_IN
-.sym 15161 in0$SB_IO_IN
-.sym 15162 in0$SB_IO_IN
-.sym 15165 in3$SB_IO_IN
-.sym 15166 in4$SB_IO_IN
-.sym 15167 in8$SB_IO_IN
-.sym 15168 in6$SB_IO_IN
-.sym 15172 in3$SB_IO_IN
-.sym 15173 in2$SB_IO_IN
-.sym 15177 in0$SB_IO_IN
-.sym 15178 in9$SB_IO_IN
-.sym 15179 in8$SB_IO_IN
-.sym 15180 in2$SB_IO_IN
-.sym 15188 x3_y8
-.sym 15189 x3_y9
-.sym 15190 x3_y10
-.sym 15193 x3_y13
-.sym 15194 x3_y14
-.sym 15195 x3_y15
-.sym 15196 x2_y4
-.sym 15200 x2_y0
-.sym 15201 x3_y6
-.sym 15202 x2_y5
-.sym 15204 x2_y1
-.sym 15206 x4_y6
-.sym 15207 x1_y10
-.sym 15208 x2_y3
-.sym 15210 in4$SB_IO_IN
-.sym 15213 in7$SB_IO_IN
-.sym 15216 x3_y6
-.sym 15217 x2_y6
-.sym 15219 x2_y7
-.sym 15220 in3$SB_IO_IN
-.sym 15223 x1_y12
-.sym 15227 x2_y13
-.sym 15230 in2$SB_IO_IN
-.sym 15234 in3$SB_IO_IN
-.sym 15246 in0$SB_IO_IN
-.sym 15257 in0$SB_IO_IN
-.sym 15259 in0$SB_IO_IN
-.sym 15267 in4$SB_IO_IN
-.sym 15269 in5$SB_IO_IN
-.sym 15270 in5$SB_IO_IN
-.sym 15272 in7$SB_IO_IN
-.sym 15277 in5$SB_IO_IN
-.sym 15278 in3$SB_IO_IN
-.sym 15283 in8$SB_IO_IN
-.sym 15285 in2$SB_IO_IN
-.sym 15286 in1$SB_IO_IN
-.sym 15289 in3$SB_IO_IN
-.sym 15290 in0$SB_IO_IN
-.sym 15292 in9$SB_IO_IN
-.sym 15299 in5$SB_IO_IN
-.sym 15301 in1$SB_IO_IN
-.sym 15305 in4$SB_IO_IN
-.sym 15307 in8$SB_IO_IN
-.sym 15310 in2$SB_IO_IN
-.sym 15313 in5$SB_IO_IN
-.sym 15316 in7$SB_IO_IN
-.sym 15317 in2$SB_IO_IN
-.sym 15318 in7$SB_IO_IN
-.sym 15319 in5$SB_IO_IN
-.sym 15322 in9$SB_IO_IN
-.sym 15323 in5$SB_IO_IN
-.sym 15324 in3$SB_IO_IN
-.sym 15325 in3$SB_IO_IN
-.sym 15328 in5$SB_IO_IN
-.sym 15329 in9$SB_IO_IN
-.sym 15330 in1$SB_IO_IN
-.sym 15331 in9$SB_IO_IN
-.sym 15334 in9$SB_IO_IN
-.sym 15337 in5$SB_IO_IN
-.sym 15340 in5$SB_IO_IN
-.sym 15341 in0$SB_IO_IN
-.sym 15343 in3$SB_IO_IN
-.sym 15359 x2_y8
-.sym 15360 x3_y14
-.sym 15361 in4$SB_IO_IN
-.sym 15362 x1_y13
-.sym 15363 x2_y9
-.sym 15364 x3_y15
-.sym 15365 x2_y10
-.sym 15366 in4$SB_IO_IN
-.sym 15367 x2_y11
-.sym 15368 x3_y9
-.sym 15369 x1_y7
-.sym 15375 x1_y4
-.sym 15376 in0$SB_IO_IN
-.sym 15377 x1_y5
-.sym 15378 in9$SB_IO_IN
-.sym 15379 in0$SB_IO_IN
-.sym 15496 in9$SB_IO_IN
-.sym 15874 in9$SB_IO_IN
-.sym 15992 in9$SB_IO_IN
-.sym 16231 in2$SB_IO_IN
-.sym 16488 in9$SB_IO_IN
-.sym 16980 in9$SB_IO_IN
-.sym 17472 in9$SB_IO_IN
-.sym 17963 in9$SB_IO_IN
-.sym 18450 in9$SB_IO_IN
-.sym 18791 in9$SB_IO_IN
-.sym 18891 x4_y0
-.sym 18892 x4_y1
-.sym 18893 x4_y2
-.sym 18894 x4_y3
-.sym 18895 x4_y4
-.sym 18896 x4_y5
-.sym 18897 x4_y6
-.sym 18898 x4_y7
-.sym 18903 in9$SB_IO_IN
-.sym 18923 in7$SB_IO_IN
-.sym 18934 in0$SB_IO_IN
-.sym 18936 x1_y12
-.sym 18941 x1_y10
-.sym 18942 in7$SB_IO_IN
-.sym 18945 in0$SB_IO_IN
-.sym 18949 x1_y0
-.sym 18950 in2$SB_IO_IN
-.sym 18951 in8$SB_IO_IN
-.sym 18953 x1_y2
-.sym 18954 in6$SB_IO_IN
-.sym 18955 x1_y3
-.sym 18957 x1_y4
-.sym 18961 x1_y2
-.sym 18963 x1_y7
-.sym 18964 in5$SB_IO_IN
-.sym 18967 in2$SB_IO_IN
-.sym 18968 x1_y2
-.sym 18969 in0$SB_IO_IN
-.sym 18973 x1_y0
-.sym 18974 in0$SB_IO_IN
-.sym 18975 x1_y0
-.sym 18978 in5$SB_IO_IN
-.sym 18979 in0$SB_IO_IN
-.sym 18980 in7$SB_IO_IN
-.sym 18984 x1_y7
-.sym 18985 in8$SB_IO_IN
-.sym 18986 in6$SB_IO_IN
-.sym 18987 x1_y0
-.sym 18990 in8$SB_IO_IN
-.sym 18991 x1_y7
-.sym 18992 x1_y2
-.sym 18997 x1_y3
-.sym 18998 x1_y4
-.sym 19003 x1_y2
-.sym 19004 in7$SB_IO_IN
-.sym 19005 x1_y10
-.sym 19009 in8$SB_IO_IN
-.sym 19010 x1_y12
-.sym 19011 in5$SB_IO_IN
-.sym 19015 in1$SB_IO_IN
-.sym 19019 x4_y8
-.sym 19021 x4_y10
-.sym 19022 x4_y11
-.sym 19024 x4_y13
-.sym 19025 x4_y14
-.sym 19026 x4_y15
-.sym 19031 x3_y0
-.sym 19032 in3$SB_IO_IN
-.sym 19033 x3_y5
-.sym 19034 x5_y7
-.sym 19035 x3_y1
-.sym 19037 x3_y2
-.sym 19038 in2$SB_IO_IN
-.sym 19039 x3_y3
-.sym 19041 x3_y4
-.sym 19042 in0$SB_IO_IN
-.sym 19043 in1$SB_IO_IN
-.sym 19045 in8$SB_IO_IN
-.sym 19048 in6$SB_IO_IN
-.sym 19050 x2_y8
-.sym 19051 in1$SB_IO_IN
-.sym 19101 in3$SB_IO_IN
-.sym 19102 x1_y13
-.sym 19103 in4$SB_IO_IN
-.sym 19104 in6$SB_IO_IN
-.sym 19109 in1$SB_IO_IN
-.sym 19110 x1_y12
-.sym 19112 x1_y8
-.sym 19113 in0$SB_IO_IN
-.sym 19114 x1_y5
-.sym 19115 in9$SB_IO_IN
-.sym 19116 in0$SB_IO_IN
-.sym 19118 x1_y15
-.sym 19120 x1_y4
-.sym 19121 in5$SB_IO_IN
-.sym 19123 in9$SB_IO_IN
-.sym 19124 x1_y10
-.sym 19126 x1_y11
-.sym 19129 in1$SB_IO_IN
-.sym 19130 x1_y4
-.sym 19131 in0$SB_IO_IN
-.sym 19132 in3$SB_IO_IN
-.sym 19135 x1_y11
-.sym 19137 in9$SB_IO_IN
-.sym 19138 x1_y5
-.sym 19141 in5$SB_IO_IN
-.sym 19142 in6$SB_IO_IN
-.sym 19144 x1_y10
-.sym 19147 in4$SB_IO_IN
-.sym 19148 in5$SB_IO_IN
-.sym 19149 x1_y12
-.sym 19150 x1_y15
-.sym 19153 in9$SB_IO_IN
-.sym 19154 x1_y12
-.sym 19155 x1_y8
-.sym 19156 in9$SB_IO_IN
-.sym 19160 x1_y13
-.sym 19161 in0$SB_IO_IN
-.sym 19162 in1$SB_IO_IN
-.sym 19166 in9$SB_IO_IN
-.sym 19167 in5$SB_IO_IN
-.sym 19168 x1_y12
-.sym 19187 x5_y15
-.sym 19190 x3_y8
-.sym 19191 x4_y14
-.sym 19192 x3_y13
-.sym 19193 x2_y13
-.sym 19194 x3_y9
-.sym 19195 x4_y15
-.sym 19196 x3_y10
-.sym 19197 in3$SB_IO_IN
-.sym 19198 x2_y6
-.sym 19199 x3_y6
-.sym 19200 x2_y7
-.sym 19201 x4_y10
-.sym 19203 x2_y4
-.sym 19205 x2_y5
-.sym 19209 x1_y6
-.sym 19213 in8$SB_IO_IN
-.sym 19313 in3$SB_IO_IN
-.sym 19314 in2$SB_IO_IN
-.sym 19334 in8$SB_IO_IN
-.sym 19565 in0$SB_IO_IN
-.sym 19705 in8$SB_IO_IN
-.sym 19804 in9$SB_IO_IN
-.sym 19826 in8$SB_IO_IN
-.sym 20310 in8$SB_IO_IN
-.sym 20809 in8$SB_IO_IN
-.sym 21280 in9$SB_IO_IN
-.sym 21301 in8$SB_IO_IN
-.sym 21793 in8$SB_IO_IN
-.sym 22277 in8$SB_IO_IN
-.sym 22622 in8$SB_IO_IN
-.sym 22658 in9$SB_IO_IN
-.sym 22756 in6$SB_IO_IN
-.sym 22765 x1_y2
-.sym 22773 x1_y6
-.sym 22775 x1_y7
-.sym 22779 x2_y8
-.sym 22780 x2_y0
-.sym 22783 x1_y3
-.sym 22784 x2_y6
-.sym 22785 x1_y0
-.sym 22786 x2_y7
-.sym 22787 x1_y1
-.sym 22788 x2_y0
-.sym 22791 x1_y11
-.sym 22792 x2_y2
-.sym 22793 x1_y4
-.sym 22794 x2_y11
-.sym 22795 x1_y5
-.sym 22800 x1_y1
-.sym 22803 x1_y0
-.sym 22804 x2_y6
-.sym 22805 x2_y0
-.sym 22806 x2_y0
-.sym 22809 x1_y7
-.sym 22810 x1_y0
-.sym 22811 x2_y7
-.sym 22812 x2_y0
-.sym 22815 x2_y0
-.sym 22816 x1_y5
-.sym 22822 x1_y3
-.sym 22824 x1_y0
-.sym 22827 x2_y2
-.sym 22828 x1_y4
-.sym 22829 x1_y2
-.sym 22833 x1_y6
-.sym 22834 x1_y2
-.sym 22835 x1_y11
-.sym 22839 x2_y11
-.sym 22841 x1_y2
-.sym 22842 x2_y8
-.sym 22846 in7$SB_IO_IN
-.sym 22848 in6$SB_IO_IN
-.sym 22858 x5_y6
-.sym 22862 x4_y0
-.sym 22863 x1_y6
-.sym 22864 x4_y5
-.sym 22865 x3_y7
-.sym 22866 x4_y1
-.sym 22867 x1_y7
-.sym 22868 x4_y2
-.sym 22870 x4_y3
-.sym 22872 x4_y4
-.sym 22873 x1_y2
-.sym 22874 in7$SB_IO_IN
-.sym 22878 in6$SB_IO_IN
-.sym 22879 x4_y6
-.sym 22881 x4_y7
-.sym 22882 in7$SB_IO_IN
-.sym 22884 x4_y11
-.sym 22885 x1_y11
-.sym 22889 x2_y11
-.sym 22908 in6$SB_IO_IN
-.sym 22928 x1_y14
-.sym 22930 x1_y15
-.sym 22932 x2_y7
-.sym 22933 x2_y13
-.sym 22938 x1_y15
-.sym 22943 x1_y7
-.sym 22944 x1_y10
-.sym 22946 x1_y11
-.sym 22947 x2_y10
-.sym 22949 x2_y11
-.sym 22950 x2_y5
-.sym 22952 x1_y10
-.sym 22954 x1_y6
-.sym 22955 x2_y10
-.sym 22956 x2_y4
-.sym 22957 x2_y15
-.sym 22958 x1_y9
-.sym 22960 x2_y13
-.sym 22961 x1_y10
-.sym 22962 x2_y11
-.sym 22963 x1_y11
-.sym 22966 x2_y5
-.sym 22967 x2_y4
-.sym 22968 x2_y7
-.sym 22969 x1_y9
-.sym 22972 x1_y6
-.sym 22973 x2_y5
-.sym 22974 x1_y7
-.sym 22975 x1_y10
-.sym 22978 x1_y14
-.sym 22979 x1_y9
-.sym 22980 x1_y11
-.sym 22981 x1_y9
-.sym 22984 x2_y10
-.sym 22985 x1_y10
-.sym 22986 x1_y10
-.sym 22987 x2_y15
-.sym 22990 x2_y10
-.sym 22991 x2_y13
-.sym 22992 x1_y15
-.sym 22993 x1_y15
-.sym 22997 x1_y15
-.sym 22998 x1_y15
-.sym 22999 x1_y11
-.sym 23002 x2_y15
-.sym 23003 x1_y15
-.sym 23004 x1_y11
-.sym 23005 x2_y13
-.sym 23021 x4_y8
-.sym 23022 x1_y14
-.sym 23023 x4_y13
-.sym 23024 x1_y15
-.sym 23026 x3_y13
-.sym 23027 x4_y10
-.sym 23029 x4_y11
-.sym 23032 x2_y15
-.sym 23033 in5$SB_IO_IN
-.sym 23158 in5$SB_IO_IN
-.sym 23165 in5$SB_IO_IN
-.sym 23536 in5$SB_IO_IN
-.sym 23635 in8$SB_IO_IN
-.sym 23649 in5$SB_IO_IN
-.sym 24145 in5$SB_IO_IN
-.sym 24632 in5$SB_IO_IN
-.sym 25111 in8$SB_IO_IN
-.sym 25124 in5$SB_IO_IN
-.sym 25620 in5$SB_IO_IN
-.sym 26112 in5$SB_IO_IN
-.sym 26453 in5$SB_IO_IN
-.sym 26489 in8$SB_IO_IN
-.sym 26553 x5_y0
-.sym 26554 x5_y1
-.sym 26555 x5_y2
-.sym 26556 x5_y3
-.sym 26557 x5_y4
-.sym 26558 x5_y5
-.sym 26559 x5_y6
-.sym 26560 x5_y7
-.sym 26585 in3$SB_IO_IN
-.sym 26625 in4$SB_IO_IN
-.sym 26629 x5_y8
-.sym 26630 x5_y9
-.sym 26631 x5_y10
-.sym 26632 x5_y11
-.sym 26633 x5_y12
-.sym 26636 x5_y15
-.sym 26672 x5_y6
-.sym 26674 x7_y7
-.sym 26675 x6_y5
-.sym 26676 x2_y7
-.sym 26677 x6_y6
-.sym 26678 x5_y0
-.sym 26679 x6_y7
-.sym 26680 x5_y1
-.sym 26682 x7_y6
-.sym 26685 x2_y5
-.sym 26687 x3_y9
-.sym 26688 x2_y8
-.sym 26690 x2_y9
-.sym 26691 in4$SB_IO_IN
-.sym 26694 x2_y11
-.sym 26729 in4$SB_IO_IN
-.sym 26810 x4_y11
-.sym 26812 x5_y11
-.sym 26813 x4_y7
-.sym 26814 x5_y15
-.sym 26816 x5_y8
-.sym 26817 x4_y6
-.sym 26818 x5_y9
-.sym 26820 x5_y10
-.sym 26823 x2_y5
-.sym 27318 in5$SB_IO_IN
-.sym 28542 in5$SB_IO_IN
-.sym 29689 in5$SB_IO_IN
-.sym 29753 x6_y0
-.sym 29754 x6_y1
-.sym 29756 x6_y3
-.sym 29757 x6_y4
-.sym 29758 x6_y5
-.sym 29759 x6_y6
-.sym 29760 x6_y7
-.sym 29795 x2_y4
-.sym 29796 x3_y6
-.sym 29798 x2_y0
-.sym 29800 x2_y1
-.sym 29802 x2_y9
-.sym 29803 x2_y4
-.sym 29804 x2_y3
-.sym 29805 x2_y5
-.sym 29806 x2_y11
-.sym 29807 x3_y9
-.sym 29808 x2_y8
-.sym 29809 x2_y7
-.sym 29818 x3_y1
-.sym 29822 x3_y7
-.sym 29824 x3_y0
-.sym 29826 x3_y5
-.sym 29829 x2_y0
-.sym 29830 x3_y0
-.sym 29831 x3_y1
-.sym 29834 x2_y0
-.sym 29835 x3_y5
-.sym 29836 x2_y0
-.sym 29840 x3_y7
-.sym 29841 x2_y0
-.sym 29843 x2_y1
-.sym 29846 x3_y6
-.sym 29847 x2_y4
-.sym 29848 x2_y4
-.sym 29853 x2_y9
-.sym 29854 x3_y0
-.sym 29855 x2_y4
-.sym 29858 x2_y9
-.sym 29859 x2_y3
-.sym 29860 x2_y7
-.sym 29861 x2_y3
-.sym 29864 x2_y8
-.sym 29865 x3_y9
-.sym 29866 x2_y11
-.sym 29867 x2_y5
-.sym 29877 in3$SB_IO_IN
-.sym 29881 x6_y8
-.sym 29883 x6_y10
-.sym 29884 x6_y11
-.sym 29885 x6_y12
-.sym 29886 x6_y13
-.sym 29888 x6_y15
-.sym 29893 x5_y0
-.sym 29894 x3_y6
-.sym 29895 x5_y5
-.sym 29897 x7_y5
-.sym 29898 x2_y0
-.sym 29899 x5_y2
-.sym 29900 x2_y1
-.sym 29901 x5_y3
-.sym 29902 x4_y6
-.sym 29903 x5_y4
-.sym 29904 x2_y3
-.sym 29907 x3_y2
-.sym 29909 x3_y6
-.sym 29910 x3_y8
-.sym 29913 in3$SB_IO_IN
-.sym 29914 x3_y10
-.sym 29917 x3_y4
-.sym 29919 x3_y9
-.sym 29921 x3_y13
-.sym 29922 in3$SB_IO_IN
-.sym 29939 x3_y5
-.sym 29949 x3_y0
-.sym 29951 in3$SB_IO_IN
-.sym 29960 x2_y9
-.sym 29961 x3_y15
-.sym 29968 x2_y13
-.sym 29970 x2_y10
-.sym 29977 x3_y13
-.sym 29978 x3_y4
-.sym 29979 x3_y8
-.sym 29980 x2_y5
-.sym 29981 x3_y9
-.sym 29983 x2_y15
-.sym 29984 x3_y6
-.sym 29985 x2_y6
-.sym 29987 x3_y8
-.sym 29989 x3_y9
-.sym 29991 x2_y9
-.sym 29992 x3_y13
-.sym 29993 x2_y6
-.sym 29997 x2_y10
-.sym 29998 x3_y4
-.sym 29999 x3_y13
-.sym 30000 x2_y5
-.sym 30003 x2_y5
-.sym 30004 x3_y8
-.sym 30005 x3_y9
-.sym 30006 x2_y13
-.sym 30009 x3_y6
-.sym 30011 x3_y15
-.sym 30012 x2_y15
-.sym 30016 x2_y10
-.sym 30018 x3_y8
-.sym 30021 x3_y9
-.sym 30022 x2_y15
-.sym 30023 x3_y15
-.sym 30024 x3_y8
-.sym 30028 x2_y10
-.sym 30030 x2_y13
-.sym 30033 x3_y15
-.sym 30035 x3_y15
-.sym 30052 x5_y8
-.sym 30054 x2_y9
-.sym 30055 x3_y15
-.sym 30057 x6_y15
-.sym 30058 x2_y10
-.sym 30059 x6_y8
-.sym 30060 x5_y11
-.sym 30062 x5_y12
-.sym 30063 x3_y14
-.sym 30064 x3_y4
-.sym 30074 in2$SB_IO_IN
-.sym 30310 in2$SB_IO_IN
-.sym 30565 in2$SB_IO_IN
-.sym 30567 in0$SB_IO_IN
-.sym 30813 in2$SB_IO_IN
-.sym 31057 in2$SB_IO_IN
-.sym 33484 in0$SB_IO_IN
-.sym 33486 in2$SB_IO_IN
-.sym 33584 x7_y0
-.sym 33585 x7_y1
-.sym 33586 x7_y2
-.sym 33587 x7_y3
-.sym 33588 x7_y4
-.sym 33589 x7_y5
-.sym 33590 x7_y6
-.sym 33591 x7_y7
-.sym 33627 x3_y3
-.sym 33628 x3_y2
-.sym 33630 x3_y4
-.sym 33631 x3_y9
-.sym 33636 x3_y4
-.sym 33637 x3_y0
-.sym 33638 x3_y5
-.sym 33639 x3_y8
-.sym 33640 x3_y0
-.sym 33647 x4_y4
-.sym 33651 x4_y2
-.sym 33655 x4_y0
-.sym 33656 x3_y7
-.sym 33657 x4_y1
-.sym 33659 x4_y0
-.sym 33660 x3_y5
-.sym 33661 x3_y2
-.sym 33662 x3_y0
-.sym 33666 x4_y0
-.sym 33668 x4_y0
-.sym 33671 x4_y0
-.sym 33672 x3_y7
-.sym 33673 x4_y0
-.sym 33674 x3_y4
-.sym 33677 x3_y0
-.sym 33678 x3_y0
-.sym 33679 x3_y3
-.sym 33680 x4_y0
-.sym 33683 x4_y1
-.sym 33684 x3_y9
-.sym 33685 x4_y1
-.sym 33692 x3_y4
-.sym 33696 x3_y3
-.sym 33697 x4_y2
-.sym 33698 x4_y4
-.sym 33702 x4_y2
-.sym 33703 x4_y4
-.sym 33704 x3_y8
-.sym 33712 x7_y8
-.sym 33713 x7_y9
-.sym 33715 x7_y11
-.sym 33716 x7_y12
-.sym 33717 x7_y13
-.sym 33718 x7_y14
-.sym 33719 x7_y15
-.sym 33724 x6_y0
-.sym 33726 x6_y5
-.sym 33727 x5_y7
-.sym 33728 x6_y1
-.sym 33729 x3_y0
-.sym 33730 x3_y4
-.sym 33731 x7_y0
-.sym 33732 x6_y3
-.sym 33733 x7_y1
-.sym 33734 x6_y4
-.sym 33735 x3_y3
-.sym 33738 x4_y5
-.sym 33741 x4_y8
-.sym 33743 x6_y7
-.sym 33747 x4_y11
-.sym 33752 x4_y13
-.sym 33790 x3_y6
-.sym 33791 x3_y13
-.sym 33792 x4_y15
-.sym 33793 x3_y10
-.sym 33798 x3_y6
-.sym 33800 x4_y15
-.sym 33801 x3_y14
-.sym 33803 x3_y15
-.sym 33808 x4_y11
-.sym 33811 x4_y6
-.sym 33812 x4_y13
-.sym 33814 x4_y10
-.sym 33815 x4_y7
-.sym 33820 x4_y5
-.sym 33822 x4_y5
-.sym 33824 x3_y13
-.sym 33828 x3_y14
-.sym 33829 x4_y6
-.sym 33830 x4_y7
-.sym 33831 x3_y10
-.sym 33835 x4_y7
-.sym 33836 x4_y10
-.sym 33837 x4_y11
-.sym 33840 x3_y6
-.sym 33841 x3_y6
-.sym 33842 x3_y15
-.sym 33846 x4_y10
-.sym 33848 x4_y10
-.sym 33849 x4_y13
-.sym 33852 x4_y13
-.sym 33854 x3_y14
-.sym 33855 x4_y15
-.sym 33858 x4_y10
-.sym 33859 x3_y15
-.sym 33860 x4_y10
-.sym 33864 x4_y15
-.sym 33865 x4_y15
-.sym 33867 x4_y15
-.sym 33883 x6_y8
-.sym 33884 x7_y14
-.sym 33885 x6_y13
-.sym 33886 x4_y15
-.sym 33888 x7_y15
-.sym 33889 x6_y10
-.sym 33890 x4_y10
-.sym 33891 x6_y11
-.sym 33892 x7_y9
-.sym 33893 x6_y12
-.sym 33894 x4_y14
-.sym 33906 x4_y5
-.sym 34497 in0$SB_IO_IN
-.sym 34743 in2$SB_IO_IN
-.sym 35973 in0$SB_IO_IN
-.sym 36219 in2$SB_IO_IN
-.sym 37415 x8_y0
-.sym 37416 x8_y1
-.sym 37417 x8_y2
-.sym 37418 x8_y3
-.sym 37419 x8_y4
-.sym 37420 x8_y5
-.sym 37421 x8_y6
-.sym 37422 x8_y7
-.sym 37459 x4_y5
-.sym 37460 x4_y4
-.sym 37462 x4_y8
-.sym 37466 x4_y3
-.sym 37467 x4_y5
-.sym 37468 x4_y4
-.sym 37470 x4_y1
-.sym 37473 x5_y0
-.sym 37475 x5_y5
-.sym 37476 x5_y0
-.sym 37477 x5_y2
-.sym 37480 x4_y6
-.sym 37481 x5_y4
-.sym 37483 x5_y1
-.sym 37485 x5_y6
-.sym 37488 x4_y6
-.sym 37490 x5_y0
-.sym 37492 x4_y5
-.sym 37496 x5_y4
-.sym 37497 x5_y0
-.sym 37499 x4_y3
-.sym 37502 x5_y0
-.sym 37503 x5_y1
-.sym 37504 x5_y0
-.sym 37505 x5_y0
-.sym 37508 x4_y5
-.sym 37509 x4_y1
-.sym 37511 x5_y0
-.sym 37514 x4_y4
-.sym 37515 x4_y8
-.sym 37516 x4_y6
-.sym 37517 x5_y4
-.sym 37520 x4_y6
-.sym 37521 x5_y2
-.sym 37523 x4_y6
-.sym 37528 x4_y1
-.sym 37529 x5_y6
-.sym 37532 x4_y8
-.sym 37534 x4_y4
-.sym 37535 x5_y5
-.sym 37543 x8_y8
-.sym 37544 x8_y9
-.sym 37545 x8_y10
-.sym 37546 x8_y11
-.sym 37547 x8_y12
-.sym 37548 x8_y13
-.sym 37549 x8_y14
-.sym 37550 x8_y15
-.sym 37555 x9_y4
-.sym 37556 x8_y6
-.sym 37557 x7_y5
-.sym 37558 x4_y4
-.sym 37559 x9_y5
-.sym 37560 x8_y7
-.sym 37561 x7_y2
-.sym 37562 x4_y1
-.sym 37563 x7_y3
-.sym 37564 x8_y1
-.sym 37565 x7_y4
-.sym 37566 x4_y3
-.sym 37568 x5_y6
-.sym 37570 x5_y0
-.sym 37572 x7_y6
-.sym 37573 x8_y7
-.sym 37575 x5_y8
-.sym 37577 x5_y9
-.sym 37580 x5_y10
-.sym 37582 x5_y11
-.sym 37612 x7_y3
-.sym 37620 x4_y10
-.sym 37624 x4_y14
-.sym 37626 x4_y15
-.sym 37630 x4_y13
-.sym 37632 x4_y14
-.sym 37634 x4_y11
-.sym 37636 x5_y8
-.sym 37639 x4_y6
-.sym 37640 x4_y11
-.sym 37642 x5_y15
-.sym 37643 x4_y5
-.sym 37644 x5_y12
-.sym 37650 x5_y15
-.sym 37653 x4_y11
-.sym 37654 x4_y5
-.sym 37655 x4_y11
-.sym 37656 x4_y6
-.sym 37659 x4_y13
-.sym 37660 x4_y10
-.sym 37662 x5_y8
-.sym 37665 x5_y8
-.sym 37666 x4_y13
-.sym 37667 x4_y10
-.sym 37668 x4_y5
-.sym 37672 x4_y14
-.sym 37679 x5_y8
-.sym 37680 x5_y12
-.sym 37683 x5_y12
-.sym 37684 x5_y15
-.sym 37686 x4_y15
-.sym 37689 x4_y15
-.sym 37690 x4_y14
-.sym 37691 x4_y10
-.sym 37692 x4_y11
-.sym 37695 x5_y15
-.sym 37696 x4_y15
-.sym 37697 x5_y15
-.sym 37698 x4_y15
-.sym 37714 x7_y8
-.sym 37715 x8_y14
-.sym 37716 x7_y13
-.sym 37717 x8_y11
-.sym 37718 x6_y7
-.sym 37719 x8_y15
-.sym 37721 x8_y8
-.sym 37722 x7_y11
-.sym 37723 x8_y9
-.sym 37724 x7_y12
-.sym 37731 x6_y6
-.sym 37732 x6_y5
-.sym 37733 x5_y6
-.sym 41246 x9_y0
-.sym 41247 x9_y1
-.sym 41248 x9_y2
-.sym 41250 x9_y4
-.sym 41251 x9_y5
-.sym 41252 x9_y6
-.sym 41253 x9_y7
-.sym 41288 x5_y8
-.sym 41289 x5_y6
-.sym 41290 x5_y9
-.sym 41294 x5_y11
-.sym 41297 x6_y7
-.sym 41298 x5_y9
-.sym 41300 x5_y10
-.sym 41304 x6_y4
-.sym 41307 x5_y3
-.sym 41310 x6_y3
-.sym 41311 x5_y5
-.sym 41312 x6_y0
-.sym 41314 x6_y5
-.sym 41315 x5_y7
-.sym 41317 x5_y0
-.sym 41318 x6_y8
-.sym 41321 x6_y4
-.sym 41322 x6_y0
-.sym 41324 x6_y5
-.sym 41327 x5_y5
-.sym 41329 x6_y5
-.sym 41330 x5_y0
-.sym 41336 x5_y3
-.sym 41339 x6_y5
-.sym 41342 x5_y7
-.sym 41345 x6_y3
-.sym 41347 x6_y7
-.sym 41351 x6_y5
-.sym 41353 x5_y9
-.sym 41357 x5_y8
-.sym 41359 x5_y11
-.sym 41360 x6_y8
-.sym 41363 x5_y10
-.sym 41365 x5_y6
-.sym 41366 x5_y9
-.sym 41374 x9_y8
-.sym 41375 x9_y9
-.sym 41376 x9_y10
-.sym 41377 x9_y11
-.sym 41378 x9_y12
-.sym 41379 x9_y13
-.sym 41380 x9_y14
-.sym 41381 x9_y15
-.sym 41386 x8_y0
-.sym 41387 x9_y6
-.sym 41388 x8_y5
-.sym 41389 x7_y7
-.sym 41390 x10_y5
-.sym 41391 x9_y7
-.sym 41392 x8_y2
-.sym 41393 x7_y6
-.sym 41394 x8_y3
-.sym 41395 x7_y3
-.sym 41396 x8_y4
-.sym 41397 x6_y7
-.sym 41403 x5_y11
-.sym 41404 x9_y7
-.sym 41409 x8_y5
-.sym 41411 x6_y15
-.sym 41413 x6_y8
-.sym 41436 x8_y5
-.sym 41456 x5_y10
-.sym 41457 x5_y15
-.sym 41458 x6_y7
-.sym 41467 x6_y8
-.sym 41468 x6_y6
-.sym 41469 x6_y13
-.sym 41470 x5_y6
-.sym 41473 x5_y5
-.sym 41475 x6_y12
-.sym 41477 x6_y5
-.sym 41479 x6_y10
-.sym 41480 x5_y12
-.sym 41481 x6_y15
-.sym 41484 x6_y8
-.sym 41486 x6_y8
-.sym 41487 x5_y6
-.sym 41490 x6_y5
-.sym 41491 x5_y12
-.sym 41492 x6_y12
-.sym 41493 x5_y5
-.sym 41497 x6_y7
-.sym 41498 x6_y13
-.sym 41499 x6_y5
-.sym 41502 x6_y6
-.sym 41505 x5_y15
-.sym 41508 x6_y8
-.sym 41509 x6_y10
-.sym 41510 x6_y8
-.sym 41511 x6_y15
-.sym 41514 x6_y15
-.sym 41515 x5_y12
-.sym 41516 x6_y15
-.sym 41520 x5_y15
-.sym 41521 x5_y10
-.sym 41522 x5_y15
-.sym 41523 x6_y15
-.sym 41526 x6_y15
-.sym 41527 x5_y12
-.sym 41528 x6_y15
-.sym 41545 x7_y6
-.sym 41546 x9_y14
-.sym 41547 x8_y13
-.sym 41548 x9_y11
-.sym 41549 x8_y9
-.sym 41550 x9_y15
-.sym 41551 x8_y10
-.sym 41552 x5_y10
-.sym 41553 x5_y15
-.sym 41554 x9_y9
-.sym 41555 x8_y12
-.sym 41556 x8_y7
-.sym 41559 x5_y5
-.sym 41560 x7_y5
-.sym 45077 x10_y0
-.sym 45078 x10_y1
-.sym 45079 x10_y2
-.sym 45080 x10_y3
-.sym 45081 x10_y4
-.sym 45082 x10_y5
-.sym 45083 x10_y6
-.sym 45084 x10_y7
-.sym 45121 x7_y3
-.sym 45123 x5_y6
-.sym 45131 x6_y7
-.sym 45132 x5_y11
-.sym 45135 x7_y0
-.sym 45138 x6_y3
-.sym 45139 x7_y2
-.sym 45140 x6_y0
-.sym 45142 x6_y5
-.sym 45143 x7_y4
-.sym 45146 x6_y8
-.sym 45148 x6_y4
-.sym 45150 x6_y1
-.sym 45152 x6_y4
-.sym 45153 x6_y0
-.sym 45154 x6_y4
-.sym 45155 x6_y0
-.sym 45158 x6_y5
-.sym 45159 x7_y3
-.sym 45160 x6_y5
-.sym 45164 x7_y0
-.sym 45166 x7_y2
-.sym 45171 x6_y1
-.sym 45172 x6_y5
-.sym 45177 x6_y7
-.sym 45179 x6_y5
-.sym 45184 x7_y4
-.sym 45188 x5_y11
-.sym 45190 x6_y8
-.sym 45191 x6_y3
-.sym 45194 x6_y5
-.sym 45195 x5_y6
-.sym 45196 x6_y5
-.sym 45205 x10_y8
-.sym 45206 x10_y9
-.sym 45207 x10_y10
-.sym 45208 x10_y11
-.sym 45209 x10_y12
-.sym 45210 x10_y13
-.sym 45212 x10_y15
-.sym 45217 x9_y0
-.sym 45218 x10_y6
-.sym 45219 x9_y5
-.sym 45221 x9_y1
-.sym 45222 x10_y7
-.sym 45223 x9_y2
-.sym 45224 x10_y0
-.sym 45226 x10_y1
-.sym 45227 x9_y4
-.sym 45230 x7_y1
-.sym 45233 x7_y9
-.sym 45234 x9_y6
-.sym 45239 x7_y9
-.sym 45240 x6_y8
-.sym 45242 x7_y15
-.sym 45282 x5_y10
-.sym 45285 x5_y12
-.sym 45291 x6_y15
-.sym 45295 x7_y6
-.sym 45296 x5_y15
-.sym 45298 x7_y12
-.sym 45299 x6_y10
-.sym 45303 x6_y12
-.sym 45304 x7_y15
-.sym 45305 x7_y5
-.sym 45306 x7_y8
-.sym 45308 x6_y7
-.sym 45309 x6_y11
-.sym 45310 x7_y14
-.sym 45311 x6_y8
-.sym 45312 x7_y11
-.sym 45313 x6_y5
-.sym 45316 x7_y5
-.sym 45317 x6_y8
-.sym 45318 x7_y5
-.sym 45321 x6_y12
-.sym 45322 x6_y5
-.sym 45323 x6_y12
-.sym 45327 x6_y5
-.sym 45328 x7_y5
-.sym 45330 x6_y7
-.sym 45334 x6_y11
-.sym 45335 x5_y15
-.sym 45336 x7_y6
-.sym 45339 x6_y8
-.sym 45340 x7_y8
-.sym 45341 x6_y8
-.sym 45342 x7_y11
-.sym 45345 x7_y14
-.sym 45347 x5_y12
-.sym 45348 x7_y15
-.sym 45351 x5_y10
-.sym 45352 x6_y10
-.sym 45353 x6_y15
-.sym 45358 x7_y12
-.sym 45360 x6_y15
-.sym 45376 x9_y8
-.sym 45378 x9_y13
-.sym 45379 x5_y12
-.sym 45380 x9_y9
-.sym 45381 x10_y15
-.sym 45382 x9_y10
-.sym 45383 x10_y8
-.sym 45384 x8_y5
-.sym 45386 x9_y12
-.sym 45387 x9_y7
-.sym 45390 x10_y11
-.sym 45393 x9_y12
-.sym 45399 x6_y5
-.sym 48908 x11_y0
-.sym 48910 x11_y2
-.sym 48911 x11_y3
-.sym 48912 x11_y4
-.sym 48913 x11_y5
-.sym 48914 x11_y6
-.sym 48915 x11_y7
-.sym 48954 x7_y9
-.sym 48955 x7_y0
-.sym 48957 x7_y1
-.sym 48959 x7_y1
-.sym 48963 x7_y0
-.sym 48966 x8_y0
-.sym 48967 x7_y2
-.sym 48968 x8_y5
-.sym 48969 x7_y3
-.sym 48970 x8_y9
-.sym 48971 x7_y6
-.sym 48973 x7_y5
-.sym 48974 x8_y4
-.sym 48975 x7_y2
-.sym 48976 x8_y1
-.sym 48977 x7_y7
-.sym 48978 x8_y6
-.sym 48980 x8_y8
-.sym 48983 x8_y0
-.sym 48984 x7_y0
-.sym 48985 x8_y5
-.sym 48986 x8_y4
-.sym 48989 x7_y0
-.sym 48990 x8_y0
-.sym 48991 x7_y0
-.sym 48992 x7_y2
-.sym 48995 x8_y0
-.sym 48996 x7_y5
-.sym 48997 x8_y0
-.sym 48998 x7_y2
-.sym 49001 x7_y0
-.sym 49002 x8_y0
-.sym 49003 x8_y6
-.sym 49007 x7_y0
-.sym 49008 x8_y1
-.sym 49009 x7_y1
-.sym 49010 x7_y1
-.sym 49013 x8_y1
-.sym 49014 x7_y9
-.sym 49015 x8_y6
-.sym 49016 x7_y7
-.sym 49020 x7_y3
-.sym 49022 x8_y8
-.sym 49026 x7_y7
-.sym 49027 x7_y6
-.sym 49028 x8_y9
-.sym 49036 x11_y8
-.sym 49037 x11_y9
-.sym 49038 x11_y10
-.sym 49039 x11_y11
-.sym 49040 x11_y12
-.sym 49041 x11_y13
-.sym 49043 x11_y15
-.sym 49048 x10_y0
-.sym 49049 x11_y6
-.sym 49050 x10_y5
-.sym 49052 x12_y5
-.sym 49053 x10_y11
-.sym 49054 x10_y2
-.sym 49055 x7_y0
-.sym 49056 x10_y3
-.sym 49057 x7_y1
-.sym 49058 x10_y4
-.sym 49059 x9_y12
-.sym 49064 x8_y9
-.sym 49065 x10_y6
-.sym 49068 x8_y11
-.sym 49075 x8_y8
-.sym 49079 x11_y5
-.sym 49085 x8_y6
-.sym 49105 x8_y6
-.sym 49114 x7_y15
-.sym 49120 x7_y9
-.sym 49122 x7_y15
-.sym 49124 x8_y5
-.sym 49130 x8_y7
-.sym 49131 x8_y9
-.sym 49132 x7_y11
-.sym 49133 x8_y10
-.sym 49134 x7_y8
-.sym 49135 x8_y15
-.sym 49137 x8_y12
-.sym 49138 x8_y7
-.sym 49139 x8_y13
-.sym 49140 x7_y3
-.sym 49141 x8_y14
-.sym 49142 x7_y12
-.sym 49143 x8_y15
-.sym 49144 x7_y13
-.sym 49146 x7_y13
-.sym 49147 x7_y9
-.sym 49148 x7_y3
-.sym 49153 x8_y7
-.sym 49155 x8_y5
-.sym 49158 x7_y12
-.sym 49160 x8_y9
-.sym 49161 x8_y13
-.sym 49164 x8_y7
-.sym 49166 x8_y7
-.sym 49167 x8_y15
-.sym 49170 x8_y9
-.sym 49171 x7_y15
-.sym 49173 x7_y11
-.sym 49176 x7_y8
-.sym 49177 x7_y15
-.sym 49178 x8_y14
-.sym 49179 x7_y13
-.sym 49182 x7_y12
-.sym 49183 x8_y14
-.sym 49184 x8_y15
-.sym 49185 x8_y12
-.sym 49189 x8_y10
-.sym 49190 x8_y15
-.sym 49191 x8_y10
-.sym 49207 x9_y6
-.sym 49209 x10_y13
-.sym 49210 x11_y11
-.sym 49211 x10_y9
-.sym 49212 x11_y15
-.sym 49213 x10_y10
-.sym 49214 x11_y8
-.sym 49215 x10_y11
-.sym 49216 x11_y9
-.sym 49217 x10_y12
-.sym 49218 x11_y10
-.sym 49220 x10_y10
-.sym 49222 x9_y5
-.sym 49223 x9_y4
-.sym 49226 x7_y3
-.sym 52739 x12_y0
-.sym 52740 x12_y1
-.sym 52741 x12_y2
-.sym 52742 x12_y3
-.sym 52743 x12_y4
-.sym 52744 x12_y5
-.sym 52745 x12_y6
-.sym 52746 x12_y7
-.sym 52783 x8_y1
-.sym 52784 x8_y7
-.sym 52789 x8_y11
-.sym 52790 x8_y6
-.sym 52791 x8_y1
-.sym 52792 x8_y7
-.sym 52797 x9_y4
-.sym 52799 x9_y5
-.sym 52801 x9_y6
-.sym 52802 x8_y0
-.sym 52804 x8_y5
-.sym 52805 x9_y0
-.sym 52806 x8_y2
-.sym 52807 x9_y9
-.sym 52808 x8_y3
-.sym 52809 x9_y2
-.sym 52810 x8_y12
-.sym 52814 x9_y4
-.sym 52815 x9_y0
-.sym 52816 x8_y2
-.sym 52820 x9_y0
-.sym 52822 x9_y2
-.sym 52823 x8_y3
-.sym 52827 x9_y0
-.sym 52828 x8_y3
-.sym 52829 x9_y2
-.sym 52832 x9_y0
-.sym 52833 x8_y7
-.sym 52834 x8_y0
-.sym 52835 x8_y6
-.sym 52839 x9_y9
-.sym 52841 x8_y0
-.sym 52845 x8_y3
-.sym 52847 x9_y5
-.sym 52850 x8_y1
-.sym 52851 x8_y1
-.sym 52852 x9_y6
-.sym 52853 x8_y11
-.sym 52856 x8_y5
-.sym 52857 x8_y6
-.sym 52858 x8_y7
-.sym 52859 x8_y12
-.sym 52867 x12_y8
-.sym 52868 x12_y9
-.sym 52869 x12_y10
-.sym 52870 x12_y11
-.sym 52871 x12_y12
-.sym 52872 x12_y13
-.sym 52873 x12_y14
-.sym 52874 x12_y15
-.sym 52879 x11_y0
-.sym 52880 x12_y6
-.sym 52881 x8_y1
-.sym 52882 x8_y7
-.sym 52883 x13_y5
-.sym 52884 x12_y7
-.sym 52885 x11_y2
-.sym 52886 x10_y10
-.sym 52889 x11_y4
-.sym 52890 x8_y6
-.sym 52895 x9_y14
-.sym 52896 x11_y6
-.sym 52897 x9_y15
-.sym 52898 x11_y7
-.sym 52901 x9_y9
-.sym 52904 x9_y15
-.sym 52905 x8_y12
-.sym 52907 x11_y3
-.sym 52948 x8_y14
-.sym 52954 x8_y6
-.sym 52957 x9_y6
-.sym 52958 x8_y15
-.sym 52960 x9_y12
-.sym 52962 x9_y13
-.sym 52964 x9_y14
-.sym 52965 x8_y12
-.sym 52966 x9_y15
-.sym 52967 x9_y5
-.sym 52968 x9_y4
-.sym 52969 x9_y7
-.sym 52970 x9_y9
-.sym 52971 x8_y3
-.sym 52972 x9_y10
-.sym 52973 x8_y12
-.sym 52974 x9_y11
-.sym 52975 x8_y13
-.sym 52977 x8_y3
-.sym 52979 x9_y13
-.sym 52980 x9_y9
-.sym 52983 x9_y4
-.sym 52985 x8_y6
-.sym 52986 x9_y6
-.sym 52989 x8_y14
-.sym 52990 x8_y6
-.sym 52992 x9_y5
-.sym 52996 x9_y7
-.sym 52997 x8_y12
-.sym 52998 x9_y15
-.sym 53001 x9_y12
-.sym 53003 x9_y15
-.sym 53004 x9_y10
-.sym 53008 x9_y15
-.sym 53009 x8_y15
-.sym 53010 x8_y13
-.sym 53013 x8_y12
-.sym 53016 x9_y11
-.sym 53020 x9_y14
-.sym 53021 x8_y15
-.sym 53022 x9_y15
-.sym 53034 x11_y12
-.sym 53038 x10_y6
-.sym 53039 x12_y14
-.sym 53040 x11_y13
-.sym 53041 x12_y11
-.sym 53042 x11_y9
-.sym 53043 x12_y15
-.sym 53044 x8_y14
-.sym 53045 x12_y8
-.sym 53046 x8_y15
-.sym 53048 x13_y8
-.sym 53051 x11_y10
-.sym 53053 x10_y5
-.sym 53057 x8_y3
-.sym 53171 x11_y5
-.sym 56569 x13_y0
-.sym 56570 x13_y1
-.sym 56572 x13_y3
-.sym 56573 x13_y4
-.sym 56574 x13_y5
-.sym 56575 x13_y6
-.sym 56576 x13_y7
-.sym 56612 x9_y6
-.sym 56614 x9_y7
-.sym 56619 x10_y10
-.sym 56621 x9_y9
-.sym 56627 x10_y0
-.sym 56628 x9_y2
-.sym 56629 x10_y5
-.sym 56630 x10_y11
-.sym 56631 x10_y6
-.sym 56634 x9_y1
-.sym 56635 x10_y0
-.sym 56636 x9_y12
-.sym 56639 x10_y6
-.sym 56640 x9_y0
-.sym 56641 x10_y3
-.sym 56642 x9_y5
-.sym 56644 x9_y5
-.sym 56645 x9_y2
-.sym 56646 x10_y0
-.sym 56647 x10_y3
-.sym 56650 x9_y1
-.sym 56651 x9_y0
-.sym 56652 x10_y6
-.sym 56653 x9_y0
-.sym 56656 x10_y5
-.sym 56657 x9_y6
-.sym 56658 x9_y0
-.sym 56659 x9_y7
-.sym 56662 x10_y0
-.sym 56668 x10_y6
-.sym 56670 x10_y5
-.sym 56671 x9_y7
-.sym 56675 x10_y6
-.sym 56676 x10_y10
-.sym 56680 x10_y6
-.sym 56681 x9_y9
-.sym 56682 x9_y5
-.sym 56683 x9_y9
-.sym 56687 x9_y12
-.sym 56688 x10_y11
-.sym 56697 x13_y8
-.sym 56698 x13_y9
-.sym 56699 x13_y10
-.sym 56700 x13_y11
-.sym 56701 x13_y12
-.sym 56703 x13_y14
-.sym 56704 x13_y15
-.sym 56709 x12_y0
-.sym 56710 x13_y6
-.sym 56711 x12_y5
-.sym 56712 x9_y7
-.sym 56713 x12_y1
-.sym 56714 x13_y7
-.sym 56715 x12_y2
-.sym 56716 x11_y10
-.sym 56717 x12_y3
-.sym 56719 x12_y4
-.sym 56720 x9_y6
-.sym 56726 x12_y6
-.sym 56736 x12_y13
-.sym 56775 x9_y14
-.sym 56777 x9_y15
-.sym 56783 x9_y15
-.sym 56785 x9_y11
-.sym 56787 x10_y6
-.sym 56791 x9_y10
-.sym 56792 x10_y13
-.sym 56794 x9_y7
-.sym 56795 x9_y8
-.sym 56796 x10_y15
-.sym 56797 x10_y5
-.sym 56798 x10_y12
-.sym 56799 x9_y10
-.sym 56800 x10_y9
-.sym 56802 x10_y10
-.sym 56803 x9_y12
-.sym 56804 x10_y11
-.sym 56805 x9_y13
-.sym 56807 x9_y7
-.sym 56809 x9_y10
-.sym 56810 x10_y9
-.sym 56814 x9_y13
-.sym 56815 x10_y5
-.sym 56819 x10_y6
-.sym 56820 x10_y12
-.sym 56821 x10_y6
-.sym 56822 x9_y10
-.sym 56825 x10_y10
-.sym 56826 x9_y12
-.sym 56827 x9_y14
-.sym 56831 x9_y13
-.sym 56832 x9_y8
-.sym 56833 x9_y15
-.sym 56834 x9_y15
-.sym 56838 x9_y15
-.sym 56840 x9_y11
-.sym 56843 x10_y13
-.sym 56845 x9_y11
-.sym 56849 x10_y11
-.sym 56850 x10_y15
-.sym 56864 x12_y12
-.sym 56868 x12_y8
-.sym 56869 x13_y14
-.sym 56870 x11_y3
-.sym 56871 x9_y11
-.sym 56872 x12_y9
-.sym 56873 x13_y15
-.sym 56874 x12_y10
-.sym 56875 x13_y8
-.sym 56876 x11_y6
-.sym 56877 x13_y9
-.sym 56878 x11_y7
-.sym 56889 x10_y7
-.sym 60442 x10_y0
-.sym 60444 x10_y1
-.sym 60445 x10_y6
-.sym 60449 x11_y10
-.sym 60457 x11_y0
-.sym 60460 x10_y3
-.sym 60461 x11_y6
-.sym 60462 x10_y4
-.sym 60464 x10_y5
-.sym 60466 x10_y2
-.sym 60467 x11_y9
-.sym 60468 x10_y11
-.sym 60469 x11_y2
-.sym 60470 x10_y0
-.sym 60474 x11_y0
-.sym 60475 x10_y1
-.sym 60476 x11_y0
-.sym 60480 x10_y4
-.sym 60482 x10_y5
-.sym 60483 x10_y2
-.sym 60486 x11_y6
-.sym 60487 x10_y0
-.sym 60488 x10_y0
-.sym 60489 x10_y1
-.sym 60493 x10_y6
-.sym 60494 x10_y3
-.sym 60495 x11_y0
-.sym 60499 x11_y2
-.sym 60504 x11_y10
-.sym 60505 x11_y0
-.sym 60506 x11_y10
-.sym 60507 x11_y0
-.sym 60511 x11_y2
-.sym 60516 x10_y4
-.sym 60517 x10_y11
-.sym 60518 x11_y9
-.sym 60519 x11_y6
-.sym 60539 x13_y0
-.sym 60540 x10_y0
-.sym 60543 x13_y1
-.sym 60544 x10_y1
-.sym 60545 x10_y6
-.sym 60547 x13_y3
-.sym 60549 x13_y4
-.sym 60556 x13_y6
-.sym 60558 x13_y7
-.sym 60559 x11_y8
-.sym 60561 x11_y9
-.sym 60562 x10_y11
-.sym 60564 x11_y10
-.sym 60605 x10_y8
-.sym 60608 x11_y12
-.sym 60610 x10_y15
-.sym 60611 x11_y3
-.sym 60613 x10_y8
-.sym 60615 x11_y6
-.sym 60617 x11_y7
-.sym 60618 x10_y15
-.sym 60622 x11_y9
-.sym 60625 x10_y7
-.sym 60626 x11_y11
-.sym 60627 x10_y9
-.sym 60629 x10_y10
-.sym 60630 x11_y13
-.sym 60633 x10_y12
-.sym 60634 x11_y15
-.sym 60635 x10_y13
-.sym 60637 x11_y6
-.sym 60639 x10_y12
-.sym 60640 x11_y3
-.sym 60643 x11_y13
-.sym 60644 x11_y9
-.sym 60645 x10_y7
-.sym 60646 x11_y9
-.sym 60649 x11_y11
-.sym 60650 x10_y15
-.sym 60651 x10_y8
-.sym 60655 x11_y13
-.sym 60656 x10_y10
-.sym 60657 x10_y9
-.sym 60658 x11_y7
-.sym 60662 x10_y7
-.sym 60663 x10_y15
-.sym 60664 x10_y7
-.sym 60667 x10_y15
-.sym 60668 x10_y13
-.sym 60669 x10_y8
-.sym 60670 x11_y9
-.sym 60673 x11_y12
-.sym 60674 x11_y15
-.sym 60675 x10_y13
-.sym 60676 x11_y15
-.sym 60679 x11_y15
-.sym 60680 x10_y15
-.sym 60681 x11_y15
-.sym 60682 x10_y15
-.sym 60698 x12_y6
-.sym 60699 x10_y8
-.sym 60701 x12_y13
-.sym 60704 x13_y10
-.sym 60706 x10_y15
-.sym 60708 x13_y12
-.sym 60711 x13_y10
-.sym 60713 x13_y11
-.sym 60716 x12_y5
-.sym 60717 x11_y6
-.sym 64272 x11_y8
-.sym 64274 x11_y9
-.sym 64276 x11_y10
-.sym 64280 x11_y8
-.sym 64288 x12_y0
-.sym 64290 x12_y1
-.sym 64292 x12_y2
-.sym 64293 x11_y4
-.sym 64294 x12_y3
-.sym 64296 x12_y8
-.sym 64298 x12_y5
-.sym 64300 x12_y6
-.sym 64301 x11_y0
-.sym 64302 x12_y7
-.sym 64308 x11_y4
-.sym 64312 x11_y0
-.sym 64317 x12_y0
-.sym 64319 x11_y0
-.sym 64324 x12_y3
-.sym 64329 x12_y1
-.sym 64330 x12_y6
-.sym 64331 x12_y1
-.sym 64335 x12_y5
-.sym 64337 x12_y7
-.sym 64338 x11_y9
-.sym 64341 x11_y10
-.sym 64342 x12_y8
-.sym 64344 x12_y5
-.sym 64347 x11_y8
-.sym 64348 x11_y8
-.sym 64349 x12_y5
-.sym 64350 x12_y2
-.sym 64377 x13_y10
-.sym 64379 x13_y11
-.sym 64389 x13_y8
-.sym 64390 x12_y8
-.sym 64401 x11_y5
-.sym 64438 x11_y15
-.sym 64441 x12_y13
-.sym 64448 x12_y6
-.sym 64450 x11_y11
-.sym 64451 x12_y8
-.sym 64453 x12_y5
-.sym 64454 x11_y6
-.sym 64455 x12_y14
-.sym 64457 x12_y11
-.sym 64458 x11_y5
-.sym 64459 x11_y7
-.sym 64462 x11_y6
-.sym 64463 x12_y10
-.sym 64464 x11_y4
-.sym 64465 x12_y15
-.sym 64466 x11_y9
-.sym 64468 x12_y5
-.sym 64470 x11_y6
-.sym 64471 x11_y6
-.sym 64474 x11_y5
-.sym 64475 x12_y6
-.sym 64476 x11_y7
-.sym 64477 x11_y4
-.sym 64480 x11_y6
-.sym 64482 x12_y11
-.sym 64483 x12_y10
-.sym 64486 x12_y10
-.sym 64487 x11_y6
-.sym 64488 x11_y6
-.sym 64489 x11_y9
-.sym 64492 x12_y13
-.sym 64493 x11_y15
-.sym 64494 x12_y8
-.sym 64498 x11_y15
-.sym 64499 x12_y14
-.sym 64505 x12_y15
-.sym 64507 x12_y15
-.sym 64510 x12_y15
-.sym 64511 x11_y11
-.sym 64512 x12_y15
-.sym 64513 x11_y11
-.sym 64532 x11_y15
-.sym 64537 x13_y6
-.sym 64538 x11_y11
-.sym 64539 x13_y7
-.sym 64547 x13_y5
-.sym 64550 x11_y4
-.sym 68110 x13_y8
-.sym 68111 x13_y10
-.sym 68113 x13_y11
-.sym 68119 x13_y0
-.sym 68121 x13_y1
-.sym 68122 x12_y3
-.sym 68124 x12_y0
-.sym 68125 x13_y7
-.sym 68126 x12_y5
-.sym 68127 x13_y4
-.sym 68128 x12_y10
-.sym 68129 x13_y9
-.sym 68130 x12_y8
-.sym 68131 x13_y6
-.sym 68133 x13_y3
-.sym 68134 x12_y1
-.sym 68136 x13_y0
-.sym 68137 x12_y0
-.sym 68139 x12_y0
-.sym 68144 x13_y6
-.sym 68145 x13_y0
-.sym 68149 x12_y3
-.sym 68150 x13_y1
-.sym 68151 x13_y4
-.sym 68154 x13_y4
-.sym 68155 x13_y0
-.sym 68156 x12_y0
-.sym 68157 x12_y1
-.sym 68160 x13_y0
-.sym 68161 x12_y5
-.sym 68162 x13_y0
-.sym 68166 x13_y3
-.sym 68168 x13_y9
-.sym 68169 x13_y7
-.sym 68173 x12_y5
-.sym 68174 x12_y8
-.sym 68175 x13_y8
-.sym 68178 x13_y11
-.sym 68179 x12_y10
-.sym 68180 x13_y10
-.sym 68222 x12_y10
-.sym 68223 x13_y9
-.sym 68224 x12_y8
-.sym 68269 x13_y6
-.sym 68272 x12_y15
-.sym 68273 x12_y12
-.sym 68277 x12_y11
-.sym 68279 x13_y7
-.sym 68282 x13_y12
-.sym 68286 x13_y10
-.sym 68287 x12_y8
-.sym 68288 x13_y15
-.sym 68289 x12_y9
-.sym 68290 x13_y8
-.sym 68292 x13_y5
-.sym 68294 x13_y14
-.sym 68295 x12_y4
-.sym 68296 x13_y15
-.sym 68299 x13_y7
-.sym 68300 x12_y9
-.sym 68301 x13_y12
-.sym 68302 x13_y6
-.sym 68305 x13_y5
-.sym 68306 x12_y4
-.sym 68308 x13_y12
-.sym 68311 x12_y11
-.sym 68314 x13_y8
-.sym 68318 x13_y10
-.sym 68319 x12_y8
-.sym 68323 x13_y15
-.sym 68324 x12_y8
-.sym 68325 x12_y15
-.sym 68329 x12_y12
-.sym 68330 x12_y15
-.sym 68332 x12_y15
-.sym 68335 x12_y11
-.sym 68338 x13_y15
-.sym 68341 x13_y14
-.sym 68342 x13_y15
-.sym 68343 x13_y15
-.sym 68344 x13_y15
-.sym 68363 x12_y11
-.sym 68368 x12_y15
-.sym 68381 x12_y4
-.sym 103393 in0$SB_IO_IN
-.sym 103394 in4$SB_IO_IN
-.sym 103395 in1$SB_IO_IN
-.sym 103396 in0$SB_IO_IN
-.sym 103397 in1$SB_IO_IN
-.sym 103398 in2$SB_IO_IN
-.sym 103399 in0$SB_IO_IN
-.sym 103401 in1$SB_IO_IN
-.sym 103402 in4$SB_IO_IN
-.sym 103403 in7$SB_IO_IN
-.sym 103404 in3$SB_IO_IN
-.sym 103405 in8$SB_IO_IN
-.sym 103406 in4$SB_IO_IN
-.sym 103407 in2$SB_IO_IN
-.sym 103408 in8$SB_IO_IN
-.sym 103409 in0$SB_IO_IN
-.sym 103410 in4$SB_IO_IN
-.sym 103412 in8$SB_IO_IN
-.sym 103413 in6$SB_IO_IN
-.sym 103414 in1$SB_IO_IN
-.sym 103416 in1$SB_IO_IN
-.sym 103419 in8$SB_IO_IN
-.sym 103420 in1$SB_IO_IN
-.sym 103422 in8$SB_IO_IN
-.sym 103423 in9$SB_IO_IN
-.sym 103425 in5$SB_IO_IN
-.sym 103426 in3$SB_IO_IN
-.sym 103427 in5$SB_IO_IN
-.sym 103428 in7$SB_IO_IN
-.sym 103430 in7$SB_IO_IN
-.sym 103434 in4$SB_IO_IN
-.sym 103435 in6$SB_IO_IN
-.sym 103436 in0$SB_IO_IN
-.sym 103437 in2$SB_IO_IN
-.sym 103438 in5$SB_IO_IN
-.sym 103439 in9$SB_IO_IN
-.sym 103440 in5$SB_IO_IN
-.sym 103442 in3$SB_IO_IN
-.sym 103443 in4$SB_IO_IN
-.sym 103444 in0$SB_IO_IN
-.sym 103448 in5$SB_IO_IN
-.sym 103449 in5$SB_IO_IN
-.sym 103452 in2$SB_IO_IN
-.sym 103453 in5$SB_IO_IN
-.sym 103454 in5$SB_IO_IN
-.sym 103456 in5$SB_IO_IN
-.sym 104353 in4$SB_IO_IN
-.sym 104356 in2$SB_IO_IN
-.sym 104357 in2$SB_IO_IN
-.sym 104359 in0$SB_IO_IN
-.sym 104360 in6$SB_IO_IN
-.sym 104361 in5$SB_IO_IN
-.sym 104362 in0$SB_IO_IN
-.sym 104363 in0$SB_IO_IN
-.sym 104364 in6$SB_IO_IN
-.sym 104366 in4$SB_IO_IN
-.sym 104367 in5$SB_IO_IN
-.sym 104368 in8$SB_IO_IN
-.sym 104369 in2$SB_IO_IN
-.sym 104374 in0$SB_IO_IN
-.sym 104375 in4$SB_IO_IN
-.sym 104379 in6$SB_IO_IN
-.sym 104380 in0$SB_IO_IN
-.sym 104381 in9$SB_IO_IN
-.sym 104382 in5$SB_IO_IN
-.sym 104384 in1$SB_IO_IN
-.sym 104385 in5$SB_IO_IN
-.sym 104386 in8$SB_IO_IN
-.sym 104387 in7$SB_IO_IN
-.sym 104388 in6$SB_IO_IN
-.sym 104390 in0$SB_IO_IN
-.sym 104391 in7$SB_IO_IN
-.sym 104392 in3$SB_IO_IN
-.sym 104394 in2$SB_IO_IN
-.sym 104395 in5$SB_IO_IN
-.sym 104396 in3$SB_IO_IN
-.sym 104397 in2$SB_IO_IN
-.sym 104398 in3$SB_IO_IN
-.sym 104399 in3$SB_IO_IN
-.sym 104400 in6$SB_IO_IN
-.sym 104401 in5$SB_IO_IN
-.sym 104403 in8$SB_IO_IN
-.sym 104404 in1$SB_IO_IN
-.sym 104405 in8$SB_IO_IN
-.sym 104406 in3$SB_IO_IN
-.sym 104407 in9$SB_IO_IN
-.sym 104408 in5$SB_IO_IN
-.sym 104409 in1$SB_IO_IN
-.sym 104410 in5$SB_IO_IN
-.sym 104411 in1$SB_IO_IN
-.sym 104412 in9$SB_IO_IN
-.sym 104414 in5$SB_IO_IN
-.sym 104415 in4$SB_IO_IN
-.sym 105313 in0$SB_IO_IN
-.sym 105315 in0$SB_IO_IN
-.sym 105316 in4$SB_IO_IN
-.sym 105317 in0$SB_IO_IN
-.sym 105318 in3$SB_IO_IN
-.sym 105320 in5$SB_IO_IN
-.sym 105322 in5$SB_IO_IN
-.sym 105323 in5$SB_IO_IN
-.sym 105324 in0$SB_IO_IN
-.sym 105325 in5$SB_IO_IN
-.sym 105326 in5$SB_IO_IN
-.sym 105327 in0$SB_IO_IN
-.sym 105329 in0$SB_IO_IN
-.sym 105330 in0$SB_IO_IN
-.sym 105331 in8$SB_IO_IN
-.sym 105332 in6$SB_IO_IN
-.sym 105333 in4$SB_IO_IN
-.sym 105334 in8$SB_IO_IN
-.sym 105335 in3$SB_IO_IN
-.sym 105336 in6$SB_IO_IN
-.sym 105337 in3$SB_IO_IN
-.sym 105339 in2$SB_IO_IN
-.sym 105341 in0$SB_IO_IN
-.sym 105342 in9$SB_IO_IN
-.sym 105343 in2$SB_IO_IN
-.sym 105344 in8$SB_IO_IN
-.sym 105347 in1$SB_IO_IN
-.sym 105348 in5$SB_IO_IN
-.sym 105349 in4$SB_IO_IN
-.sym 105350 in8$SB_IO_IN
-.sym 105353 in5$SB_IO_IN
-.sym 105356 in2$SB_IO_IN
-.sym 105357 in7$SB_IO_IN
-.sym 105358 in2$SB_IO_IN
-.sym 105359 in5$SB_IO_IN
-.sym 105360 in7$SB_IO_IN
-.sym 105361 in5$SB_IO_IN
-.sym 105362 in9$SB_IO_IN
-.sym 105363 in3$SB_IO_IN
-.sym 105364 in3$SB_IO_IN
-.sym 105365 in9$SB_IO_IN
-.sym 105366 in5$SB_IO_IN
-.sym 105367 in1$SB_IO_IN
-.sym 105368 in9$SB_IO_IN
-.sym 105370 in5$SB_IO_IN
-.sym 105372 in9$SB_IO_IN
-.sym 105373 in3$SB_IO_IN
-.sym 105374 in5$SB_IO_IN
-.sym 105375 in0$SB_IO_IN
-.sym 106273 in0$SB_IO_IN
-.sym 106274 x1_y2
-.sym 106276 in2$SB_IO_IN
-.sym 106277 x1_y0
-.sym 106278 in0$SB_IO_IN
-.sym 106279 x1_y0
-.sym 106281 in5$SB_IO_IN
-.sym 106282 in7$SB_IO_IN
-.sym 106284 in0$SB_IO_IN
-.sym 106285 x1_y7
-.sym 106286 in8$SB_IO_IN
-.sym 106287 x1_y0
-.sym 106288 in6$SB_IO_IN
-.sym 106290 x1_y2
-.sym 106291 x1_y7
-.sym 106292 in8$SB_IO_IN
-.sym 106294 x1_y3
-.sym 106296 x1_y4
-.sym 106297 in7$SB_IO_IN
-.sym 106298 x1_y2
-.sym 106300 x1_y10
-.sym 106301 x1_y12
-.sym 106302 in5$SB_IO_IN
-.sym 106303 in8$SB_IO_IN
-.sym 106305 x1_y4
-.sym 106306 in1$SB_IO_IN
-.sym 106307 in0$SB_IO_IN
-.sym 106308 in3$SB_IO_IN
-.sym 106310 in9$SB_IO_IN
-.sym 106311 x1_y5
-.sym 106312 x1_y11
-.sym 106313 in5$SB_IO_IN
-.sym 106314 in6$SB_IO_IN
-.sym 106316 x1_y10
-.sym 106317 x1_y15
-.sym 106318 x1_y12
-.sym 106319 in4$SB_IO_IN
-.sym 106320 in5$SB_IO_IN
-.sym 106321 x1_y12
-.sym 106322 x1_y8
-.sym 106323 in9$SB_IO_IN
-.sym 106324 in9$SB_IO_IN
-.sym 106325 x1_y13
-.sym 106326 in1$SB_IO_IN
-.sym 106328 in0$SB_IO_IN
-.sym 106329 x1_y12
-.sym 106331 in5$SB_IO_IN
-.sym 106332 in9$SB_IO_IN
-.sym 107235 x1_y1
-.sym 107237 x2_y0
-.sym 107238 x2_y0
-.sym 107239 x1_y0
-.sym 107240 x2_y6
-.sym 107241 x2_y7
-.sym 107242 x1_y7
-.sym 107243 x2_y0
-.sym 107244 x1_y0
-.sym 107245 x1_y5
-.sym 107246 x2_y0
-.sym 107250 x1_y3
-.sym 107252 x1_y0
-.sym 107253 x1_y2
-.sym 107255 x1_y4
-.sym 107256 x2_y2
-.sym 107258 x1_y2
-.sym 107259 x1_y11
-.sym 107260 x1_y6
-.sym 107262 x2_y8
-.sym 107263 x2_y11
-.sym 107264 x1_y2
-.sym 107265 x1_y10
-.sym 107266 x2_y13
-.sym 107267 x2_y11
-.sym 107268 x1_y11
-.sym 107269 x1_y9
-.sym 107270 x2_y7
-.sym 107271 x2_y5
-.sym 107272 x2_y4
-.sym 107273 x1_y10
-.sym 107274 x1_y7
-.sym 107275 x1_y6
-.sym 107276 x2_y5
-.sym 107277 x1_y11
-.sym 107278 x1_y9
-.sym 107279 x1_y14
-.sym 107280 x1_y9
-.sym 107281 x1_y10
-.sym 107282 x2_y15
-.sym 107283 x2_y10
-.sym 107284 x1_y10
-.sym 107285 x2_y10
-.sym 107286 x1_y15
-.sym 107287 x2_y13
-.sym 107288 x1_y15
-.sym 107290 x1_y15
-.sym 107291 x1_y15
-.sym 107292 x1_y11
-.sym 107293 x1_y15
-.sym 107294 x2_y15
-.sym 107295 x1_y11
-.sym 107296 x2_y13
-.sym 108193 x3_y1
-.sym 108194 x2_y0
-.sym 108196 x3_y0
-.sym 108198 x3_y5
-.sym 108199 x2_y0
-.sym 108200 x2_y0
-.sym 108202 x3_y7
-.sym 108203 x2_y0
-.sym 108204 x2_y1
-.sym 108205 x2_y4
-.sym 108206 x3_y6
-.sym 108208 x2_y4
-.sym 108210 x2_y9
-.sym 108211 x3_y0
-.sym 108212 x2_y4
-.sym 108213 x2_y3
-.sym 108214 x2_y3
-.sym 108215 x2_y9
-.sym 108216 x2_y7
-.sym 108217 x2_y11
-.sym 108218 x2_y8
-.sym 108219 x3_y9
-.sym 108220 x2_y5
-.sym 108225 x2_y6
-.sym 108227 x2_y9
-.sym 108228 x3_y13
-.sym 108229 x3_y4
-.sym 108230 x3_y13
-.sym 108231 x2_y10
-.sym 108232 x2_y5
-.sym 108233 x2_y13
-.sym 108234 x2_y5
-.sym 108235 x3_y8
-.sym 108236 x3_y9
-.sym 108237 x3_y15
-.sym 108239 x2_y15
-.sym 108240 x3_y6
-.sym 108241 x3_y8
-.sym 108244 x2_y10
-.sym 108245 x3_y8
-.sym 108246 x3_y15
-.sym 108247 x2_y15
-.sym 108248 x3_y9
-.sym 108251 x2_y10
-.sym 108252 x2_y13
-.sym 108253 x3_y15
-.sym 108254 x3_y15
-.sym 109153 x3_y2
-.sym 109154 x3_y5
-.sym 109155 x3_y0
-.sym 109156 x4_y0
-.sym 109158 x4_y0
-.sym 109160 x4_y0
-.sym 109161 x4_y0
-.sym 109162 x3_y7
-.sym 109163 x4_y0
-.sym 109164 x3_y4
-.sym 109165 x3_y0
-.sym 109166 x3_y3
-.sym 109167 x3_y0
-.sym 109168 x4_y0
-.sym 109169 x4_y1
-.sym 109170 x3_y9
-.sym 109171 x4_y1
-.sym 109176 x3_y4
-.sym 109177 x4_y2
-.sym 109178 x4_y4
-.sym 109180 x3_y3
-.sym 109182 x4_y4
-.sym 109183 x3_y8
-.sym 109184 x4_y2
-.sym 109186 x3_y13
-.sym 109188 x4_y5
-.sym 109189 x3_y14
-.sym 109190 x3_y10
-.sym 109191 x4_y7
-.sym 109192 x4_y6
-.sym 109194 x4_y7
-.sym 109195 x4_y11
-.sym 109196 x4_y10
-.sym 109197 x3_y15
-.sym 109198 x3_y6
-.sym 109199 x3_y6
-.sym 109202 x4_y10
-.sym 109203 x4_y10
-.sym 109204 x4_y13
-.sym 109205 x4_y13
-.sym 109207 x4_y15
-.sym 109208 x3_y14
-.sym 109209 x3_y15
-.sym 109210 x4_y10
-.sym 109212 x4_y10
-.sym 109213 x4_y15
-.sym 109214 x4_y15
-.sym 109215 x4_y15
-.sym 110114 x5_y0
-.sym 110115 x4_y5
-.sym 110117 x5_y4
-.sym 110119 x5_y0
-.sym 110120 x4_y3
-.sym 110121 x5_y0
-.sym 110122 x5_y0
-.sym 110123 x5_y1
-.sym 110124 x5_y0
-.sym 110126 x4_y5
-.sym 110127 x5_y0
-.sym 110128 x4_y1
-.sym 110129 x4_y4
-.sym 110130 x5_y4
-.sym 110131 x4_y8
-.sym 110132 x4_y6
-.sym 110133 x4_y6
-.sym 110135 x4_y6
-.sym 110136 x5_y2
-.sym 110137 x4_y1
-.sym 110140 x5_y6
-.sym 110141 x4_y4
-.sym 110142 x4_y8
-.sym 110143 x5_y5
-.sym 110145 x4_y6
-.sym 110146 x4_y5
-.sym 110147 x4_y11
-.sym 110148 x4_y11
-.sym 110149 x4_y10
-.sym 110151 x4_y13
-.sym 110152 x5_y8
-.sym 110153 x4_y10
-.sym 110154 x5_y8
-.sym 110155 x4_y5
-.sym 110156 x4_y13
-.sym 110157 x4_y14
-.sym 110162 x5_y8
-.sym 110164 x5_y12
-.sym 110166 x4_y15
-.sym 110167 x5_y15
-.sym 110168 x5_y12
-.sym 110169 x4_y14
-.sym 110170 x4_y10
-.sym 110171 x4_y11
-.sym 110172 x4_y15
-.sym 110173 x4_y15
-.sym 110174 x5_y15
-.sym 110175 x4_y15
-.sym 110176 x5_y15
-.sym 111074 x6_y5
-.sym 111075 x6_y4
-.sym 111076 x6_y0
-.sym 111077 x5_y0
-.sym 111078 x5_y5
-.sym 111079 x6_y5
-.sym 111081 x5_y3
-.sym 111085 x5_y7
-.sym 111088 x6_y5
-.sym 111090 x6_y3
-.sym 111091 x6_y7
-.sym 111093 x5_y9
-.sym 111094 x6_y5
-.sym 111097 x5_y8
-.sym 111099 x5_y11
-.sym 111100 x6_y8
-.sym 111101 x5_y10
-.sym 111102 x5_y9
-.sym 111104 x5_y6
-.sym 111105 x5_y6
-.sym 111106 x6_y8
-.sym 111107 x6_y8
-.sym 111109 x5_y12
-.sym 111110 x5_y5
-.sym 111111 x6_y12
-.sym 111112 x6_y5
-.sym 111114 x6_y13
-.sym 111115 x6_y7
-.sym 111116 x6_y5
-.sym 111118 x6_y6
-.sym 111120 x5_y15
-.sym 111121 x6_y15
-.sym 111122 x6_y10
-.sym 111123 x6_y8
-.sym 111124 x6_y8
-.sym 111125 x6_y15
-.sym 111126 x6_y15
-.sym 111127 x5_y12
-.sym 111129 x5_y15
-.sym 111130 x5_y15
-.sym 111131 x5_y10
-.sym 111132 x6_y15
-.sym 111133 x5_y12
-.sym 111134 x6_y15
-.sym 111136 x6_y15
-.sym 112033 x6_y0
-.sym 112034 x6_y4
-.sym 112035 x6_y4
-.sym 112036 x6_y0
-.sym 112037 x6_y5
-.sym 112038 x7_y3
-.sym 112039 x6_y5
-.sym 112041 x7_y2
-.sym 112042 x7_y0
-.sym 112046 x6_y1
-.sym 112048 x6_y5
-.sym 112050 x6_y5
-.sym 112051 x6_y7
-.sym 112054 x7_y4
-.sym 112057 x6_y3
-.sym 112059 x5_y11
-.sym 112060 x6_y8
-.sym 112061 x6_y5
-.sym 112062 x6_y5
-.sym 112064 x5_y6
-.sym 112065 x7_y5
-.sym 112066 x7_y5
-.sym 112067 x6_y8
-.sym 112069 x6_y12
-.sym 112071 x6_y12
-.sym 112072 x6_y5
-.sym 112074 x7_y5
-.sym 112075 x6_y7
-.sym 112076 x6_y5
-.sym 112077 x7_y6
-.sym 112078 x6_y11
-.sym 112080 x5_y15
-.sym 112081 x7_y8
-.sym 112082 x7_y11
-.sym 112083 x6_y8
-.sym 112084 x6_y8
-.sym 112085 x7_y14
-.sym 112086 x7_y15
-.sym 112087 x5_y12
-.sym 112089 x6_y10
-.sym 112091 x5_y10
-.sym 112092 x6_y15
-.sym 112094 x7_y12
-.sym 112096 x6_y15
-.sym 112993 x8_y5
-.sym 112994 x8_y4
-.sym 112995 x7_y0
-.sym 112996 x8_y0
-.sym 112997 x7_y2
-.sym 112998 x8_y0
-.sym 112999 x7_y0
-.sym 113000 x7_y0
-.sym 113001 x7_y2
-.sym 113002 x7_y5
-.sym 113003 x8_y0
-.sym 113004 x8_y0
-.sym 113005 x8_y0
-.sym 113006 x7_y0
-.sym 113007 x8_y6
-.sym 113009 x8_y1
-.sym 113010 x7_y0
-.sym 113011 x7_y1
-.sym 113012 x7_y1
-.sym 113013 x7_y7
-.sym 113014 x8_y1
-.sym 113015 x8_y6
-.sym 113016 x7_y9
-.sym 113018 x7_y3
-.sym 113019 x8_y8
-.sym 113021 x7_y7
-.sym 113022 x7_y6
-.sym 113024 x8_y9
-.sym 113026 x7_y9
-.sym 113027 x7_y3
-.sym 113028 x7_y13
-.sym 113029 x8_y5
-.sym 113031 x8_y7
-.sym 113033 x8_y13
-.sym 113035 x7_y12
-.sym 113036 x8_y9
-.sym 113038 x8_y7
-.sym 113039 x8_y7
-.sym 113040 x8_y15
-.sym 113041 x7_y15
-.sym 113043 x8_y9
-.sym 113044 x7_y11
-.sym 113045 x7_y13
-.sym 113046 x7_y8
-.sym 113047 x8_y14
-.sym 113048 x7_y15
-.sym 113049 x8_y12
-.sym 113050 x7_y12
-.sym 113051 x8_y15
-.sym 113052 x8_y14
-.sym 113053 x8_y10
-.sym 113054 x8_y15
-.sym 113056 x8_y10
-.sym 113953 x9_y4
-.sym 113954 x9_y0
-.sym 113956 x8_y2
-.sym 113957 x9_y2
-.sym 113958 x8_y3
-.sym 113960 x9_y0
-.sym 113961 x8_y3
-.sym 113962 x9_y2
-.sym 113964 x9_y0
-.sym 113965 x8_y6
-.sym 113966 x9_y0
-.sym 113967 x8_y7
-.sym 113968 x8_y0
-.sym 113969 x9_y9
-.sym 113972 x8_y0
-.sym 113975 x8_y3
-.sym 113976 x9_y5
-.sym 113977 x8_y11
-.sym 113978 x8_y1
-.sym 113979 x8_y1
-.sym 113980 x9_y6
-.sym 113981 x8_y12
-.sym 113982 x8_y6
-.sym 113983 x8_y5
-.sym 113984 x8_y7
-.sym 113985 x9_y13
-.sym 113986 x8_y3
-.sym 113988 x9_y9
-.sym 113989 x8_y6
-.sym 113991 x9_y6
-.sym 113992 x9_y4
-.sym 113993 x9_y5
-.sym 113994 x8_y14
-.sym 113995 x8_y6
-.sym 113997 x9_y15
-.sym 113998 x9_y7
-.sym 113999 x8_y12
-.sym 114002 x9_y15
-.sym 114003 x9_y10
-.sym 114004 x9_y12
-.sym 114005 x9_y15
-.sym 114007 x8_y15
-.sym 114008 x8_y13
-.sym 114009 x8_y12
-.sym 114011 x9_y11
-.sym 114014 x9_y15
-.sym 114015 x8_y15
-.sym 114016 x9_y14
-.sym 114913 x10_y0
-.sym 114914 x9_y5
-.sym 114915 x10_y3
-.sym 114916 x9_y2
-.sym 114917 x9_y1
-.sym 114918 x10_y6
-.sym 114919 x9_y0
-.sym 114920 x9_y0
-.sym 114921 x9_y7
-.sym 114922 x10_y5
-.sym 114923 x9_y6
-.sym 114924 x9_y0
-.sym 114926 x10_y0
-.sym 114929 x10_y5
-.sym 114930 x9_y7
-.sym 114932 x10_y6
-.sym 114933 x10_y10
-.sym 114936 x10_y6
-.sym 114937 x9_y9
-.sym 114938 x9_y9
-.sym 114939 x9_y5
-.sym 114940 x10_y6
-.sym 114941 x9_y12
-.sym 114942 x10_y11
-.sym 114945 x9_y10
-.sym 114946 x10_y9
-.sym 114948 x9_y7
-.sym 114949 x10_y5
-.sym 114952 x9_y13
-.sym 114953 x10_y12
-.sym 114954 x10_y6
-.sym 114955 x10_y6
-.sym 114956 x9_y10
-.sym 114957 x9_y14
-.sym 114958 x10_y10
-.sym 114960 x9_y12
-.sym 114961 x9_y15
-.sym 114962 x9_y13
-.sym 114963 x9_y15
-.sym 114964 x9_y8
-.sym 114966 x9_y15
-.sym 114967 x9_y11
-.sym 114970 x10_y13
-.sym 114971 x9_y11
-.sym 114974 x10_y11
-.sym 114975 x10_y15
-.sym 115873 x10_y1
-.sym 115874 x11_y0
-.sym 115875 x11_y0
-.sym 115877 x10_y2
-.sym 115878 x10_y5
-.sym 115880 x10_y4
-.sym 115881 x10_y0
-.sym 115882 x10_y0
-.sym 115883 x10_y1
-.sym 115884 x11_y6
-.sym 115885 x10_y3
-.sym 115886 x10_y6
-.sym 115888 x11_y0
-.sym 115892 x11_y2
-.sym 115893 x11_y0
-.sym 115894 x11_y0
-.sym 115895 x11_y10
-.sym 115896 x11_y10
-.sym 115899 x11_y2
-.sym 115901 x10_y4
-.sym 115902 x11_y6
-.sym 115903 x10_y11
-.sym 115904 x11_y9
-.sym 115905 x11_y6
-.sym 115907 x11_y3
-.sym 115908 x10_y12
-.sym 115909 x11_y13
-.sym 115910 x10_y7
-.sym 115911 x11_y9
-.sym 115912 x11_y9
-.sym 115913 x10_y8
-.sym 115914 x10_y15
-.sym 115915 x11_y11
-.sym 115917 x11_y13
-.sym 115918 x10_y9
-.sym 115919 x11_y7
-.sym 115920 x10_y10
-.sym 115921 x10_y15
-.sym 115923 x10_y7
-.sym 115924 x10_y7
-.sym 115925 x10_y15
-.sym 115926 x10_y13
-.sym 115927 x11_y9
-.sym 115928 x10_y8
-.sym 115929 x11_y12
-.sym 115930 x10_y13
-.sym 115931 x11_y15
-.sym 115932 x11_y15
-.sym 115933 x11_y15
-.sym 115934 x11_y15
-.sym 115935 x10_y15
-.sym 115936 x10_y15
-.sym 116833 x11_y4
-.sym 116838 x11_y0
-.sym 116841 x11_y0
-.sym 116842 x12_y0
-.sym 116845 x12_y3
-.sym 116849 x12_y6
-.sym 116850 x12_y1
-.sym 116852 x12_y1
-.sym 116853 x11_y9
-.sym 116854 x12_y7
-.sym 116856 x12_y5
-.sym 116857 x12_y5
-.sym 116859 x11_y10
-.sym 116860 x12_y8
-.sym 116861 x12_y2
-.sym 116862 x12_y5
-.sym 116863 x11_y8
-.sym 116864 x11_y8
-.sym 116865 x12_y5
-.sym 116867 x11_y6
-.sym 116868 x11_y6
-.sym 116869 x11_y4
-.sym 116870 x12_y6
-.sym 116871 x11_y7
-.sym 116872 x11_y5
-.sym 116873 x11_y6
-.sym 116874 x12_y11
-.sym 116875 x12_y10
-.sym 116877 x11_y9
-.sym 116878 x11_y6
-.sym 116879 x11_y6
-.sym 116880 x12_y10
-.sym 116881 x12_y13
-.sym 116882 x12_y8
-.sym 116883 x11_y15
-.sym 116885 x12_y14
-.sym 116886 x11_y15
-.sym 116890 x12_y15
-.sym 116891 x12_y15
-.sym 116893 x11_y11
-.sym 116894 x12_y15
-.sym 116895 x11_y11
-.sym 116896 x12_y15
-.sym 117793 x13_y0
-.sym 117794 x12_y0
-.sym 117795 x12_y0
-.sym 117797 x13_y0
-.sym 117798 x13_y6
-.sym 117801 x13_y1
-.sym 117802 x12_y3
-.sym 117803 x13_y4
-.sym 117805 x13_y0
-.sym 117806 x13_y4
-.sym 117807 x12_y0
-.sym 117808 x12_y1
-.sym 117809 x12_y5
-.sym 117811 x13_y0
-.sym 117812 x13_y0
-.sym 117813 x13_y7
-.sym 117814 x13_y9
-.sym 117815 x13_y3
-.sym 117817 x13_y8
-.sym 117818 x12_y5
-.sym 117820 x12_y8
-.sym 117822 x13_y11
-.sym 117823 x13_y10
-.sym 117824 x12_y10
-.sym 117825 x13_y6
-.sym 117826 x13_y12
-.sym 117827 x13_y7
-.sym 117828 x12_y9
-.sym 117829 x12_y4
-.sym 117830 x13_y12
-.sym 117831 x13_y5
-.sym 117833 x12_y11
-.sym 117836 x13_y8
-.sym 117837 x13_y10
-.sym 117840 x12_y8
-.sym 117841 x12_y8
-.sym 117842 x13_y15
-.sym 117844 x12_y15
-.sym 117845 x12_y15
-.sym 117846 x12_y15
-.sym 117847 x12_y12
-.sym 117849 x12_y11
-.sym 117850 x13_y15
-.sym 117853 x13_y15
-.sym 117854 x13_y15
-.sym 117855 x13_y15
-.sym 117856 x13_y14
+.sym 52639 in0$SB_IO_IN
+.sym 52641 in1$SB_IO_IN
+.sym 52650 in2$SB_IO_IN
+.sym 56248 in2$SB_IO_IN
+.sym 56390 in1$SB_IO_IN
+.sym 56392 in0$SB_IO_IN
+.sym 56394 in2$SB_IO_IN
+.sym 56396 in0$SB_IO_IN
+.sym 56402 in2$SB_IO_IN
+.sym 56421 in1$SB_IO_IN
+.sym 56422 in2$SB_IO_IN
+.sym 56423 in0$SB_IO_IN
+.sym 56427 in0$SB_IO_IN
+.sym 56428 in0$SB_IO_IN
+.sym 56429 in0$SB_IO_IN
+.sym 56430 in0$SB_IO_IN
+.sym 56433 in1$SB_IO_IN
+.sym 56434 in0$SB_IO_IN
+.sym 56445 in1$SB_IO_IN
+.sym 56446 in0$SB_IO_IN
+.sym 56447 in2$SB_IO_IN
+.sym 56448 in2$SB_IO_IN
+.sym 56463 in2$SB_IO_IN
+.sym 56464 in0$SB_IO_IN
+.sym 56465 in0$SB_IO_IN
+.sym 56466 in2$SB_IO_IN
+.sym 60230 in2$SB_IO_IN
+.sym 60245 in2$SB_IO_IN
+.sym 60246 in0$SB_IO_IN
+.sym 60251 in2$SB_IO_IN
+.sym 60252 in0$SB_IO_IN
+.sym 60253 in2$SB_IO_IN
+.sym 60254 in2$SB_IO_IN
+.sym 60269 in0$SB_IO_IN
+.sym 60271 in0$SB_IO_IN
+.sym 60281 in0$SB_IO_IN
+.sym 60283 in0$SB_IO_IN
+.sym 60284 in2$SB_IO_IN
+.sym 60369 in2$SB_IO_IN
+.sym 64130 in2$SB_IO_IN
+.sym 67891 in2$SB_IO_IN
+.sym 67930 in2$SB_IO_IN
+.sym 67932 in2$SB_IO_IN
+.sym 67997 in2$SB_IO_IN
+.sym 114882 in1$SB_IO_IN
+.sym 114883 in0$SB_IO_IN
+.sym 114884 in2$SB_IO_IN
+.sym 114885 in0$SB_IO_IN
+.sym 114886 in0$SB_IO_IN
+.sym 114887 in0$SB_IO_IN
+.sym 114888 in0$SB_IO_IN
+.sym 114890 in0$SB_IO_IN
+.sym 114891 in1$SB_IO_IN
+.sym 114897 in1$SB_IO_IN
+.sym 114898 in2$SB_IO_IN
+.sym 114899 in2$SB_IO_IN
+.sym 114900 in0$SB_IO_IN
+.sym 114909 in0$SB_IO_IN
+.sym 114910 in2$SB_IO_IN
+.sym 114911 in0$SB_IO_IN
+.sym 114912 in2$SB_IO_IN
+.sym 115841 in2$SB_IO_IN
+.sym 115842 in2$SB_IO_IN
+.sym 115843 in0$SB_IO_IN
+.sym 115844 in2$SB_IO_IN
+.sym 115855 in0$SB_IO_IN
+.sym 115856 in0$SB_IO_IN
+.sym 115861 in2$SB_IO_IN
+.sym 115863 in0$SB_IO_IN
+.sym 115864 in0$SB_IO_IN
+.sym 117774 in2$SB_IO_IN
+.sym 117775 in2$SB_IO_IN
+```
+
+### iCE40 Layout View
+
