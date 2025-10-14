@@ -45,6 +45,7 @@ int individual_to_verilog(gene** individual, char* filename) {
     fprintf(file, "\n");
 
     for(int i=0; i < GENES_PER_INDIVIDUAL; i++) {
+        // Physical placement on FPGA
         int y = i / side_length + 1;
         int x = i % side_length + 1;
         for(int j=0; j < sizeof(RAM_ROWS)/sizeof(RAM_ROWS[0]); j++) {
@@ -56,9 +57,13 @@ int individual_to_verilog(gene** individual, char* filename) {
         fprintf(file, "    (* keep, dont_touch *)\n");
         fprintf(file, "    (* BEL = \"X%d/Y%d/lc%d\" *)\n", x, (y-1)/8 + 1, (y-1)%8);
         fprintf(file, "    SB_LUT4 #(\n");
-        fprintf(file, "        .LUT_INIT(16'b%016d)\n", (*individual)[i].lut);
-        fprintf(file, "    ) lut_%d_%d (\n", x, y);
-        fprintf(file, "        .O(x%d_y%d),\n", x, y);
+        fprintf(file, "        .LUT_INIT(16'b");
+        for (int bit = 15; bit >= 0; bit--) {
+            fprintf(file, "%d", ((*individual)[i].lut >> bit) & 1);
+        }
+        fprintf(file, ")\n");
+        fprintf(file, "    ) lut_%d (\n", i);
+        fprintf(file, "        .O(out_%d),\n", i);
         fprintf(file, "        .I0(/* input0 connection */),\n");
         fprintf(file, "        .I1(/* input1 connection */),\n");
         fprintf(file, "        .I2(/* input2 connection */),\n");
