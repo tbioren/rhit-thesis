@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "general-knowledge/Proof of Replicibility.md",
+                "file": "Experiment Plan.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Proof of Replicibility"
+              "title": "Experiment Plan"
             }
           }
         ]
@@ -181,20 +181,21 @@
   },
   "active": "54282f98b610f7a3",
   "lastOpenFiles": [
-    "Pasted image 20251014090406.png",
+    "log/2025-10-06.md",
+    "log/2025-10-07.md",
+    "log/2025-10-20.md",
+    "Main.md",
+    "Experiment Plan.md",
     "general-knowledge/Proof of Replicibility.md",
+    "Pasted image 20251014090406.png",
     "Pasted image 20251014090428.png",
     "Pasted image 20251008093146.png",
-    "Experiment Plan.md",
-    "log/2025-10-07.md",
     "ThomasBiorenThesisProposal.pdf",
-    "Main.md",
     "templates/daily-log.md",
     "general-knowledge/Yosys.md",
     "general-knowledge/Project IceStorm.md",
     "general-knowledge/Pico-Ice.md",
     "log/2025-10-05.md",
-    "log/2025-10-06.md",
     "log/2025-10-02.md",
     "log/2025-09-04.md",
     "log/2025-09-12.md",

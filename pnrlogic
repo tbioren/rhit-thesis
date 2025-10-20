@@ -1,0 +1,9 @@
+(
+    ((not in3) and (not in2) and in1 and (not in0)) or
+    ((not in3) and in2 and (not in1) and (not in0)) or
+    ((not in3) and in2 and (not in1) and in0) or
+    ((not in3) and in2 and in1 and (not in0)) or
+    (in3 and (not in2) and (not in1) and (not in0)) or
+    (in3 and (not in2) and in1 and in0) or
+    (in3 and in2 and in1 and (not in0))
+)
