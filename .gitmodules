@@ -1,0 +1,3 @@
+[submodule "thesis-notes"]
+	path = thesis-notes
+	url = https://github.com/tbioren/thesis-notes.git
