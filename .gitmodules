@@ -4,3 +4,6 @@
 [submodule "thesis-experiment"]
 	path = thesis-experiment
 	url = https://github.com/tbioren/thesis-experiment.git
+[submodule "thesis-paper"]
+	path = thesis-paper
+	url = https://github.com/tbioren/thesis-paper.git
